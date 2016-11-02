@@ -23,14 +23,35 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="studentNumber">Student Number:</label>
                     <div class="col-sm-10">
-                        <input type="textarea" class="form-control" id="studentNumber" placeholder="Enter Student Number!">
+                        <input type="textarea" class="form-control" id="studentNumber" placeholder="Enter Student Number!" required pattern='.{8}' name="studentNumber">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="body">Body:</label>
+                    <label class="control-label col-sm-2" for="studentFirstname">First Name:</label>
                     <div class="col-sm-10">
-                        <textarea name="body" type="textarea" class="form-control" id="body" placeholder="Nomination!"></textarea> 
+                        <input type="textarea" class="form-control" id="studentName" placeholder="Enter First Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="studentLastname">Last Name:</label>
+                    <div class="col-sm-10">
+                        <input type="textarea" class="form-control" id="studentLastname" placeholder="Enter Last Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="course">Course:</label>
+                    <div class="col-sm-10">
+                        <input type="textarea" class="form-control" id="course" placeholder="Enter Course">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="section">Section:</label>
+                    <div class="col-sm-10">
+                        <input type="textarea" class="form-control" id="section" placeholder="Enter Section">
                     </div>
                 </div>
 
@@ -43,20 +64,6 @@
 
                 <form method="post" action="preview">
            <fieldset>              
-            <p><strong>Student Number:</strong><br/>
-                   <input type="text" name="snum"required pattern='.{8}'/></p>  
-                      
-               <p><strong>First Name:</strong><br/>
-                   <input type="text" name="fname" required /></p>
-                   
-               <p><strong>Last Name:</strong><br/>
-                   <input type="text" name="lname" required /></p> 
-                   
-               <p><strong>Course:</strong><br/>
-                   <input type="text" name="course"required /></p>  
-                   
-               <p><strong>Section:</strong><br/>
-                   <input type="text" name="section"required /></p>
                    
                <script type="text/javascript">
 
@@ -125,7 +132,11 @@
                </textarea>
                
                
-               <p><input type="submit" name="preview" value="Preview"/></p>
+               <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Nominate!</button>
+                    </div>
+                </div>
                    
            </fieldset></body>
             </form>
