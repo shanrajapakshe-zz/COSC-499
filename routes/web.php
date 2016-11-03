@@ -16,7 +16,7 @@ Route::get('/nominations/create','NominationsController@create');
 Route::get('/nominations/{post}', 'NominationsController@show');
 
 Route::post('/nominations', "NominationsController@store");
-Route::post('/nominations/{nominations}', "NominationsController@store");
+Route::post('/nominations/{nomination}', "NominationsController@store");
 
 
 Route::get('/about', 'PageController@getAbout');
