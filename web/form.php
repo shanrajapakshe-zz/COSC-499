@@ -6,8 +6,55 @@
  * Time: 6:50 PM
  */
 
-$display_block = "<form method=\"post\" action=\"preview\">
+/** Here is the codes we need to use */
+session_start();
+
+$snumValue= "";
+$fnameValue= "";
+$lnameValue= "";
+$courseValue= "";
+$sectionValue= "";
+$actgradeValue= "";
+$actrankValue= "";
+$estgradeValue= "";
+$estrankValue= "";
+$descValue= "";
+
+$_SESSION['snum'] = $snumValue;
+$_SESSION['fname'] = $fnameValue;
+$_SESSION['lname'] = $lnameValue;
+$_SESSION['course'] = $courseValue;
+$_SESSION['section'] = $sectionValue;
+$_SESSION['actgrade'] = $actgradeValue;
+$_SESSION['actrank'] = $actrankValue;
+$_SESSION['estgrade'] = $estgradeValue;
+$_SESSION['estrank'] = $estrankValue;
+$_SESSION['desc'] = $descValue;
+
+/**
+ * End of Additional code
+ */
+
+$display_block = "<form method=\"post\" action=\"preview2.php\">
            <fieldset> <legend><h3> Unit 5 - Award Nomination Portal </h3></legend>
+           
+           <script> 
+                   $(document).ready(function () {
+                       $('#sInfo').hide();  //keeps the extra boxes hidden
+                       
+                       $('#c1').click(function() {
+                           $(\"#sInfo\").toggle(this.checked);
+                       });
+                                                            
+                   }); 
+  
+               </script>           
+               
+             Award A <input type='checkbox' id='c1'>
+          
+             <div id='sInfo'>
+
+
            
               <p><strong>Student Number:</strong>
                    <input type=\"number\" name=\"snum\"required pattern='.{8}'/> 
@@ -24,7 +71,6 @@ $display_block = "<form method=\"post\" action=\"preview\">
                <strong>Section:</strong>
                    <input type=\"text\" name=\"section\"required /></p>
                    
-               </form>   
                
               
                 <script>
@@ -88,19 +134,41 @@ $display_block = "<form method=\"post\" action=\"preview\">
                    
                   
                <!-- This is for the description box-->
-               <p><strong>Description</strong></p>
-               <textarea rows='4' cols='80'> 
-               </textarea>
+                <p><strong>Description</strong></p>
+                           <textarea name='desc'> 
+                           </textarea>
+                           <!-- <textarearows='4' cols='80'> -->
                
                
-               <p><input type=\"submit\" name=\"preview\" value=\"Preview\"/></p>
+               <p><input type=\"submit\" name=\"submit\" value=\"submit\"/></p>
                    
-           </fieldset>";
+           </fieldset>
+           
+           </form> ";
+
 
 
 ?>
 
 <!DOCTYPE html>
+<!-- Additional Styling code -->
+<style>
+    form{
+        width 80%;
+        align-content: center;
+    }
+    textarea {
+        width: 50%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        resize: none;
+    }
+</style>
+<!-- Additional Styling code -->
 
 <html>
 <head>
