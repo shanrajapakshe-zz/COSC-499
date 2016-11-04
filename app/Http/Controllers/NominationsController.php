@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\Nomination;
 
 use Illuminate\Http\Request;
 
@@ -17,8 +17,8 @@ class NominationsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('nominations.index', compact('posts'));
+        $nominations = Nomination::all();
+        return view('nominations.index')->with('nominations', $nominations);
     }
 
     /**
