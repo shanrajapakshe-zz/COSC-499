@@ -51,15 +51,16 @@ class NominationsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $nomination
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $nomination = Nomination::find($id);
+        return view('nominations.show')->with('nomination', $nomination);
     }
 
-        /**
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="row">	
-        <h1>All Posts</h1>
+        <h1>All Nominations</h1>
 
         @foreach ($nominations as $nomination)
 	        <li>
