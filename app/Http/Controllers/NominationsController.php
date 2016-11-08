@@ -59,6 +59,17 @@ class NominationsController extends Controller
         //
     }
 
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showForm($id)
+    {
+        return view('nominations.create');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

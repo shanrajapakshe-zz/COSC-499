@@ -13,7 +13,7 @@
 
 Route::get('/nominations/index', 'NominationsController@index');
 Route::get('/nominations/create','NominationsController@create');
-Route::get('/nominations/{post}', 'NominationsController@show');
+Route::get('/nominations/{nomination}', 'NominationsController@show');
 
 Route::post('/nominations', "NominationsController@store");
 Route::post('/nominations/{nomination}', "NominationsController@store");

@@ -6,10 +6,12 @@
 
     <div class="row">	
         <h1>All Posts</h1>
+
         @foreach ($nominations as $nomination)
-        <div>
-        	{{$nomination->studentNum}}
-        </div>
+	        <li>
+	        	{{$nomination->studentFirstName}} {{$nomination->studentLastName}} - {{$nomination->studentNum}}
+	        </li>
         @endforeach
+
     </div>
 @endsection
