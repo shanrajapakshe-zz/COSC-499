@@ -40,12 +40,26 @@ class NominationsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            // 'title' => 'required',
-            // 'body'=>'required',
+            'studentNum'=>'required',
+            'studentFirstName'=>'required',
+            'studentLastName'=>'required',
+            'course'=>'required',
+            'section'=>'required',
+            // 'description'=>'required',
             ]);
 
+        $nomination = new Nomination;
+
+        $nomination->studentNum = $request->studentNum;
+        $nomination->studentFirstName = $request->studentFirstName;
+        $nomination->studentLastName = $request->studentLastName;
+        $nomination->course = $request->course;
+        $nomination->section = $request->section;
+        // $nomination->description = $request->description;
+
+        $nomination ->save();
+
         // the blog post is valid - Store in database
-        return $request->all();
     }
 
     /**

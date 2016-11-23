@@ -18,41 +18,41 @@
      @endif
 
 
-      <form class="form-horizontal" action="{{url ('/post') }}" method="POST">
+      <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
         {{ csrf_field() }}
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="studentNumber">Student Number:</label>
+          <label class="control-label col-sm-2" for="studentNum">Student Number:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="studentNumber" placeholder="Enter Student Number!" required pattern='.{8}' name="studentNumber">
+            <input type="textarea" class="form-control" id="studentNum" placeholder="Enter Student Number!" required pattern='.{8}' name="studentNum">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="studentFirstname">First Name:</label>
+          <label class="control-label col-sm-2" for="studentFirstName">First Name:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="studentName" placeholder="Enter First Name">
+            <input type="textarea" class="form-control" id="studentFirstName" placeholder="Enter First Name" required name = "studentFirstName">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="studentLastname">Last Name:</label>
+          <label class="control-label col-sm-2" for="studentLastName">Last Name:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="studentLastname" placeholder="Enter Last Name">
+            <input type="textarea" class="form-control" id="studentLastName" placeholder="Enter Last Name" required name = "studentLastName">
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="course">Course:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="course" placeholder="Enter Course">
+            <input type="textarea" class="form-control" id="course" placeholder="Enter Course" required name = "course">
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="section">Section:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="section" placeholder="Enter Section">
+            <input type="textarea" class="form-control" id="section" placeholder="Enter Section" required name = "section">
           </div>
         </div>
 

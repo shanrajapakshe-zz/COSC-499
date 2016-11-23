@@ -18,7 +18,6 @@ Route::get('/nominations/{nomination}', 'NominationsController@show');
 Route::post('/nominations', "NominationsController@store");
 Route::post('/nominations/{nomination}', "NominationsController@store");
 
-
 Route::get('/about', 'PageController@getAbout');
 Route::get('/profile', 'PageController@getContact' );
 Route::get('/', 'PageController@getIndex' );

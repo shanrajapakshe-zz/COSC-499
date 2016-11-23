@@ -18,6 +18,13 @@ class CreateNominationsTable extends Migration
             $table->string('studentNum');
             $table->string('studentFirstName');
             $table->string('studentLastName');
+            $table->string('course');
+            $table->string('section');
+            $table->string('actGrade');
+            $table->string('estGrade');
+            $table->string('estRank');
+            $table->text('description');
+
             $table->timestamps();
 
             // Add other parts of table to store
