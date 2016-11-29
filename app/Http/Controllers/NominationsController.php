@@ -59,6 +59,9 @@ class NominationsController extends Controller
 
         $nomination ->save();
         // the blog post is valid - Store in database
+
+        $nominations = Nomination::all();
+        return view('nominations.index')->with('nominations', $nominations);
     }
 
     /**
