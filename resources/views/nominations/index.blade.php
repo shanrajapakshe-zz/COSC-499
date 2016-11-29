@@ -14,6 +14,7 @@
 				<th>Last Name</th>
 				<th>Course</th>
 				<th>Section</th>
+				<th>Grade</th>
 			</tr>
 	        
 	        <tr>
@@ -23,9 +24,10 @@
 		        <td>{{$nomination->studentLastName}}</td>
 		        <td>{{$nomination->course}}</td>
 		        <td>{{$nomination->section}}</td>
+		        <td>{{$nomination->actGrade}}</td>
 		    </tr>      
-
 	        @endforeach
+	        
 		</table>
     </div>
 @endsection

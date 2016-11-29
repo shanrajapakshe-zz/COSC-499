@@ -46,6 +46,7 @@ class NominationsController extends Controller
             'course'=>'required',
             'section'=>'required',
             // 'description'=>'required',
+            'actGrade' => 'required',
             ]);
 
         $nomination = new Nomination;
@@ -55,6 +56,10 @@ class NominationsController extends Controller
         $nomination->studentLastName = $request->studentLastName;
         $nomination->course = $request->course;
         $nomination->section = $request->section;
+        $nomination->actGrade = $request->actGrade;
+
+
+        // $nomination->grade = $request->grade;
         // $nomination->description = $request->description;
 
         $nomination ->save();

@@ -24,7 +24,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentNum">Student Number:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="studentNum" placeholder="Enter Student Number!" required pattern='.{8}' name="studentNum">
+            <input type="textarea" class="form-control" id="studentNum" placeholder="Enter Student Number" required pattern='[0-9]{8}' name="studentNum">
           </div>
         </div>
 
@@ -52,7 +52,14 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="section">Section:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="section" placeholder="Enter Section" required name = "section">
+            <input type="textarea" class="form-control" id="section" placeholder="Enter Section" required pattern='[0-9]{3}'name = "section">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="actGrade">Grade:</label>
+          <div class="col-sm-10">
+            <input type="textarea" class="form-control" id="actGrade" placeholder="Enter Grade"  required pattern='[1-9][0-9]?$|^100$' name = "actGrade">
           </div>
         </div>
 
@@ -64,7 +71,7 @@
       </form>
 
 
-      <form method="post" action="preview">
+      {{-- <form method="post" action="preview">
        <fieldset>              
 
          <script type="text/javascript">
@@ -126,10 +133,10 @@
         <option value="winterGrad">Winter 2016</option>
         <option value="springGrad">Spring 2017</option>
       </select>
-    </div> 
+    </div>  --}}
 
     <!-- This is for the description box-->
-    <p><strong>Description</strong></p>
+ {{--    <p><strong>Description</strong></p>
     <textarea rows='4' cols='80'> 
     </textarea>
 
@@ -138,7 +145,7 @@
       <div class="col-sm-10">
         <button type="submit" class="btn btn-primary">Nominate!</button>
       </div>
-    </div>
+    </div> --}}
 
   </fieldset></body>
   </form>
