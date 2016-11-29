@@ -7,10 +7,25 @@
     <div class="row">	
         <h1>All Nominations</h1>
 		
-		<ul class="list-group">
+		<table style="width:75%">
+			<tr>
+				<th>Student Number</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Course</th>
+				<th>Section</th>
+			</tr>
+	        
+	        <tr>
 	        @foreach ($nominations as $nomination)
-		        <li>{{$nomination->studentFirstName}} {{$nomination->studentLastName}} - {{$nomination->studentNum}}</li>
+		        <td>{{$nomination->studentNum}}</td>
+		        <td>{{$nomination->studentFirstName}}</td>
+		        <td>{{$nomination->studentLastName}}</td>
+		        <td>{{$nomination->course}}</td>
+		        <td>{{$nomination->section}}</td>
+		    </tr>      
+
 	        @endforeach
-		</ul>
+		</table>
     </div>
 @endsection

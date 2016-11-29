@@ -58,7 +58,6 @@ class NominationsController extends Controller
         // $nomination->description = $request->description;
 
         $nomination ->save();
-
         // the blog post is valid - Store in database
     }
 
