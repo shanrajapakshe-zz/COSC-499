@@ -46,7 +46,8 @@ class NominationsController extends Controller
             'course'=>'required',
             'section'=>'required',
             // 'description'=>'required',
-            'actGrade' => 'required',
+            'actGrade' => 'required_unless:estGrade==false',
+            'estGrade' => 'required_unless:gradeToggle==true',
             ]);
 
         $nomination = new Nomination;
@@ -57,11 +58,8 @@ class NominationsController extends Controller
         $nomination->course = $request->course;
         $nomination->section = $request->section;
         $nomination->actGrade = $request->actGrade;
-
-
+        $nomination->description = $request->description;
         // $nomination->grade = $request->grade;
-        // $nomination->description = $request->description;
-
         $nomination ->save();
         // the blog post is valid - Store in database
 

@@ -4,6 +4,15 @@
 
 @section('content')
 
+  <script>                                                             
+    $(function() {
+    $("[name=toggler]").click(function(){
+            $('.toHide').hide();
+            $("#visible"+$(this).val()).show('slow');
+    });
+ });
+  </script>
+
   <div class="row">	
     <div class="col-md-8 col-md-offset-2">
       <h1>Create New Nomination</h1>
@@ -57,12 +66,64 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="actGrade">Grade:</label>
+          <label class="control-label col-sm-2" for="gradeCheck">Grades:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="actGrade" placeholder="Enter Grade"  required pattern='[1-9][0-9]?$|^100$' name = "actGrade">
+            <div class ="radio">
+              <label>
+                <input type="radio" id = "radio1" name="gradeToggle" onclick="getResults()" value="actGrade" checked="checked">Grade
+              </label>
+
+              <label>
+                <input type="radio" id = "radio2" name="gradeToggle" value="estGrade">Estimated Grade
+              </label>
+            </div>
           </div>
         </div>
 
+        <div class="toHide" id="visible1">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="actGrade">Grade:</label>
+            <div class="col-sm-10">
+              <input type="textarea" class="form-control" id="actGrade" placeholder="Enter Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "actGrade">
+            </div>
+          </div>
+        </div>
+
+        <div class="toHide" id="visible1">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="esttGrade">Estimated Grade:</label>
+            <div class="col-sm-10">
+              <input type="textarea" class="form-control" id="estGrade" placeholder="Enter Estimated Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "estGrade">
+            </div>
+          </div>
+        </div>
+
+{{--         <div class="hidden toHide" id="visible2">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="estGrade">Estimated Grade:</label>
+            <div class="col-sm-10">
+              <input type="textarea" class="form-control" id="estGrade" placeholder="Enter Estimated Grade"  required pattern='[1-9][0-9]?$|^100$' name = "estGrade">
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden" id="visible2">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="rank">Rank:</label>
+            <div class="col-sm-10">
+              <input type="textarea" class="form-control" id="rank" placeholder="Enter Rank"  required pattern='[1-9][0-9]?$|^100$' name = "Rank">
+            </div>
+          </div>
+        </div>
+ --}}
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="description">Description:</label>
+          <div class="col-sm-10">
+            <textarea  rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
+          </div>
+        </div>
+
+      
         <div class="form-group">
           <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Nominate!</button>
@@ -134,18 +195,6 @@
         <option value="springGrad">Spring 2017</option>
       </select>
     </div>  --}}
-
-    <!-- This is for the description box-->
- {{--    <p><strong>Description</strong></p>
-    <textarea rows='4' cols='80'> 
-    </textarea>
-
-
-    <div class="form-group">
-      <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">Nominate!</button>
-      </div>
-    </div> --}}
 
   </fieldset></body>
   </form>

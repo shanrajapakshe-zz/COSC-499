@@ -15,6 +15,7 @@
 				<th>Course</th>
 				<th>Section</th>
 				<th>Grade</th>
+				<th>Description</th>
 			</tr>
 	        
 	        <tr>
@@ -25,9 +26,10 @@
 		        <td>{{$nomination->course}}</td>
 		        <td>{{$nomination->section}}</td>
 		        <td>{{$nomination->actGrade}}</td>
+		        <td>{{$nomination->description}}</td>
 		    </tr>      
 	        @endforeach
-	        
+
 		</table>
     </div>
 @endsection
