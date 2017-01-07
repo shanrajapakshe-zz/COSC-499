@@ -26,7 +26,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/nominations/index">My Nominations</a></li>
-                        <li><a href="#">Settings</a></li>
+                        <li><a href="#/admin/report">Admin Page</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Log Out</a></li>
                     </ul>

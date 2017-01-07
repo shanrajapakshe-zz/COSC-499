@@ -11,12 +11,17 @@
 |
 */
 
+
 Route::get('/nominations/index', 'NominationsController@index');
 Route::get('/nominations/create','NominationsController@create');
 Route::get('/nominations/{nomination}', 'NominationsController@show');
 
 Route::post('/nominations', "NominationsController@store");
 Route::post('/nominations/{nomination}', "NominationsController@store");
+
+Route::get('/admin/report','AdminController@report');
+Route::get('/admin/search','AdminController@search');
+
 
 Route::get('/about', 'PageController@getAbout');
 Route::get('/profile', 'PageController@getContact' );

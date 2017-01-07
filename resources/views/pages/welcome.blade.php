@@ -37,4 +37,4 @@
                         All nominations should be posted by December 20 2016.
                     </div>
                 </div>
-    @endsection
+@endsection

@@ -15,8 +15,7 @@ class NominationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $nominations = Nomination::all();
         return view('nominations.index')->with('nominations', $nominations);
     }
@@ -26,8 +25,7 @@ class NominationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view('nominations.create');
     }
 
@@ -37,8 +35,7 @@ class NominationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $this->validate($request, [
             'studentNum'=>'required',
             'studentFirstName'=>'required',
@@ -73,8 +70,7 @@ class NominationsController extends Controller
      * @param  int  $nomination
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $nomination = Nomination::find($id);
         return view('nominations.show')->with('nomination', $nomination);
     }
@@ -85,8 +81,7 @@ class NominationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showForm($id)
-    {
+    public function showForm($id) {
         return view('nominations.create');
     }
 
@@ -96,8 +91,7 @@ class NominationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -108,8 +102,7 @@ class NominationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -119,8 +112,7 @@ class NominationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 }

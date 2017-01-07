@@ -17,4 +17,4 @@
                 <p>Every year, exceptional students from these departments are celebrated for their acheivement, among other things.</p>
             </div>
         </div>
-    @endsection
+@endsection
