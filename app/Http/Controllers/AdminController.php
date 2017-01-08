@@ -15,4 +15,13 @@ class AdminController extends Controller
     public function search() {
         return view('admin.search');
     }
+	
+	public function portal() {
+        return view('admin.portal');
+    }
+	
+	public function nominations() {
+        return view('admin.nominations');
+    }
+	
 }
