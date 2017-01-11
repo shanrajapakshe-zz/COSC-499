@@ -58,6 +58,18 @@ Filter By...
 <br>
 <br>
 
+<select name="award">
+
+    <option value="">Select...</option>
+
+    @foreach ($awards as $award)
+
+    <option value={{$award->awardName}}>{{$award->awardName}}</option>
+
+    @endforeach
+
+</select>
+
 <div class="row"> 
         <h1>All Nominations</h1>
     

@@ -11,10 +11,8 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        // $this->call(UsersTableSeeder::class);
-        // Nomination::create()
-
+    public function run() {
+        $this->call(AwardsTableSeeder::class);
+        $this->call(NominationsTableSeeder::class);
     }
 }

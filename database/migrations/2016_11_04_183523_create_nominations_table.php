@@ -24,6 +24,7 @@ class CreateNominationsTable extends Migration
             $table->string('estGrade');
             $table->string('estRank');
             $table->text('description');
+            $table->integer('awardID');
 
             $table->timestamps();
 
@@ -36,8 +37,7 @@ class CreateNominationsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('nominations');
     }
 }

@@ -23,8 +23,9 @@ class AdminController extends Controller
     }
 	
 	public function nominations() {
+        $awards = Award::all();
         $nominations = Nomination::all();
-        return view('admin.nominations')->with('nominations', $nominations);
+        return view('admin.nominations')->with('nominations', $nominations)->with('awards',$awards);
     }
 	
 }
