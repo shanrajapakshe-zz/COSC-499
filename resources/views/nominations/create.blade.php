@@ -30,6 +30,14 @@
       <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
         {{ csrf_field() }}
 
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="awardName">Award Name</label>
+          <div class="col-sm-10">
+            <input type="textarea" class="form-control" id="awardName" placeholder="Enter Award" name="awardName">
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentNum">Student Number:</label>
           <div class="col-sm-10">
@@ -48,6 +56,13 @@
           <label class="control-label col-sm-2" for="studentLastName">Last Name:</label>
           <div class="col-sm-10">
             <input type="textarea" class="form-control" id="studentLastName" placeholder="Enter Last Name" required name = "studentLastName">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="studentNum">Grad Date:</label>
+          <div class="col-sm-10">
+            <input type="textarea" class="form-control" id="gradDate" placeholder="Enter Graduation Date" name="gradDate">
           </div>
         </div>
 
@@ -80,42 +95,27 @@
           </div>
         </div>
 
-        <div class="toHide" id="visible1">
           <div class="form-group">
             <label class="control-label col-sm-2" for="actGrade">Grade:</label>
             <div class="col-sm-10">
               <input type="textarea" class="form-control" id="actGrade" placeholder="Enter Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "actGrade">
             </div>
           </div>
-        </div>
 
-        <div class="toHide" id="visible1">
           <div class="form-group">
             <label class="control-label col-sm-2" for="esttGrade">Estimated Grade:</label>
             <div class="col-sm-10">
               <input type="textarea" class="form-control" id="estGrade" placeholder="Enter Estimated Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "estGrade">
             </div>
           </div>
-        </div>
 
-{{--         <div class="hidden toHide" id="visible2">
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="estGrade">Estimated Grade:</label>
-            <div class="col-sm-10">
-              <input type="textarea" class="form-control" id="estGrade" placeholder="Enter Estimated Grade"  required pattern='[1-9][0-9]?$|^100$' name = "estGrade">
-            </div>
-          </div>
-        </div>
-
-        <div class="hidden" id="visible2">
           <div class="form-group">
             <label class="control-label col-sm-2" for="rank">Rank:</label>
             <div class="col-sm-10">
-              <input type="textarea" class="form-control" id="rank" placeholder="Enter Rank"  required pattern='[1-9][0-9]?$|^100$' name = "Rank">
+              <input type="textarea" class="form-control" id="rank" placeholder="Enter Rank" name = "Rank">
             </div>
           </div>
-        </div>
- --}}
+
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-10">

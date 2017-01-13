@@ -14,13 +14,13 @@ class CreateCoursesTable extends Migration
     public function up() {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('courseName');
+            $table->string('courseName')->nullable();
             $table->string('section');
-            $table->string('semester');
-            $table->string('actGrade');
-            $table->string('estGrade');
-            $table->string('estRank');
-            $table->text('description');
+            $table->string('semester')->nullable();
+            $table->string('actGrade')->nullable();
+            $table->string('estGrade')->nullable();
+            $table->string('estRank')->nullable();
+            $table->text('description')->nullable();
             // $table->integer('awardID');
             // awardId will be part of a many-to-many relation
             $table->timestamps();

@@ -23,10 +23,10 @@
 		        <td>{{$nomination->studentNum}}</td>
 		        <td>{{$nomination->studentFirstName}}</td>
 		        <td>{{$nomination->studentLastName}}</td>
-		        <td>{{$nomination->course}}</td>
-		        <td>{{$nomination->section}}</td>
-		        <td>{{$nomination->actGrade}}</td>
-		        <td>{{$nomination->description}}</td>
+{{-- 		        <td>{{$course->course}}</td>
+		        <td>{{$course->section}}</td>
+		        <td>{{$course->actGrade}}</td>
+		        <td>{{$course->description}}</td> --}}
 		    </tr>      
 	        @endforeach
 

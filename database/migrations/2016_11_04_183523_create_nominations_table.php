@@ -19,6 +19,7 @@ class CreateNominationsTable extends Migration
             $table->string('studentFirstName');
             $table->string('studentLastName');
             $table->string('gradDate');
+            // $table->int('awardId');
             $table->timestamps();
             // Add other parts of table to store
         });

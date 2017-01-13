@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Nomination;
+use App\Course;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class NominationsController extends Controller
      */
     public function index() {
         $nominations = Nomination::all();
-        return view('nominations.index')->with('nominations', $nominations);
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
     }
 
     /**
@@ -40,28 +41,34 @@ class NominationsController extends Controller
             'studentNum'=>'required',
             'studentFirstName'=>'required',
             'studentLastName'=>'required',
-            'course'=>'required',
+            'gradDate'=>'required',
             'section'=>'required',
             // 'description'=>'required',
-            'actGrade' => 'required_unless:estGrade==false',
-            'estGrade' => 'required_unless:gradeToggle==true',
+            // 'actGrade' => 'required_unless:estGrade==false',
+            // 'estGrade' => 'required_unless:gradeToggle==true',
             ]);
 
         $nomination = new Nomination;
-
         $nomination->studentNum = $request->studentNum;
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
-        $nomination->course = $request->course;
-        $nomination->section = $request->section;
-        $nomination->actGrade = $request->actGrade;
-        $nomination->description = $request->description;
-        // $nomination->grade = $request->grade;
-        $nomination ->save();
+        $nomination->gradDate = $request->gradDate;
+        $nomination -> save();
+
+        $course = new Course;
+        // $course->courseName = $request->awardName;
+        $course->section = $request->section;
+        $course->semester = $request->semester;
+        $course->actGrade = $request->actGrade;
+        $course->estGrade = $request->estGrade;
+        $course -> estRank = $request -> estRank;
+        $course->description = $request->description;
+        $course ->save();
         // the blog post is valid - Store in database
 
         $nominations = Nomination::all();
-        return view('nominations.index')->with('nominations', $nominations);
+        $courses = Course::all();
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
     }
 
     /**
