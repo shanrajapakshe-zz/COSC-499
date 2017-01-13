@@ -16,13 +16,7 @@ class NominationsTableSeeder extends Seeder
             'studentNum' => "12345678",
             'studentFirstName' => 'John',
             'studentLastName' => 'Bon Jovi',
-            'course' => 'COSC 101',
-            'section' => '001',
-            'actGrade' => '90',
-            'estGrade' => '',
-            'estRank' => '',
-            'description' => 'For he is a jolly good student',
-            'awardID' => 1,
+            'gradDate'=> '2012'
         ]);
     }
 }

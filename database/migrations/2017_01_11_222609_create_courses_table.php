@@ -15,8 +15,15 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('courseName');
+            $table->string('section');
+            $table->string('semester');
+            $table->string('actGrade');
+            $table->string('estGrade');
+            $table->string('estRank');
+            $table->text('description');
+            // $table->integer('awardID');
+            // awardId will be part of a many-to-many relation
             $table->timestamps();
-            // $table->string('professor');
         });
 
     }
