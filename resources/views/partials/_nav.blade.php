@@ -18,7 +18,7 @@
                 <li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/profile">Contact</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#myModal1">Help</a></li>
+                <li><a href="/help">Help</a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">

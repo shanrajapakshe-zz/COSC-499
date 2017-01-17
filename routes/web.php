@@ -26,4 +26,5 @@ Route::get('/admin/nominations', 'AdminController@nominations');	//How to includ
 
 Route::get('/about', 'PageController@getAbout');
 Route::get('/profile', 'PageController@getContact' );
+Route::get('/help', 'PageController@getHelp' );
 Route::get('/', 'PageController@getIndex' );

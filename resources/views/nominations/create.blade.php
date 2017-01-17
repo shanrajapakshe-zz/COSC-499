@@ -29,41 +29,34 @@
 
       <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
         {{ csrf_field() }}
-
-  
-        <div class="form-group">
-        <label class="control-label col-sm-2" for="awardName">Award Name</label>
-          <div class="col-sm-10">
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Award
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                @foreach ($awards as $award)
-                <li><option value={{$award->awardName}}>{{$award->awardName}}</option></li>
-                @endforeach
-              </ul>
-            </div>
-        </div>
       
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="award">Award*:</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="award">
+              @foreach ($awards as $award)
+                <option>{{$award->awardName}}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="studentNum">Student Number:</label>
+          <label class="control-label col-sm-2" for="studentNum">Student Number*:</label>
           <div class="col-sm-10">
             <input type="textarea" class="form-control" id="studentNum" placeholder="Enter Student Number" required pattern='[0-9]{8}' name="studentNum">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="studentFirstName">First Name:</label>
+          <label class="control-label col-sm-2" for="studentFirstName">First Name*:</label>
           <div class="col-sm-10">
             <input type="textarea" class="form-control" id="studentFirstName" placeholder="Enter First Name" required name = "studentFirstName">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="studentLastName">Last Name:</label>
+          <label class="control-label col-sm-2" for="studentLastName">Last Name*:</label>
           <div class="col-sm-10">
             <input type="textarea" class="form-control" id="studentLastName" placeholder="Enter Last Name" required name = "studentLastName">
           </div>
@@ -77,27 +70,29 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="course">Course:</label>
+          <label class="control-label col-sm-2" for="course">Course*:</label>
           <div class="col-sm-10">
             <input type="textarea" class="form-control" id="course" placeholder="Enter Course" required name = "course">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="section">Section:</label>
+          <label class="control-label col-sm-2" for="section">Section*:</label>
           <div class="col-sm-10">
             <input type="textarea" class="form-control" id="section" placeholder="Enter Section" required pattern='[0-9]{3}'name = "section">
           </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="gradeCheck">Grades:</label>
+          <label class="control-label col-sm-2" for="gradeCheck">Grades*:</label>
           <div class="col-sm-10">
             <div class ="radio">
               <label>
                 <input type="radio" id = "radio1" name="gradeToggle" onclick="getResults()" value="actGrade" checked="checked">Grade
               </label>
+            </div>
 
+            <div class ="radio">
               <label>
                 <input type="radio" id = "radio2" name="gradeToggle" value="estGrade">Estimated Grade
               </label>

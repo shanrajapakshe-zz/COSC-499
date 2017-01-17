@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Shan
- * Date: 2016-10-18
- * Time: 9:44 PM
- */
+
 namespace App\Http\Controllers;
 
 // to access other stuff, use keyword 'use'
@@ -26,5 +21,7 @@ class PageController extends Controller {
         return view('pages.contact');
     }
 
-
+    public function getHelp() {
+        return view('pages.help');
+    }
 }

@@ -19,6 +19,8 @@ class NominationsController extends Controller
      */
     public function index() {
         $nominations = Nomination::all();
+        $courses = Course::all();
+        $awards = Award::all();
         return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards);
     }
 
