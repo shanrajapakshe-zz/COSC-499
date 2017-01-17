@@ -30,13 +30,23 @@
       <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
         {{ csrf_field() }}
 
-
+  
         <div class="form-group">
-          <label class="control-label col-sm-2" for="awardName">Award Name</label>
+        <label class="control-label col-sm-2" for="awardName">Award Name</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="awardName" placeholder="Enter Award" name="awardName">
-          </div>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Award
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                @foreach ($awards as $award)
+                <li><option value={{$award->awardName}}>{{$award->awardName}}</option></li>
+                @endforeach
+              </ul>
+            </div>
         </div>
+      
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentNum">Student Number:</label>

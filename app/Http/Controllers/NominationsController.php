@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Nomination;
 use App\Course;
+use App\Award;
 
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class NominationsController extends Controller
      */
     public function index() {
         $nominations = Nomination::all();
-        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards);
     }
 
     /**
@@ -27,7 +28,8 @@ class NominationsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('nominations.create');
+        $awards = Award::all();
+        return view('nominations.create')->with('awards',$awards);
     }
 
     /**
