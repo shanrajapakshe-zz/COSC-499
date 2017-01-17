@@ -42,14 +42,9 @@ class NominationsController extends Controller
      */
     public function store(Request $request) {
         $this->validate($request, [
-            'studentNum'=>'required',
+            'studentNumber'=>'required',
             'studentFirstName'=>'required',
             'studentLastName'=>'required',
-            'gradDate'=>'required',
-            'section'=>'required',
-            // 'description'=>'required',
-            // 'actGrade' => 'required_unless:estGrade==false',
-            // 'estGrade' => 'required_unless:gradeToggle==true',
             ]);
 
         $nomination = new Nomination;

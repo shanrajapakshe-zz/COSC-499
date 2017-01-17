@@ -35,7 +35,7 @@
           <div class="col-sm-10">
             <select class="form-control" id="award">
               @foreach ($awards as $award)
-                <option>{{$award->awardName}}</option>
+                <option>{{$award->name}}</option>
               @endforeach
             </select>
           </div>
@@ -63,9 +63,11 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="studentNum">Grad Date:</label>
+          <label class="control-label col-sm-2" for="checkbox">Graduating this Year?:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="gradDate" placeholder="Enter Graduation Date" name="gradDate">
+            <div class="checkbox">
+              <label><input type="checkbox" value="">Graduating</label>
+            </div>
           </div>
         </div>
 
