@@ -23,6 +23,10 @@
 		        <td>{{$nomination->studentNum}}</td>
 		        <td>{{$nomination->studentFirstName}}</td>
 		        <td>{{$nomination->studentLastName}}</td>
+		        <td>{{$nomination->email}}</td>
+		        <td>{{$nomination->gradThisYear}}</td>
+		        <td>{{$nomination->description}}</td>
+		        <td>{{$nomination->professorNo}}</td>
 {{-- 		        <td>{{$course->course}}</td>
 		        <td>{{$course->section}}</td>
 		        <td>{{$course->actGrade}}</td>

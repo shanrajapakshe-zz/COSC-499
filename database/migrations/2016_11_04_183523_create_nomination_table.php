@@ -14,7 +14,7 @@ class CreateNominationTable extends Migration
     public function up() {
         Schema::create('nomination', function (Blueprint $table) {
             $table->increments('nominationNo');
-            $table->string('studentNumber');
+            $table->integer('studentNumber');
             $table->string('studentFirstName');
             $table->string('studentLastName');
             $table->string('email');
