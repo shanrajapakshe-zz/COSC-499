@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class NominationsController extends Controller
+class NominationController extends Controller
 {
     /**
      * Display a listing of the resource.
