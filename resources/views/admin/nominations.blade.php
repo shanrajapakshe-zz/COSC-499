@@ -78,21 +78,21 @@ Filter By...
         <th>Student Number</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Course</th>
-        <th>Section</th>
-        <th>Grade</th>
+        <th>Email</th>
+        <th>Grad This Year?</th>
         <th>Description</th>
+        <th>Professor Number</th>
       </tr>
           
           <tr>
           @foreach ($nominations as $nomination)
-            <td>{{$nomination->studentNum}}</td>
+            <td>{{$nomination->studentNumber}}</td>
             <td>{{$nomination->studentFirstName}}</td>
             <td>{{$nomination->studentLastName}}</td>
-            <td>{{$nomination->course}}</td>
-            <td>{{$nomination->section}}</td>
-            <td>{{$nomination->actGrade}}</td>
+            <td>{{$nomination->email}}</td>
+            <td>{{$nomination->gradThisYear}}</td>
             <td>{{$nomination->description}}</td>
+            <td>{{$nomination->professorNo}}</td>
         </tr>      
           @endforeach
 

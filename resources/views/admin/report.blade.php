@@ -27,15 +27,13 @@
 
 <table style="width:75%">
       <tr>
-        <th>Award ID</th>
         <th>Award Name</th>
+        <th>Category</th>
       </tr>
-    
         <tr>
           @foreach ($awards as $award)
-            <td>{{$award->id}}</td>
             <td>{{$award->name}}</td>
+            <td>{{$award->category}}</td>
         </tr>      
           @endforeach
-
 @endsection
