@@ -55,7 +55,6 @@ class NominationController extends Controller
         $nomination -> save();
 
         $course = new Course;
-        // $course->courseName = $request->awardName;
         $course->section = $request->section;
         $course->semester = $request->semester;
         $course->actGrade = $request->actGrade;
