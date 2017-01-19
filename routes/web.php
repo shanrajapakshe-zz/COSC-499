@@ -21,7 +21,6 @@ Route::post('/nominations/{nomination}', "NominationController@store");
 
 Route::get('/admin/report','AdminController@report');	//This includes portal and nominations page(tabs)
 Route::get('/admin/search','AdminController@search');
-Route::get('/admin/portal', 'AdminController@portal');	//How to include this in the tab on one page
 Route::get('/admin/nominations', 'AdminController@nominations');	//How to include this in the tab on one page
 
 Route::get('/about', 'PageController@getAbout');

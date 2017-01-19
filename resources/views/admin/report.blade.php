@@ -7,7 +7,6 @@
 <div class="container">
     <ul class="nav nav-tabs nav-justified">
       <li class="active"><a href="report">Report</a></li>
-      <li><a href="portal">Portal</a></li>
       <li><a href="nominations">Nominations</a></li>
     </ul>
 </div>
@@ -34,6 +33,6 @@
           @foreach ($awards as $award)
             <td>{{$award->name}}</td>
             <td>{{$award->category}}</td>
-        </tr>      
+        </tr>
           @endforeach
 @endsection
