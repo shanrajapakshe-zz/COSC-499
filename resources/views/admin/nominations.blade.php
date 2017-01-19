@@ -7,7 +7,6 @@
 <div class="container">
     <ul class="nav nav-tabs nav-justified">
       <li><a href="report">Report</a></li>
-      <li><a href="portal">Portal</a></li>
       <li class="active"><a href="nominations">Nominations</a></li>
     </ul>
 </div>
@@ -70,9 +69,9 @@ Filter By...
 
 </select>
 
-<div class="row"> 
+<div class="row">
         <h1>All Nominations</h1>
-    
+
     <table style="width:75%">
       <tr>
         <th>Student Number</th>
@@ -83,7 +82,7 @@ Filter By...
         <th>Description</th>
         <th>Professor Number</th>
       </tr>
-          
+
           <tr>
           @foreach ($nominations as $nomination)
             <td>{{$nomination->studentNumber}}</td>
@@ -93,7 +92,7 @@ Filter By...
             <td>{{$nomination->gradThisYear}}</td>
             <td>{{$nomination->description}}</td>
             <td>{{$nomination->professorNo}}</td>
-        </tr>      
+        </tr>
           @endforeach
 
     </table>
