@@ -4,7 +4,30 @@
 
 @section('content')
 
-  <script>                                                             
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script>
+
+$(function(){
+  $(".box").not(".FinalGrade").hide();
+   $(".box").not(".PredictedGradeAndRank").hide();
+});
+
+$(document).ready(function(){
+   $('input[type="radio"]').click(function(){
+       if($(this).attr("value")=="FinalGrade"){
+           $(".box").not(".FinalGrade").hide();
+           $(".FinalGrade").show();
+       }
+       if($(this).attr("value")=="PredictedGradeAndRank"){
+           $(".box").not(".PredictedGradeAndRank").hide();
+           $(".PredictedGradeAndRank").show();
+       }
+
+   });
+});
+</script>
+
+  <script>
     $(function() {
     $("[name=toggler]").click(function(){
             $('.toHide').hide();
@@ -13,7 +36,7 @@
  });
   </script>
 
-  <div class="row">	
+  <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h1>Create New Nomination</h1>
       @if (count($errors) > 0)
@@ -29,7 +52,7 @@
 
       <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
         {{ csrf_field() }}
-      
+
         <div class="form-group">
           <label class="control-label col-sm-2" for="award">Award*:</label>
           <div class="col-sm-10">
@@ -56,6 +79,8 @@
             <input type="textarea" class="form-control" id="studentFirstName" placeholder="Enter First Name" required name = "studentFirstName">
           </div>
         </div>
+
+
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentLastName">Last Name*:</label>
@@ -87,43 +112,40 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="gradeCheck">Grades*:</label>
-          <div class="col-sm-10">
-            <div class ="radio">
-              <label>
-                <input type="radio" id = "radio1" name="gradeToggle" onclick="getResults()" value="actGrade" checked="checked">Grade
-              </label>
-            </div>
+        <div>
+               <label><input type="radio" name="colorRadio" value="FinalGrade" > Final Grade</label><br>
+               <label><input type="radio" name="colorRadio" value="PredictedGradeAndRank"> Predicted Grade And Rank</label>
 
-            <div class ="radio">
-              <label>
-                <input type="radio" id = "radio2" name="gradeToggle" value="estGrade">Estimated Grade
-              </label>
-            </div>
-          </div>
-        </div>
+           </div>
 
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="actGrade">Grade:</label>
-            <div class="col-sm-10">
-              <input type="textarea" class="form-control" id="actGrade" placeholder="Enter Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "actGrade">
-            </div>
-          </div>
 
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="esttGrade">Estimated Grade:</label>
-            <div class="col-sm-10">
-              <input type="textarea" class="form-control" id="estGrade" placeholder="Enter Estimated Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "estGrade">
-            </div>
-          </div>
+  <div class="form-group">
+           <div class="FinalGrade box">
+             <label class="control-label col-sm-2" for="actGrade">Grade:</label>
+             <div class="col-sm-10">
+               <input type="textarea" class="form-control" id="actGrade" placeholder="Enter Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "actGrade">
+             </div>
+           </div>
+  </div>
 
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="rank">Rank:</label>
-            <div class="col-sm-10">
-              <input type="textarea" class="form-control" id="rank" placeholder="Enter Rank" name = "Rank">
-            </div>
-          </div>
+
+<div class="form-group">
+           <div class="PredictedGradeAndRank box">
+             <label class="control-label col-sm-2" for="esttGrade">Estimated Grade:</label>
+             <div class="col-sm-10">
+               <input type="textarea" class="form-control" id="estGrade" placeholder="Enter Estimated Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "estGrade">
+             </div>
+           </div>
+</div>
+
+<div class="form-group">
+           <div class="PredictedGradeAndRank box">
+             <label class="control-label col-sm-2" for="rank">Rank:</label>
+             <div class="col-sm-10">
+               <input type="textarea" class="form-control" id="rank" placeholder="Enter Rank" name = "Rank">
+             </div>
+           </div>
+         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
@@ -132,7 +154,7 @@
           </div>
         </div>
 
-      
+
         <div class="form-group">
           <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Nominate!</button>
@@ -141,10 +163,12 @@
       </form>
 
 
-      {{-- <form method="post" action="preview">
-       <fieldset>              
 
-         <script type="text/javascript">
+
+      {{-- <form method="post" action="preview">
+       <fieldset>
+
+         <script type="text/javascript" src="http://code.jquery.com/jquery.min.js">
 
           function actualOrEst() {
            if (document.getElementById('gradeCheck').checked) {
@@ -159,6 +183,10 @@
            else document.getElementById('ifEst').style.display = 'none';
          }
 
+
+    });
+});
+
        </script>
 
 
@@ -170,7 +198,7 @@
 
         <input type="radio" onclick="javascript:actualOrEst();" name="yesno" id="estCheck">  Estimated Grade</p>
         <div id="ifEst" style="display:none">
-          Estimated Grade <input type='text' id='estgrade' name='estgrade' min='1' max='100'> 
+          Estimated Grade <input type='text' id='estgrade' name='estgrade' min='1' max='100'>
           Rank <input type='text' id='yes' name='yes' min='1' max='5'>
 
         </div>
@@ -189,7 +217,7 @@
   //                function ifGraduate() {
   //                   if (document.getElementById('graduationCheck').checked) {
   //                       document.getElementById('graduate').style.display = 'block';
-  //                       
+  //
   //                   }
   //                   else document.getElementById('graduate').style.display = 'none';
   //                }
@@ -198,7 +226,7 @@
 
   <p><strong>Graduates:</strong><br/>
     <input type="checkbox"  onclick="javascript:ifGraduate();" name="gradCheck" value="gradCheck" id="graduationCheck"> Yes</p>
-    <div id="graduate" style="display:none">                    
+    <div id="graduate" style="display:none">
       <select>
         <option value="winterGrad">Winter 2016</option>
         <option value="springGrad">Spring 2017</option>
