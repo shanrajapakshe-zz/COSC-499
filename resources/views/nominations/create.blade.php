@@ -64,12 +64,10 @@ $(document).ready(function(){
           </div>
         </div>
 
-        Form::select('award', $awards)
-
         <div class="form-group">
-          <label class="control-label col-sm-2" for="studentNum">Student Number*:</label>
+          <label class="control-label col-sm-2" for="studentNumber">Student Number*:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="studentNum" placeholder="Enter Student Number" required pattern='[0-9]{8}' name="studentNum">
+            <input type="textarea" class="form-control" id="studentNumber" placeholder="Enter Student Number" required pattern='[0-9]{8}' name="studentNumber">
           </div>
         </div>
 
@@ -99,9 +97,9 @@ $(document).ready(function(){
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2" for="course">Course*:</label>
+          <label class="control-label col-sm-2" for="courseNumber">Course Number*:</label>
           <div class="col-sm-10">
-            <input type="textarea" class="form-control" id="course" placeholder="Enter Course" required name = "course">
+            <input type="textarea" class="form-control" id="courseNumber" placeholder="Enter Course Number" required name = "courseNumber">
           </div>
         </div>
 
@@ -121,9 +119,9 @@ $(document).ready(function(){
 
   <div class="form-group">
            <div class="FinalGrade box">
-             <label class="control-label col-sm-2" for="actGrade">Grade:</label>
+             <label class="control-label col-sm-2" for="grade">Grade:</label>
              <div class="col-sm-10">
-               <input type="textarea" class="form-control" id="actGrade" placeholder="Enter Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "actGrade">
+               <input type="textarea" class="form-control" id="grade" placeholder="Enter Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "grade">
              </div>
            </div>
   </div>

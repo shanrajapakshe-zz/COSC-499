@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Nomination;
 use App\Course;
 use App\Award;
+use App\Prof;
 
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class NominationController extends Controller
         $nominations = Nomination::all();
         $courses = Course::all();
         $awards = Award::all();
-        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards);
+        $profs = Prof::all();
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs);
     }
 
     /**
@@ -42,26 +44,26 @@ class NominationController extends Controller
      */
     public function store(Request $request) {
         $this->validate($request, [
-            'award'=>'required',
+            // 'award'=>'required',
             'studentNumber'=>'required',
             'studentFirstName'=>'required',
             'studentLastName'=>'required',
             ]);
 
         $nomination = new Nomination;
-        $nomination->studentNum = $request->studentNum;
+        $nomination->studentNumber = $request->studentNumber;
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
-        $nomination->gradDate = $request->gradDate;
+        $nomination->description = $request->description;
         $nomination -> save();
 
         $course = new Course;
+        $course->courseNumber = $request->courseNumber;
         $course->section = $request->section;
-        $course->semester = $request->semester;
-        $course->actGrade = $request->actGrade;
-        $course->estGrade = $request->estGrade;
-        $course -> estRank = $request -> estRank;
-        $course->description = $request->description;
+        // $course->semester = $request->semester;
+        $course->grade = $request->grade;
+        // $course->estimatedGrade = $request->estimatedGrade;
+        // $course->estimatedRank = $request->estimatedRank;
         $course ->save();
         // the blog post is valid - Store in database
 

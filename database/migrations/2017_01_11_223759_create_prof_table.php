@@ -16,13 +16,13 @@ class CreateProfTable extends Migration
         //
         Schema::create('prof', function (Blueprint $table) {
             // Primary Key
-            // $table->increments('id');
-            $table->increments('professorNo');
+            $table->increments('id');
+            // $table->increments('professorNo');
 
             // 
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             // $table->tinyInteger('admin');
         });
     }

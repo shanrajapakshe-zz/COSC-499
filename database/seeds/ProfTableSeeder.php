@@ -13,7 +13,8 @@ class ProfTableSeeder extends Seeder
     {
         DB::table('prof')->delete();
         DB::table('prof')->insert([
-            'professorNo' => 1,
+            // 'professorNo' => 1,
+            'id' => 1,
             'firstName' => 'Bowen',
             'lastName' => 'Hui',
             'email' =>'bowen.hui@ubc.ca',

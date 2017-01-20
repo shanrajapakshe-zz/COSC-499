@@ -16,10 +16,13 @@
 				<th>Grad This Year?</th>
 				<th>Description</th>
 				<th>Professor Number</th>
+				<th>Professor Name</th>
 			</tr>
 	        
 	        <tr>
 	        @foreach ($nominations as $nomination)
+	        	{{-- {{$prof = App\Prof::find($nomination->professorNo)}} --}}
+{{-- 	        	{{$course = App\Course::find($nomination->)}} --}}
 		        <td>{{$nomination->studentNumber}}</td>
 		        <td>{{$nomination->studentFirstName}}</td>
 		        <td>{{$nomination->studentLastName}}</td>
@@ -27,6 +30,7 @@
 		        <td>{{$nomination->gradThisYear}}</td>
 		        <td>{{$nomination->description}}</td>
 		        <td>{{$nomination->professorNo}}</td>
+		        {{-- <td>{{$prof->firstName}}</td> --}}
 		    </tr>      
 	        @endforeach
 

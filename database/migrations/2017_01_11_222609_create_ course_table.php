@@ -13,9 +13,9 @@ class CreateCourseTable extends Migration
      */
     public function up() {
         Schema::create('course', function (Blueprint $table) {
-            $table->integer('nominationNo');
+            $table->integer('nominationNo')->default(1);
             $table->string('name')->nullable();
-            $table->integer('number');
+            $table->integer('courseNumber')->nullable();
             $table->integer('section');
             $table->string('semester')->nullable();
             $table->integer('grade')->nullable();

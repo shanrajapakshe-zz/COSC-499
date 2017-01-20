@@ -21,15 +21,13 @@ class CreateNominationTable extends Migration
             $table->integer('studentNumber');
             $table->string('studentFirstName');
             $table->string('studentLastName');
-            $table->string('email');
-            $table->tinyInteger('gradThisYear');
-            $table->string('description');
+            $table->string('email')->nullable();
+            $table->tinyInteger('gradThisYear')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
-
             // Foreign Keys
-            $table->integer('professorNo');
-            // $table->integer('awardId');
-            
+            $table->integer('professorNo')->default(2);
+            // $table->integer('awardId'); 
         });
     }
 
