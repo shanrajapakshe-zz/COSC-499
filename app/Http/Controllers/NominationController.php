@@ -42,6 +42,7 @@ class NominationController extends Controller
      */
     public function store(Request $request) {
         $this->validate($request, [
+            'award'=>'required',
             'studentNumber'=>'required',
             'studentFirstName'=>'required',
             'studentLastName'=>'required',

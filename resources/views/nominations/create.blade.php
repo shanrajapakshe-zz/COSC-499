@@ -33,13 +33,15 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="award">Award*:</label>
           <div class="col-sm-10">
-            <select class="form-control" id="award">
+            <select class="form-control" id="award" name="award">
               @foreach ($awards as $award)
                 <option>{{$award->name}}</option>
               @endforeach
             </select>
           </div>
         </div>
+
+        Form::select('award', $awards)
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentNum">Student Number*:</label>
