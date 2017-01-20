@@ -25,6 +25,7 @@ class CreateNominationTable extends Migration
             $table->tinyInteger('gradThisYear')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
+            
             // Foreign Keys
             $table->integer('professorNo')->default(2);
             // $table->integer('awardId'); 

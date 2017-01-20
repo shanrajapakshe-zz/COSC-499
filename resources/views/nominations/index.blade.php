@@ -33,7 +33,6 @@
 		        {{-- <td>{{$prof->firstName}}</td> --}}
 		    </tr>      
 	        @endforeach
-
 		</table>
     </div>
 @endsection

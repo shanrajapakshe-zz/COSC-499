@@ -60,10 +60,24 @@ class NominationController extends Controller
         $course = new Course;
         $course->courseNumber = $request->courseNumber;
         $course->section = $request->section;
-        // $course->semester = $request->semester;
+        $course->semester = $request->semester;
+        
+        // check if grade,estimatedGrade,estimatedRanke are blank
+        if($request->grade =='') {
+            $request->grade = null;
+        }
+        
+        // if($request->estimatedGrade =='') {
+        //     $request->estimatedGrade = null;
+        // }
+        
+        // if($request->estimatedRank =='') {
+        //     $request->estimatedRank = null;
+        // }
+        
         $course->grade = $request->grade;
-        // $course->estimatedGrade = $request->estimatedGrade;
-        // $course->estimatedRank = $request->estimatedRank;
+        $course->estimatedGrade = $request->estimatedGrade;
+        $course->estimatedRank = $request->estimatedRank;
         $course ->save();
         // the blog post is valid - Store in database
 

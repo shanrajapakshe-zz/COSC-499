@@ -121,7 +121,7 @@ $(document).ready(function(){
            <div class="FinalGrade box">
              <label class="control-label col-sm-2" for="grade">Grade:</label>
              <div class="col-sm-10">
-               <input type="textarea" class="form-control" id="grade" placeholder="Enter Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "grade">
+               <input type="textarea" class="form-control" id="grade" placeholder="Enter Grade"  pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "grade">
              </div>
            </div>
   </div>
@@ -129,18 +129,18 @@ $(document).ready(function(){
 
 <div class="form-group">
            <div class="PredictedGradeAndRank box">
-             <label class="control-label col-sm-2" for="esttGrade">Estimated Grade:</label>
+             <label class="control-label col-sm-2" for="estimatedGrade">Estimated Grade:</label>
              <div class="col-sm-10">
-               <input type="textarea" class="form-control" id="estGrade" placeholder="Enter Estimated Grade"  required pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "estGrade">
+               <input type="textarea" class="form-control" id="estimatedGrade" placeholder="Enter Estimated Grade" pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "estimatedGrade">
              </div>
            </div>
 </div>
 
 <div class="form-group">
            <div class="PredictedGradeAndRank box">
-             <label class="control-label col-sm-2" for="rank">Rank:</label>
+             <label class="control-label col-sm-2" for="estimatedRank">Rank:</label>
              <div class="col-sm-10">
-               <input type="textarea" class="form-control" id="rank" placeholder="Enter Rank" name = "Rank">
+               <input type="textarea" class="form-control" id="estimatedRank" placeholder="Enter Rank" name = "estimatedRank">
              </div>
            </div>
          </div>
@@ -148,7 +148,7 @@ $(document).ready(function(){
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-10">
-            <textarea  rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
+            <textarea rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
           </div>
         </div>
 
@@ -159,77 +159,6 @@ $(document).ready(function(){
           </div>
         </div>
       </form>
-
-
-
-
-      {{-- <form method="post" action="preview">
-       <fieldset>
-
-         <script type="text/javascript" src="http://code.jquery.com/jquery.min.js">
-
-          function actualOrEst() {
-           if (document.getElementById('gradeCheck').checked) {
-             document.getElementById('ifGrade').style.display = 'block';
-
-           }
-           else document.getElementById('ifGrade').style.display = 'none';
-           if (document.getElementById('estCheck').checked) {
-             document.getElementById('ifEst').style.display = 'block';
-
-           }
-           else document.getElementById('ifEst').style.display = 'none';
-         }
-
-
-    });
-});
-
-       </script>
-
-
-       <p><strong>Grades:</strong><br/>
-         <input type="radio" onclick="javascript:actualOrEst();" name="yesno" id="gradeCheck">  Grade
-         <div id="ifGrade" style="display:none">
-          Grade<input type='text' id='grade' name='grade' min='1' max ='100'>
-        </div></p>
-
-        <input type="radio" onclick="javascript:actualOrEst();" name="yesno" id="estCheck">  Estimated Grade</p>
-        <div id="ifEst" style="display:none">
-          Estimated Grade <input type='text' id='estgrade' name='estgrade' min='1' max='100'>
-          Rank <input type='text' id='yes' name='yes' min='1' max='5'>
-
-        </div>
-
-
-        <p><strong>Nominations:</strong><br/>
-         <input type="checkbox" name="nA" value="nA"> Nomination A</p>
-         <input type="checkbox" name="nB" value="nB"> Nomination B</p>
-         <input type="checkbox" name="nC" value="nC"> Nomination C</p>
-         <input type="checkbox" name="nD" value="nD"> Nomination D</p>
-         <input type="checkbox" name="nE" value="nE"> Nomination E</p>
-         <input type="checkbox" name="nGrad" value="nGrad"> Graduate Nomination</p>
-
-         <script type="text/javascript">
-
-  //                function ifGraduate() {
-  //                   if (document.getElementById('graduationCheck').checked) {
-  //                       document.getElementById('graduate').style.display = 'block';
-  //
-  //                   }
-  //                   else document.getElementById('graduate').style.display = 'none';
-  //                }
-
-  </script>
-
-  <p><strong>Graduates:</strong><br/>
-    <input type="checkbox"  onclick="javascript:ifGraduate();" name="gradCheck" value="gradCheck" id="graduationCheck"> Yes</p>
-    <div id="graduate" style="display:none">
-      <select>
-        <option value="winterGrad">Winter 2016</option>
-        <option value="springGrad">Spring 2017</option>
-      </select>
-    </div>  --}}
 
   </fieldset></body>
   </form>
