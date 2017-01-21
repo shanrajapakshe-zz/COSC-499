@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <div class="container">
     <ul class="nav nav-tabs nav-justified">
       <li><a href="report">Report</a></li>

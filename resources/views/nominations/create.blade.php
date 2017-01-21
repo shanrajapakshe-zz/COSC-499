@@ -1,40 +1,7 @@
 @extends('main')
 @section('title', 'Create Nomination')
-
-
 @section('content')
 
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script>
-
-$(function(){
-  $(".box").not(".FinalGrade").hide();
-   $(".box").not(".PredictedGradeAndRank").hide();
-});
-
-$(document).ready(function(){
-   $('input[type="radio"]').click(function(){
-       if($(this).attr("value")=="FinalGrade"){
-           $(".box").not(".FinalGrade").hide();
-           $(".FinalGrade").show();
-       }
-       if($(this).attr("value")=="PredictedGradeAndRank"){
-           $(".box").not(".PredictedGradeAndRank").hide();
-           $(".PredictedGradeAndRank").show();
-       }
-
-   });
-});
-</script>
-
-  <script>
-    $(function() {
-    $("[name=toggler]").click(function(){
-            $('.toHide').hide();
-            $("#visible"+$(this).val()).show('slow');
-    });
- });
-  </script>
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -96,16 +63,85 @@ $(document).ready(function(){
           </div>
         </div>
 
+{{--                             grid starts  --}}
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            <table class="table table-bordered table-hover" id="tab_logic">
+                <thead>
+                    <tr >
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            Course Name
+                        </th>
+                        <th class="text-center">
+                            Course No.
+                        </th>
+                        <th class="text-center">
+                            Section No.
+                        </th>
+                        <th class="text-center">
+                            Final Grade
+                        </th>
+                        <th class="text-center">
+                            Predicted Grade
+                        </th>
+
+                        <th class="text-center">
+                            Class Rank
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id='addr0'>
+                        <td>
+                        1
+                        </td>
+                        <td>
+                        <input type="text" name='courseName0'  placeholder='Eg. COSC' class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='courseNo0' placeholder='Eg. 499' required name = "courseNumber" class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='sectionNo0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
+                        </td>
+                    </tr>
+                    <tr id='addr1'></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="btn btn-default pull-left">Delete Row</a>
+</div>
+{{--                             grid end  --}
+
+        {{--                             grid starts
+        <div class="row">
+<div class="col-sm-2">
+
         <div class="form-group">
           <label class="control-label col-sm-2" for="courseNumber">Course Number*:</label>
-          <div class="col-sm-10">
+          <div class="col-sm-2">
             <input type="textarea" class="form-control" id="courseNumber" placeholder="Enter Course Number" required name = "courseNumber">
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="section">Section*:</label>
-          <div class="col-sm-10">
+          <div class="col-sm-2">
             <input type="textarea" class="form-control" id="section" placeholder="Enter Section" required pattern='[0-9]{3}'name = "section">
           </div>
         </div>
@@ -120,7 +156,7 @@ $(document).ready(function(){
   <div class="form-group">
            <div class="FinalGrade box">
              <label class="control-label col-sm-2" for="grade">Grade:</label>
-             <div class="col-sm-10">
+             <div class="col-sm-2">
                <input type="textarea" class="form-control" id="grade" placeholder="Enter Grade"  pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "grade">
              </div>
            </div>
@@ -130,7 +166,7 @@ $(document).ready(function(){
 <div class="form-group">
            <div class="PredictedGradeAndRank box">
              <label class="control-label col-sm-2" for="estimatedGrade">Estimated Grade:</label>
-             <div class="col-sm-10">
+             <div class="col-sm-2">
                <input type="textarea" class="form-control" id="estimatedGrade" placeholder="Enter Estimated Grade" pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "estimatedGrade">
              </div>
            </div>
@@ -139,11 +175,15 @@ $(document).ready(function(){
 <div class="form-group">
            <div class="PredictedGradeAndRank box">
              <label class="control-label col-sm-2" for="estimatedRank">Rank:</label>
-             <div class="col-sm-10">
+             <div class="col-sm-2">
                <input type="textarea" class="form-control" id="estimatedRank" placeholder="Enter Rank" name = "estimatedRank">
              </div>
            </div>
          </div>
+ </div>
+   </div>
+
+                           grid ends                                                   --}}
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
@@ -160,7 +200,43 @@ $(document).ready(function(){
         </div>
       </form>
 
-  </fieldset></body>
+  </fieldset>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+
+  //function for adding and removing rows, limited to 6 rows total
+  var i=1;
+  $("#add_row").click(function(){
+    if (i<6) {
+
+
+  $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNo"+i
+  +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNo"+i
+  +"' type='text' placeholder='Eg. 001' required pattern='[0-9]{3}'  class='form-control input-md'></td><td><input  name='finalGrade"+i
+  +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md'></td><td><input  name='estimatedGrade"+i
+  +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md'></td><td><input  name='rank"+i
+  +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>");
+
+
+  $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+  i++;}
+  });
+
+  $("#delete_row").click(function(){
+     if(i>1){
+     $("#addr"+(i-1)).html('');
+     i--;
+     }
+  });
+
+  //$(function(){
+  //  $(".box").not(".FinalGrade").hide();
+  //   $(".box").not(".PredictedGradeAndRank").hide();
+  //});
+  </script>
+
+</body>
   </form>
   </div>
   </div>
