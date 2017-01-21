@@ -78,10 +78,10 @@
                             Course Name
                         </th>
                         <th class="text-center">
-                            Course No.
+                            Course Number
                         </th>
                         <th class="text-center">
-                            Section No.
+                            Section Number
                         </th>
                         <th class="text-center">
                             Final Grade
@@ -104,10 +104,10 @@
                         <input type="text" name='courseName0'  placeholder='Eg. COSC' class="form-control"/>
                         </td>
                         <td>
-                        <input type="text" name='courseNo0' placeholder='Eg. 499' required name = "courseNumber" class="form-control"/>
+                        <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control"/>
                         </td>
                         <td>
-                        <input type="text" name='sectionNo0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
+                        <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
                         </td>
                         <td>
                         <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
@@ -211,8 +211,8 @@
     if (i<6) {
 
 
-  $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNo"+i
-  +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNo"+i
+  $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
+  +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNumber"+i
   +"' type='text' placeholder='Eg. 001' required pattern='[0-9]{3}'  class='form-control input-md'></td><td><input  name='finalGrade"+i
   +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md'></td><td><input  name='estimatedGrade"+i
   +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md'></td><td><input  name='rank"+i

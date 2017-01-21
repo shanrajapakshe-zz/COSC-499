@@ -9,6 +9,7 @@
 		
 		<table style="width:75%">
 			<tr>
+				<th>Award</th>
 				<th>Student Number</th>
 				<th>First Name</th>
 				<th>Last Name</th>
@@ -21,8 +22,10 @@
 	        
 	        <tr>
 	        @foreach ($nominations as $nomination)
-	        	{{-- {{$prof = App\Prof::find($nomination->professorNo)}} --}}
-{{-- 	        	{{$course = App\Course::find($nomination->)}} --}}
+	        	
+	        	{{-- {{$award = App\Award::find($nomination->award_id)}}
+	        	<td>{{$award->name}}</td> --}}
+	        	<td>{{$nomination->award->name}}</td>
 		        <td>{{$nomination->studentNumber}}</td>
 		        <td>{{$nomination->studentFirstName}}</td>
 		        <td>{{$nomination->studentLastName}}</td>

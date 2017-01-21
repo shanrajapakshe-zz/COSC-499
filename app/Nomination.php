@@ -10,6 +10,14 @@ class Nomination extends Model
     protected $table = 'nomination';
 
     public function award() {
-		return $this->hasMany('App\Award');	
+		return $this->hasOne('App\Award');	
+	}
+
+	public function prof() {
+		return $this->hasOne('App\Prof');	
+	}
+
+	public function course() {
+		return $this->hasOne('App\Course');	
 	}
 }

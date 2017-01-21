@@ -51,6 +51,12 @@ class NominationController extends Controller
             ]);
 
         $nomination = new Nomination;
+        $award = new Award;
+        
+        // obtain the right award from the id
+        $award = Award::where('name',$request->award)->get()->first();
+        $nomination->award_id = $award->id;
+
         $nomination->studentNumber = $request->studentNumber;
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
@@ -58,26 +64,27 @@ class NominationController extends Controller
         $nomination -> save();
 
         $course = new Course;
-        $course->courseNumber = $request->courseNumber;
-        $course->section = $request->section;
-        $course->semester = $request->semester;
+        $course->courseName0 = $request->courseName0;
+        $course->courseNumber0 = $request->courseNumber0;
+        $course->sectionNumber0 = $request->sectionNumber0;
+        // $course->semester = $request->semester;
         
         // check if grade,estimatedGrade,estimatedRanke are blank
-        if($request->grade =='') {
-            $request->grade = null;
+        if($request->finalGrade0 =='') {
+            $request->finalGrade0 = null;
         }
         
-        // if($request->estimatedGrade =='') {
-        //     $request->estimatedGrade = null;
-        // }
+        if($request->estimatedGrade0 =='') {
+            $request->estimatedGrade0 = null;
+        }
         
-        // if($request->estimatedRank =='') {
-        //     $request->estimatedRank = null;
-        // }
+        if($request->estimatedRank0 =='') {
+            $request->estimatedRank0 = null;
+        }
         
-        $course->grade = $request->grade;
-        $course->estimatedGrade = $request->estimatedGrade;
-        $course->estimatedRank = $request->estimatedRank;
+        $course->finalGrade0 = $request->finalGrade0;
+        $course->estimatedGrade0 = $request->estimatedGrade0;
+        $course->rank0 = $request->rank0;
         $course ->save();
         // the blog post is valid - Store in database
 
