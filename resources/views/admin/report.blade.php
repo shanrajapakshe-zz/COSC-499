@@ -14,15 +14,8 @@
 <div class="row">
     <div class="col-md-12">
         <h1>Awards Report</h1>
-        <p>Report Page should include:</p>
-        <ul>
-          <li>List of Awards with the number of nominations made</li>
-          <li>Can have different views of it</li>
-        </ul>
-			</div>
+		</div>
 </div>
-
-<br>
 
 <table style="width:75%">
       <tr>
@@ -35,4 +28,32 @@
             <td>{{$award->category}}</td>
         </tr>
           @endforeach
+
+</table>
+
+<h3>Add new Award</h3>
+  <form class="form-horizontal" action="{{url ('#') }}" method="POST">
+    {{ csrf_field() }}
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name">Award Name*:</label>
+      <div class="col-sm-4">
+        <input type="textarea" class="form-control" id="name" placeholder="Enter Award Name" required  name="name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="category">Award Name*:</label>
+      <div class="col-sm-4">
+        <input type="textarea" class="form-control" id="name" placeholder="Enter Award Category" required name="category">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </form>
+
 @endsection
