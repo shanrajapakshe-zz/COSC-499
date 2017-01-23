@@ -47,8 +47,14 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        //
+    public function editAward($id) {
+
+        // get the award
+        $award = Award::find($id);
+
+        // show edit form and pass on award
+        return view('admin.editAward')->with('award', $award);
+
     }
 
     /**
@@ -58,7 +64,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function updateAward(Request $request, $id) {
         //
     }
 
