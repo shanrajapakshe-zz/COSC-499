@@ -23,8 +23,8 @@
 	        <tr>
 	        @foreach ($nominations as $nomination)
 	        	
-	        	{{-- {{$award = App\Award::find($nomination->award_id)}}
-	        	<td>{{$award->name}}</td> --}}
+	        	{{$award = App\Award::find($nomination->award_id)}}
+	        	<td>{{$award->name}}</td>
 	        	{{-- <td>{{$nomination->award->name}}</td> --}}
 		        <td>{{$nomination->studentNumber}}</td>
 		        <td>{{$nomination->studentFirstName}}</td>

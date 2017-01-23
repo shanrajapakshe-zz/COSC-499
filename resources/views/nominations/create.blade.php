@@ -16,7 +16,6 @@
       </div>
      @endif
 
-
       <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
         {{ csrf_field() }}
 

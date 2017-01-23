@@ -69,8 +69,9 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroyAward($id) {
-        $awards = Nomination::find($id);
+        $award = Award::find($id)->delete();
 
-        // delete the award that has been returned
+        $awards = Award::all();
+        return view('admin.report')->with('awards', $awards);
     }
 }

@@ -26,13 +26,36 @@
           @foreach ($awards as $award)
             <td>{{$award->name}}</td>
             <td>{{$award->category}}</td>
+            <td>
+              <form class="form-horizontal" action="{{url ('/admin/report/award/destroy/'.$award->id)}}" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                {{ csrf_field() }}
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Remove</button>
+                  </div>
+                </div>
+              </form>
+            </td>
+
+            <td>
+              <form class="form-horizontal" action="{{url ('/admin/report/award/destroy') }}" method="POST">
+                {{-- <input type="hidden" name="_method" value="DELETE"> --}}
+                {{ csrf_field() }}
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                  </div>
+                </div>
+              </form>
+            </td>
         </tr>
           @endforeach
 
 </table>
 
 <h3>Add new Award</h3>
-  <form class="form-horizontal" action="{{url ('/admin/report/store') }}" method="POST">
+  <form class="form-horizontal" action="{{url ('/admin/report/award/store') }}" method="POST">
     {{ csrf_field() }}
 
     <div class="form-group">
@@ -45,7 +68,13 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="category">Award Category*:</label>
       <div class="col-sm-4">
-        <input type="textarea" class="form-control" id="name" placeholder="Enter Award Category" required name="category">
+        <select class="form-control" id="category" name="category">
+              <option>First Year</option>
+              <option>Second Year</option>
+              <option>Upper Year</option>
+              <option>Graduating</option>
+              <option>Other</option>
+            </select>
       </div>
     </div>
 
@@ -55,27 +84,4 @@
       </div>
     </div>
   </form>
-
-<h3>Remove Award</h3>
-  <form class="form-horizontal" action="{{url ('/admin/report/award/destroy') }}" method="DELETE">
-      {{ csrf_field() }}
-
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="award">Award*:</label>
-        <div class="col-sm-3">
-          <select class="form-control" id="award" name="award">
-            @foreach ($awards as $award)
-              <option>{{$award->name}}</option>
-            @endforeach
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-sm-10">
-          <button type="submit" class="btn btn-primary">Remove</button>
-        </div>
-      </div>
-    </form>
-
 @endsection
