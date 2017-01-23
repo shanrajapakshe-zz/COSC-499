@@ -39,7 +39,7 @@
             </td>
 
             <td>
-              <form class="form-horizontal" action="{{url ('/admin/report/award/destroy') }}" method="POST">
+              <form class="form-horizontal" action="{{url ('/admin/report/award/'.$award->id.'/edit') }}" method="GET">
                 {{-- <input type="hidden" name="_method" value="DELETE"> --}}
                 {{ csrf_field() }}
                 <div class="form-group">

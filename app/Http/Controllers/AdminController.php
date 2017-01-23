@@ -54,7 +54,6 @@ class AdminController extends Controller
 
         // show edit form and pass on award
         return view('admin.editAward')->with('award', $award);
-
     }
 
     /**
@@ -66,6 +65,19 @@ class AdminController extends Controller
      */
     public function updateAward(Request $request, $id) {
         //
+        $this->validate($request, [
+            // 'award'=>'required',
+            'name'=>'required',
+            'category'=>'required',
+            ]);
+
+        $award = Award::find($id);
+        $award->name = $request->name;
+        $award->category = $request->category;
+        $award->save();
+        Session::flash('message', 'Successfully updated award!');
+        $awards = Award::all();
+        return view('admin.report')->with('awards', $awards);
     }
 
     /**

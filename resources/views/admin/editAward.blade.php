@@ -2,9 +2,9 @@
 @section('title', 'Admin Report')
 
 @section('content')
-<h3>Edit Award</h3>
-  <form class="form-horizontal" action="{{url ('/admin/report/award/store') }}" method="POST">
-  {{-- add hidden method to here as well (for PUT) --}}
+<h3>Edit Award: {{$award->name}}</h3>
+  <form class="form-horizontal" action="{{url ('/admin/report') }}" method="POST">
+  	<input type="hidden" name="_method" value="PUT">
     {{ csrf_field() }}
 
     <div class="form-group">

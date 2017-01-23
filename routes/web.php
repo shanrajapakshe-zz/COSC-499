@@ -18,8 +18,9 @@ Route::get('/nominations/{nomination}', 'NominationController@show');
 Route::post('/nominations', 'NominationController@store');
 Route::post('/nominations/{nomination}', 'NominationController@store');
 
-Route::post('/admin/report/award/store','AdminController@storeAward');
+
 Route::get('/admin/report/award/{award}/edit','AdminController@editAward');
+Route::put('/admin/report/award'.'AdminController@updateAward');
 Route::delete('/admin/report/award/destroy/{award}','AdminController@destroyAward');
 
 Route::get('/admin/report','AdminController@report');	//This includes portal and nominations page(tabs)
