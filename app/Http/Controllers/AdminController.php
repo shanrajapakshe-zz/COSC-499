@@ -6,6 +6,8 @@ use App\Nomination;
 use App\Award;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Http\Request;
+
 class AdminController extends Controller
 {
 
@@ -24,4 +26,18 @@ class AdminController extends Controller
         return view('admin.nominations')->with('nominations', $nominations)->with('awards',$awards);
     }
 
+    public function store(Request $request) {
+        $this->validate($request, [
+            // 'award'=>'required',
+            'name'=>'required',
+            'category'=>'required',
+            ]);
+        $award = new Award;
+        $award->name = $request->name;
+        $award->category = $request->category;
+        $award -> save();
+
+        $awards = Award::all();
+        return view('admin.report')->with('awards', $awards);
+    }
 }

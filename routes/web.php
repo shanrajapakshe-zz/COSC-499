@@ -16,8 +16,10 @@ Route::get('/nominations/index', 'NominationController@index');
 Route::get('/nominations/create','NominationController@create');
 Route::get('/nominations/{nomination}', 'NominationController@show');
 
-Route::post('/nominations', "NominationController@store");
-Route::post('/nominations/{nomination}', "NominationController@store");
+Route::post('/nominations', 'NominationController@store');
+Route::post('/nominations/{nomination}', 'NominationController@store');
+
+Route::post('/admin/report/store','AdminController@store');
 
 Route::get('/admin/report','AdminController@report');	//This includes portal and nominations page(tabs)
 Route::get('/admin/search','AdminController@search');

@@ -32,7 +32,7 @@
 </table>
 
 <h3>Add new Award</h3>
-  <form class="form-horizontal" action="{{url ('#') }}" method="POST">
+  <form class="form-horizontal" action="{{url ('/admin/report/store') }}" method="POST">
     {{ csrf_field() }}
 
     <div class="form-group">
@@ -43,7 +43,7 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="category">Award Name*:</label>
+      <label class="control-label col-sm-2" for="category">Award Category*:</label>
       <div class="col-sm-4">
         <input type="textarea" class="form-control" id="name" placeholder="Enter Award Category" required name="category">
       </div>
