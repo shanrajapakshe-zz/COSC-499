@@ -26,7 +26,7 @@ class AdminController extends Controller
         return view('admin.nominations')->with('nominations', $nominations)->with('awards',$awards);
     }
 
-    public function store(Request $request) {
+    public function storeAward(Request $request) {
         $this->validate($request, [
             // 'award'=>'required',
             'name'=>'required',
@@ -39,5 +39,38 @@ class AdminController extends Controller
 
         $awards = Award::all();
         return view('admin.report')->with('awards', $awards);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id) {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyAward($id) {
+        $awards = Nomination::find($id);
+
+        // delete the award that has been returned
     }
 }

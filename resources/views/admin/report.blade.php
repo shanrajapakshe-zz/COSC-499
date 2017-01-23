@@ -56,4 +56,26 @@
     </div>
   </form>
 
+<h3>Remove Award</h3>
+  <form class="form-horizontal" action="{{url ('/admin/report/award/destroy') }}" method="DELETE">
+      {{ csrf_field() }}
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="award">Award*:</label>
+        <div class="col-sm-3">
+          <select class="form-control" id="award" name="award">
+            @foreach ($awards as $award)
+              <option>{{$award->name}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary">Remove</button>
+        </div>
+      </div>
+    </form>
+
 @endsection
