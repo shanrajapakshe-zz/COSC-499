@@ -14,10 +14,10 @@ class CreateAwardTable extends Migration
     public function up() {
         Schema::create('award', function (Blueprint $table) {
             // Primary Key
-            // $table->increment('id');
-            $table->string('name');
-
+            $table->increments('id');
+            
             //
+            $table->string('name');
             $table->string('category')->default("uncategorized");
             $table->timestamps();
         });

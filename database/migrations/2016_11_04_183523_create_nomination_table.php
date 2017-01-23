@@ -15,7 +15,7 @@ class CreateNominationTable extends Migration
         Schema::create('nomination', function (Blueprint $table) {
             // Primary Key
             // $table->increments('id');
-            $table->increments('nominationNo');
+            $table->increments('id');
 
             // 
             $table->integer('studentNumber');
@@ -27,7 +27,8 @@ class CreateNominationTable extends Migration
             $table->timestamps();
             
             // Foreign Keys
-            $table->integer('professorNo')->default(2);
+            $table->string('award_id')->default(1);
+            $table->integer('prof_id')->default(2);
             // $table->integer('awardId'); 
         });
     }

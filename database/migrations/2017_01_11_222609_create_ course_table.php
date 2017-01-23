@@ -13,15 +13,18 @@ class CreateCourseTable extends Migration
      */
     public function up() {
         Schema::create('course', function (Blueprint $table) {
-            $table->timestamps();
-            $table->integer('nominationNo')->default(1);
-            $table->string('name')->nullable();
-            $table->integer('courseNumber')->nullable();
-            $table->integer('section');
+            $table->string('courseName0')->nullable();
+            $table->integer('courseNumber0')->nullable();
+            $table->integer('sectionNumber0')->nullable();
             $table->string('semester')->nullable();
-            $table->integer('grade')->nullable();
-            $table->integer('estimatedGrade')->nullable();
-            $table->integer('estimatedRank')->nullable();
+            $table->integer('finalGrade0')->nullable();
+            $table->integer('estimatedGrade0')->nullable();
+            $table->integer('rank0')->nullable();
+            $table->timestamps();
+
+            // Foreign Keeys
+            // $table->integer('prof_id')->default(1);
+            $table->integer('nomination_id')->default(1);
         });
     }
 
