@@ -51,16 +51,97 @@
           </div>
         </div>
 
+<<<<<<< HEAD
+        <div class="form-group" id="askGrad">
+          <label class="control-label col-sm-4" for="checkbox">Graduating this Year?:</label>
+          <div class="checkbox" >
+            <label><input type="checkbox" name="askGrad" onclick="toggle(yesGradNom, $(this))">Graduating</label>
+            </div>
+
+        </div >
+
+        <div class="form-group" id="yesGradNom">
+
+          <label class="control-label col-sm-4" for="checkbox">Would you also like to nominate this student for the graduating studne award?:</label>
+
+            <div class="checkbox">
+              <label><input type="checkbox" value="yesGradNom" onclick="toggle(confirmGradNom, $(this))">Yes</label>
+=======
         <div class="form-group">
           <label class="control-label col-sm-2" for="checkbox">Graduating this Year?:</label>
           <div class="col-sm-8">
             <div class="checkbox">
               <label><input type="checkbox" value="">Yes</label>
+>>>>>>> fd314f8a448e2720a30232f562c88b35f97dfd96
             </div>
           </div>
-        </div>
+
+          <div class="form-group">
+          <label class="control-label col-sm-12" id="confirmGradNom">This student will automatically be nominated for the graduating student award</label>
+
+          </div>
 
 {{--                             grid starts  --}}
+<<<<<<< HEAD
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            <table class="table table-bordered table-hover" id="tab_logic">
+                <thead>
+                    <tr >
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            Course Name
+                        </th>
+                        <th class="text-center">
+                            Course No.
+                        </th>
+                        <th class="text-center">
+                            Section No.
+                        </th>
+                        <th class="text-center">
+                            Final Grade
+                        </th>
+                        <th class="text-center">
+                            Predicted Grade
+                        </th>
+
+                        <th class="text-center">
+                            Class Rank
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id='addr0'>
+                        <td>
+                        1
+                        </td>
+                        <td>
+                        <input type="text" name='courseName0'  placeholder='Eg. COSC' class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='courseNo0' placeholder='Eg. 499' required name = "courseNumber" class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='sectionNo0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" onclick="myFunction()"/>
+                        </td>
+                        <td>
+                        <input type="text" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                        </td>
+                        <td>
+                        <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
+                        </td>
+                    </tr>
+                    <tr id='addr1'></tr>
+                </tbody>
+            </table>
+=======
         <div class="container-fluid form-group">
             <div class="row clearfix">
                 <div class="col-md-10 column">
@@ -121,6 +202,7 @@
                 </div>
             </div>
             <a id="add_row" class="btn btn-default pull-left">Add Course</a><a id='delete_row' class="btn btn-default pull-left">Delete Course</a>
+>>>>>>> fd314f8a448e2720a30232f562c88b35f97dfd96
         </div>
 {{--                             grid end  --}
 
@@ -200,6 +282,11 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
+  window.onload = function(){
+  // your code here
+  $(yesGradNom).hide();
+  $(confirmGradNom).hide()
+};
 
   //function for adding and removing rows, limited to 6 rows total
   var i=1;
@@ -226,10 +313,19 @@
      }
   });
 
-  //$(function(){
-  //  $(".box").not(".FinalGrade").hide();
-  //   $(".box").not(".PredictedGradeAndRank").hide();
-  //});
+
+
+  function toggle(className, obj) {
+    var $input = $(obj);
+    if ($input.prop('checked')) $(className).show();
+    else {
+    $('#yesGradNom').prop('checked', false);
+    $('#yesGradNom').removeAttr('checked');
+     $(className).hide();
+     $(confirmGradNom).hide() ;
+
+      }
+}
   </script>
 
 </body>
