@@ -22,5 +22,16 @@ class NominationTableSeeder extends Seeder
             'description'=>"He's a great musician",
             'prof_id'=>1,   
         ]);
+
+        DB::table('nomination')->insert([
+            'award_id' => 2,
+            'studentNumber' => 66521148,
+            'studentFirstName' => 'Dewan',
+            'studentLastName' => 'Wahid',
+            'gradThisYear'=> 1,
+            'email'=>'dewan@wahid.com',
+            'description'=>"He is really good",
+            'prof_id'=>1,   
+        ]);
     }
 }

@@ -64,7 +64,6 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function updateAward(Request $request, $id) {
-        //
         $this->validate($request, [
             // 'award'=>'required',
             'name'=>'required',
@@ -75,7 +74,9 @@ class AdminController extends Controller
         $award->name = $request->name;
         $award->category = $request->category;
         $award->save();
-        Session::flash('message', 'Successfully updated award!');
+
+        // Session::flash('message', 'Successfully updated award!');
+        // return redirect()->route('award.report');
         $awards = Award::all();
         return view('admin.report')->with('awards', $awards);
     }
