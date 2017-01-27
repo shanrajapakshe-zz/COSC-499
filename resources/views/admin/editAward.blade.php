@@ -3,7 +3,7 @@
 
 @section('content')
 <h3>Edit Award: {{$award->name}}</h3>
-  <form class="form-horizontal" action="{{url ('/admin/report/award/'.$award->id.'/update') }}" method="POST">
+  <form class="form-horizontal" action="{{url ('/admin/award/'.$award->id.'/update') }}" method="POST">
   	<input type="hidden" name="_method" value="PUT">
     {{ csrf_field() }}
 

@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
-    public function report() {
+    public function award() {
         $awards = Award::all();
-        return view('admin.report')->with('awards', $awards);
+        return view('admin.award')->with('awards', $awards);
     }
 
     public function search() {
@@ -37,7 +37,7 @@ class AdminController extends Controller {
         $award -> save();
 
         $awards = Award::all();
-        return view('admin.report')->with('awards', $awards);
+        return view('admin.award')->with('awards', $awards);
     }
 
     /**
@@ -75,7 +75,7 @@ class AdminController extends Controller {
         // Session::flash('message', 'Successfully updated award!');
         // return redirect()->route('award.report');
         $awards = Award::all();
-        return view('admin.report')->with('awards', $awards);
+        return view('admin.award')->with('awards', $awards);
     }
 
     /**
@@ -88,6 +88,6 @@ class AdminController extends Controller {
         $award = Award::find($id)->delete();
 
         $awards = Award::all();
-        return view('admin.report')->with('awards', $awards);
+        return view('admin.award')->with('awards', $awards);
     }
 }

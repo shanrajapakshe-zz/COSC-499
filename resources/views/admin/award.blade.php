@@ -6,7 +6,7 @@
 
 <div class="container">
     <ul class="nav nav-tabs nav-justified">
-      <li class="active"><a href="report">Report</a></li>
+      <li class="active"><a href="award">Awards</a></li>
       <li><a href="nominations">Nominations</a></li>
     </ul>
 </div>
@@ -27,19 +27,19 @@
             <td>{{$award->name}}</td>
             <td>{{$award->category}}</td>
             <td>
-              <form class="form-horizontal" action="{{url ('/admin/report/award/destroy/'.$award->id)}}" method="POST">
+              <form class="form-horizontal" action="{{url ('/admin/award/destroy/'.$award->id)}}" method="POST">
                 <input type="hidden" name="_method" value="DELETE">
                 {{ csrf_field() }}
                 <div class="form-group">
                   <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Remove</button>
+                    <button type="submit" class="btn btn-danger">Remove</button>
                   </div>
                 </div>
               </form>
             </td>
 
             <td>
-              <form class="form-horizontal" action="{{url ('/admin/report/award/'.$award->id.'/edit') }}" method="GET">
+              <form class="form-horizontal" action="{{url ('/admin/award/'.$award->id.'/edit') }}" method="GET">
                 {{-- <input type="hidden" name="_method" value="DELETE"> --}}
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -55,7 +55,7 @@
 </table>
 
 <h3>Add new Award</h3>
-  <form class="form-horizontal" action="{{url ('/admin/report/award/store') }}" method="POST">
+  <form class="form-horizontal" action="{{url ('/admin/award/store') }}" method="POST">
     {{ csrf_field() }}
 
     <div class="form-group">
