@@ -2,7 +2,6 @@
 @section('title', 'Create Nomination')
 @section('content')
 
-
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h1>Create New Nomination</h1>
@@ -51,7 +50,6 @@
           </div>
         </div>
 
-
         <div class="form-group" id="askGrad">
           <label class="control-label col-sm-4" for="checkbox">Graduating this Year?:</label>
           <div class="checkbox" >
@@ -69,14 +67,12 @@
           </div>
           </div>
 
-
           <div class="form-group">
           <label class="control-label col-sm-12" id="confirmGradNom">This student will automatically be nominated for the graduating student award</label>
 
           </div>
 
 {{--                             grid starts  --}}
-
         <div class="container-fluid form-group">
             <div class="row clearfix">
                 <div class="col-md-10 column">
@@ -137,66 +133,7 @@
                 </div>
             </div>
             <a id="add_row" class="btn btn-default pull-left" title="Max 6">Add Course </a><a id='delete_row' class="btn btn-default pull-left">Delete Course</a>
-
         </div>
-{{--                             grid end  --}
-
-        {{--                             grid starts
-        <div class="row">
-<div class="col-sm-2">
-
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="courseNumber">Course Number*:</label>
-          <div class="col-sm-2">
-            <input type="textarea" class="form-control" id="courseNumber" placeholder="Enter Course Number" required name = "courseNumber">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="section">Section*:</label>
-          <div class="col-sm-2">
-            <input type="textarea" class="form-control" id="section" placeholder="Enter Section" required pattern='[0-9]{3}'name = "section">
-          </div>
-        </div>
-
-        <div>
-               <label><input type="radio" name="colorRadio" value="FinalGrade" > Final Grade</label><br>
-               <label><input type="radio" name="colorRadio" value="PredictedGradeAndRank"> Predicted Grade And Rank</label>
-
-           </div>
-
-
-  <div class="form-group">
-           <div class="FinalGrade box">
-             <label class="control-label col-sm-2" for="grade">Grade:</label>
-             <div class="col-sm-2">
-               <input type="textarea" class="form-control" id="grade" placeholder="Enter Grade"  pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "grade">
-             </div>
-           </div>
-  </div>
-
-
-<div class="form-group">
-           <div class="PredictedGradeAndRank box">
-             <label class="control-label col-sm-2" for="estimatedGrade">Estimated Grade:</label>
-             <div class="col-sm-2">
-               <input type="textarea" class="form-control" id="estimatedGrade" placeholder="Enter Estimated Grade" pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' name = "estimatedGrade">
-             </div>
-           </div>
-</div>
-
-<div class="form-group">
-           <div class="PredictedGradeAndRank box">
-             <label class="control-label col-sm-2" for="estimatedRank">Rank:</label>
-             <div class="col-sm-2">
-               <input type="textarea" class="form-control" id="estimatedRank" placeholder="Enter Rank" name = "estimatedRank">
-             </div>
-           </div>
-         </div>
- </div>
-   </div>
-
-                           grid ends                                                   --}}
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
@@ -204,7 +141,6 @@
             <textarea rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
           </div>
         </div>
-
 
         <div class="form-group">
           <div class="col-sm-8">
@@ -228,14 +164,12 @@
   $("#add_row").click(function(){
     if (i<6) {
 
-
   $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
   +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNumber"+i
   +"' type='text' placeholder='Eg. 001' required pattern='[0-9]{3}'  class='form-control input-md'></td><td><input  name='finalGrade"+i
   +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
   +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
   +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>");
-
 
   $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
   i++;}
@@ -247,8 +181,6 @@
      i--;
      }
   });
-
-
 
   function toggle(className, obj) {
     var $input = $(obj);

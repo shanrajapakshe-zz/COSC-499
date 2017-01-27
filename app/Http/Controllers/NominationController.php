@@ -81,7 +81,6 @@ class NominationController extends Controller
         if($request->estimatedRank0 =='') {
             $request->estimatedRank0 = null;
         }
-        
         $course->finalGrade0 = $request->finalGrade0;
         $course->estimatedGrade0 = $request->estimatedGrade0;
         $course->rank0 = $request->rank0;
@@ -144,4 +143,30 @@ class NominationController extends Controller
     public function destroy($id) {
         //
     }
+
+    // private function addCourse($number, $request) {
+    //     $course = new Course;
+    //     $course->courseName0 = $request->courseName0;
+    //     $course->courseNumber0 = $request->courseNumber0;
+    //     $course->sectionNumber0 = $request->sectionNumber0;
+    //     // $course->semester = $request->semester;
+        
+    //     // check if grade,estimatedGrade,estimatedRanke are blank
+    //     if($request->finalGrade0 =='') {
+    //         $request->finalGrade0 = null;
+    //     }
+        
+    //     if($request->estimatedGrade0 =='') {
+    //         $request->estimatedGrade0 = null;
+    //     }
+        
+    //     if($request->estimatedRank0 =='') {
+    //         $request->estimatedRank0 = null;
+    //     }
+        
+    //     $course->finalGrade0 = $request->finalGrade0;
+    //     $course->estimatedGrade0 = $request->estimatedGrade0;
+    //     $course->rank0 = $request->rank0;
+    //     $course ->save();
+    // }
 }

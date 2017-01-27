@@ -9,6 +9,6 @@ class Prof extends Model {
     protected $table = 'prof';
 
     public function nomination() {
-		return $this->belongsTo('App\Nomination');	
+		return $this->hasMany('App\Nomination');	
 	}
 }

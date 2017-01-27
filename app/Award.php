@@ -10,6 +10,6 @@ class Award extends Model
     protected $table = 'award';
 
     public function nomination() {
-		return $this->belongsTo('App\Nomination');	
+		return $this->hasMany('App\Nomination');	
 	}
 }

@@ -8,8 +8,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
-{
+class AdminController extends Controller {
 
     public function report() {
         $awards = Award::all();
@@ -48,7 +47,6 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function editAward($id) {
-
         // get the award
         $award = Award::find($id);
 
@@ -69,7 +67,6 @@ class AdminController extends Controller
             'name'=>'required',
             'category'=>'required',
             ]);
-
         $award = Award::find($id);
         $award->name = $request->name;
         $award->category = $request->category;
