@@ -99,7 +99,6 @@ class AdminController extends Controller {
 
     public function storeProf(Request $request) {
         $this->validate($request, [
-            // 'award'=>'required',
             'firstName'=>'required',
             'lastName'=>'required',
             ]);
@@ -122,13 +121,12 @@ class AdminController extends Controller {
 
     public function updateProf(Request $request, $id) {
         $this->validate($request, [
-            // 'award'=>'required',
             'firstName'=>'required',
             'lastName'=>'required',
             ]);
         $prof = Prof::find($id);
-        $prof->firstName = $request->name;
-        $prof->lastName = $request->category;
+        $prof->firstName = $request->firstName;
+        $prof->lastName = $request->lastName;
         $prof->save();
 
         // Session::flash('message', 'Successfully updated award!');

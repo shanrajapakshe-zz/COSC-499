@@ -38,15 +38,15 @@
             	<input type="hidden" name="_method" value="DELETE">
                 {{ csrf_field() }}
                 <div class="form-group">
-                  <div class="col-sm-10">
-                    <button type="submit" class="btn btn-danger">Remove</button>
-                  </div>
+                 	<div class="col-sm-10">
+                   		<button type="submit" class="btn btn-danger">Remove</button>
+                	</div>
                 </div>
             </form>
         </td>            
     </tr>
     	@endforeach
-
+</table>
     <h3>Add new Prof</h3>
   	<form class="form-horizontal" action="{{url ('/admin/prof/store') }}" method="POST">
     	{{ csrf_field() }}
@@ -59,9 +59,9 @@
 	    </div>
 
 	    <div class="form-group">
-	      <label class="control-label col-sm-2" for="firstName">Prof First Name*:</label>
+	      <label class="control-label col-sm-2" for="firstLast">Prof Last Name*:</label>
 	      <div class="col-sm-4">
-	        <input type="textarea" class="form-control" id="firstName" placeholder="Enter Prof First Name" required  name="firstName">
+	        <input type="textarea" class="form-control" id="lastName" placeholder="Enter Prof Last Name" required  name="lastName">
 	      </div>
 	    </div>
 
