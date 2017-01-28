@@ -7,7 +7,7 @@
     <div class="row">	
         <h1>All Nominations</h1>
 		
-		<table style="width:75%">
+		<table class="table table-striped table-bordered" style="width:85%">
 			<tr>
 				<th>Award</th>
 				<th>Student Number</th>
@@ -16,6 +16,8 @@
 				<th>Email</th>
 				<th>Description</th>
 				<th>Professor Name</th>
+				<th>Delete</th>
+				<th>Edit</th>
 			</tr>
 	        
 	        <tr>

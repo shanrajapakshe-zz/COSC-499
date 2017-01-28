@@ -24,6 +24,14 @@ Route::put('/admin/award/{award}/update','AdminController@updateAward');
 Route::delete('/admin/award/destroy/{award}','AdminController@destroyAward');
 Route::post('/admin/award/store','AdminController@storeAward');
 Route::get('/admin/award','AdminController@award');	//This includes portal and nominations page(tabs)
+
+// Admin - profs
+Route::get('/admin/prof','AdminController@prof');
+Route::delete('/admin/prof/destroy/{prof}','AdminController@destroyProf');
+Route::put('/admin/prof/{prof}/update','AdminController@updateProf');
+Route::post('/admin/prof/store','AdminController@storeProf');
+Route::get('/admin/prof','AdminController@prof');	
+
 Route::get('/admin/search','AdminController@search');
 Route::get('/admin/nominations', 'AdminController@nominations');
 

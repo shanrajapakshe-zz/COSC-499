@@ -1,16 +1,10 @@
 @extends('main')
-@section('title', 'Nominations')
+@section('title', 'Nominations Report')
 
 
 @section('content')
 
-
-<div class="container">
-    <ul class="nav nav-tabs nav-justified">
-      <li><a href="award">Awards</a></li>
-      <li class="active"><a href="nominations">Nominations</a></li>
-    </ul>
-</div>
+@include('partials._adminNav')
 
 <div class="row">
     <div class="col-md-12">
@@ -69,7 +63,7 @@ Filter By...
 <div class="row">
         <h1>All Nominations</h1>
 
-    <table style="width:75%">
+    <table class="table table-striped table-bordered" style="width:75%">
       <tr>
         <th>Award</th>
         <th>Student Number</th>

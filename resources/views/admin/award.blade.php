@@ -4,12 +4,7 @@
 
 @section('content')
 
-<div class="container">
-    <ul class="nav nav-tabs nav-justified">
-      <li class="active"><a href="award">Awards</a></li>
-      <li><a href="nominations">Nominations</a></li>
-    </ul>
-</div>
+@include('partials._adminNav')
 
 <div class="row">
     <div class="col-md-12">
@@ -17,15 +12,27 @@
 		</div>
 </div>
 
-<table style="width:75%">
+<table class="table table-striped table-bordered" style="width:75%">
       <tr>
         <th>Award Name</th>
         <th>Category</th>
+        <th>Edit</th>
+        <th>Remove</th>
       </tr>
         <tr>
           @foreach ($awards as $award)
             <td>{{$award->name}}</td>
             <td>{{$award->category}}</td>
+            <td>
+              <form class="form-horizontal" action="{{url ('/admin/award/'.$award->id.'/edit') }}" method="GET">
+                {{ csrf_field() }}
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                  </div>
+                </div>
+              </form>
+            </td>
             <td>
               <form class="form-horizontal" action="{{url ('/admin/award/destroy/'.$award->id)}}" method="POST">
                 <input type="hidden" name="_method" value="DELETE">
@@ -36,19 +43,7 @@
                   </div>
                 </div>
               </form>
-            </td>
-
-            <td>
-              <form class="form-horizontal" action="{{url ('/admin/award/'.$award->id.'/edit') }}" method="GET">
-                {{-- <input type="hidden" name="_method" value="DELETE"> --}}
-                {{ csrf_field() }}
-                <div class="form-group">
-                  <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                  </div>
-                </div>
-              </form>
-            </td>
+            </td>            
         </tr>
           @endforeach
 
