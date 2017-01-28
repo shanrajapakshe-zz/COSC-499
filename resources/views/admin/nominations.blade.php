@@ -1,7 +1,6 @@
 @extends('main')
 @section('title', 'Nominations Report')
 
-
 @section('content')
 
 @include('partials._adminNav')
