@@ -67,8 +67,26 @@
           </div>
           </div>
 
-          <div class="form-group">
-          <label class="control-label col-sm-12" id="confirmGradNom">This student will automatically be nominated for the graduating student award</label>
+          <div class="form-group" id="confirmGradNom" >
+
+              <div class="form-group">
+              <label class="control-label col-sm-1" for="GPA">GPA:</label>
+              <div class="col-sm-1">
+              <input type="text" name='GPA' placeholder='4.0' pattern='[0-4]$' class="control-label col-sm-1"/>
+                </div>
+                </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="gradDescription">Graduat Student Award Description:</label>
+                <div class="col-sm-8">
+                  <textarea rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Why are you nominating this student for the graduating student award and did they TA any courses?  Please state" name = "gradDescription"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-10" >This student will automatically be nominated for the graduating student award</label>
+              </div>
+
 
           </div>
 
