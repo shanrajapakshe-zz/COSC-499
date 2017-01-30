@@ -23,6 +23,7 @@ class CreateProfTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique()->nullable();
+            $table->timestamps();
             // $table->tinyInteger('admin');
         });
     }
