@@ -14,6 +14,6 @@ class nominates extends Eloquent
      */
     public function findsnum($query)
     {
-        return $query->where('snum', '==', 1)
+        return $query->where('snum', '==', 41841099)
     }
 }
