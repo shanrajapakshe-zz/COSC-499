@@ -4,16 +4,16 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class nominates extends Eloquent
 {
+    protected $fillable = ['snum', 'sfirstname', 'slastname']
     /**
-     * A basic functional test example.
+     * A basic test example.
      *
      * @return void
      */
-    public function testBasicExample()
+    public function findsnum($query)
     {
-        $this->visit('/')
-             ->see('Laravel');
+        return $query->where('snum', '==', 1)
     }
 }

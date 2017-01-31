@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 class PageController extends Controller {
     // the logic of our pages will go here
 
-    // we name our functions based on what is going on (get, pull, post, delete, etc
+    // we name our functions based on what is going on (get, pull, post, delete, etc)
     public function getIndex() {
         return view('pages.welcome');
     }
