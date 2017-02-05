@@ -25,20 +25,16 @@ class DatabaseTest extends TestCase
     {
 		#USE WithoutMiddleware
 
-		$this->visit('/about')
-             ->see('Mathematics');
+		# MODEL Testing
+		$this->seeInDatabase('nomination', ['studentNumber' => '12345678', 'studentFirstName' => 'John', 'email' => 'bon@jovi.com']);
+		$this->seeInDatabase('award', ['id' => '1', 'name' => 'Second Year Physics', 'category' => 'Second Year']);
+		$this->seeInDatabase('award', ['id' => '5', 'name' => 'Graduating Student', 'category' => 'Graduating']);
 
-		$this->visit('/about')
-             ->see('Physics');
+		$this->notSeeInDatabase('course', ['courseName0' => 'ENGL']);
 
-		$this->visit('/profile')
-             ->see('Contact');
-
-		$this->seeInDatabase('nomination', ['studentNumber' => '12345678']);
-
-		$this->seeInDatabase('nomination', ['studentFirstName' => 'John']);
-
-		$this->seeInDatabase('nomination', ['email' => 'bon@jovi.com']);
+		#	The first line doesnt seem to work because of the assertDatabaseHas. Second one works.
+		#$this->assertDatabaseHas('prof', ['id' => 'sally@example.com', 'id' => '2', 'firstName' => 'John', 'email' => 'john.hopkinson@ubc.ca']);
+		$this->seeInDatabase('prof', ['id' => 'sally@example.com', 'id' => '2', 'firstName' => 'John', 'email' => 'john.hopkinson@ubc.ca']);
 
 		#$this->assertTrue($nomination
 			 #->has('John'));
@@ -54,14 +50,26 @@ class DatabaseTest extends TestCase
 		#$view = $response->original;
 		#$this->assertEquals('Omer', $view['name']);
 
-		#$this->visit('/nominations/create')
-             #->see('create');
 
-		#$this->visit('/nominations/index')
-             #->see('Award');
+		#	VIEW TESTS
+		#	Dont add a / after localhost pages as it doesnt need it
+		$this->visit('/about')
+             ->see('Mathematics');
 
-		#$this->visit('/admin/award')
-             #->see('Second Year Physics');
+		$this->visit('/about')
+             ->see('Physics');
+
+		$this->visit('/profile')
+             ->see('Contact');
+
+		$this->visit('admin/award')
+             ->see('Second Year Physics');
+
+		$this->visit('nominations/index')
+             ->see('Award');
+
+		$this->visit('admin/prof')
+             ->see('Bowen');
 
 		#Here it needs a class named nominations
 		#		php artisan generate model nominate (this does not work)
