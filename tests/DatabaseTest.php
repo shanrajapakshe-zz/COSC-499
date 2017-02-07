@@ -36,9 +36,6 @@ class DatabaseTest extends TestCase
 		#$this->assertDatabaseHas('prof', ['id' => 'sally@example.com', 'id' => '2', 'firstName' => 'John', 'email' => 'john.hopkinson@ubc.ca']);
 		$this->seeInDatabase('prof', ['id' => 'sally@example.com', 'id' => '2', 'firstName' => 'John', 'email' => 'john.hopkinson@ubc.ca']);
 
-		#$this->assertTrue($nomination
-			 #->has('John'));
-
 		#$response = $this->call('GET', 'user/profile');
 		#$response = $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
 		#$this->assertEquals('Hello World', $response->getContent());
@@ -50,26 +47,6 @@ class DatabaseTest extends TestCase
 		#$view = $response->original;
 		#$this->assertEquals('Omer', $view['name']);
 
-
-		#	VIEW TESTS
-		#	Dont add a / after localhost pages as it doesnt need it
-		$this->visit('/about')
-             ->see('Mathematics');
-
-		$this->visit('/about')
-             ->see('Physics');
-
-		$this->visit('/profile')
-             ->see('Contact');
-
-		$this->visit('admin/award')
-             ->see('Second Year Physics');
-
-		$this->visit('nominations/index')
-             ->see('Award');
-
-		$this->visit('admin/prof')
-             ->see('Bowen');
 
 		#Here it needs a class named nominations
 		#		php artisan generate model nominate (this does not work)
