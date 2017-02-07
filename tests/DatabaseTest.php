@@ -27,14 +27,17 @@ class DatabaseTest extends TestCase
 
 		# MODEL Testing
 		$this->seeInDatabase('nomination', ['studentNumber' => '12345678', 'studentFirstName' => 'John', 'email' => 'bon@jovi.com']);
+
 		$this->seeInDatabase('award', ['id' => '1', 'name' => 'Second Year Physics', 'category' => 'Second Year']);
 		$this->seeInDatabase('award', ['id' => '5', 'name' => 'Graduating Student', 'category' => 'Graduating']);
 
 		$this->notSeeInDatabase('course', ['courseName0' => 'ENGL']);
+		$this->SeeInDatabase('course', ['courseName0' => 'COSC']);
 
 		#	The first line doesnt seem to work because of the assertDatabaseHas. Second one works.
 		#$this->assertDatabaseHas('prof', ['id' => 'sally@example.com', 'id' => '2', 'firstName' => 'John', 'email' => 'john.hopkinson@ubc.ca']);
-		$this->seeInDatabase('prof', ['id' => 'sally@example.com', 'id' => '2', 'firstName' => 'John', 'email' => 'john.hopkinson@ubc.ca']);
+		$this->seeInDatabase('prof', ['id' => '2', 'firstName' => 'John', 'email' => 'john.hopkinson@ubc.ca']);
+		$this->seeInDatabase('prof', ['id' => '1', 'firstName' => 'Bowen', 'email' => 'bowen.hui@ubc.ca']);
 
 		#$this->assertTrue($nomination
 			 #->has('John'));
@@ -63,13 +66,16 @@ class DatabaseTest extends TestCase
              ->see('Contact');
 
 		$this->visit('admin/award')
-             ->see('Second Year Physics');
+             ->see('Second Year Physics');     
 
 		$this->visit('nominations/index')
              ->see('Award');
 
 		$this->visit('admin/prof')
              ->see('Bowen');
+
+		$this->visit('admin/award')
+             ->dontSee('abadaba');        
 
 		#Here it needs a class named nominations
 		#		php artisan generate model nominate (this does not work)
