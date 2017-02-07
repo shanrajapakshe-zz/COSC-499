@@ -29,4 +29,14 @@ $factory->define(App\nominates::class, function (Faker\Generator $faker) {
         'sfirstname' => $faker->sentence(15),
         'sfirstname' => $faker->sentence(15),
     ];
-});
+}
+
+
+$factory->define(App\prof::class, function (Faker\Generator $faker){
+    return [
+    'firstName' =>$faker-> str_random(10),
+    'lastName'  =>$faker-> str_random(10),
+    'email'     =>$faker-> str_random(10).'@example.com',
+    ];
+})
+);
