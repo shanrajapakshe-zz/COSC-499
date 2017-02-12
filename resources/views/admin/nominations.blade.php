@@ -47,6 +47,9 @@ Filter By...
 <br>
 <br>
 
+
+
+
 <select name="award">
 
     <option value="">Select...</option>
@@ -59,6 +62,30 @@ Filter By...
 
 </select>
 
+<br>
+
+<!-- nav bar  -->
+
+<nav class="navbar navbar-default">
+<div class="col-sm-12 col-sm-offset-2">
+
+
+<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Course(s) <span class="caret"></span></button>
+<ul class="dropdown-menu">
+  @foreach ($awards as $award)
+    <li><a href="#" class="small" data-value="{{$award->name}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$award->name}}</option></a></li>
+  @endforeach
+ </ul>
+
+
+
+
+</div>
+</nav>
+
+
+
+<!-- nav bar  -->
 <div class="row">
         <h1>All Nominations</h1>
 
@@ -82,10 +109,38 @@ Filter By...
             <td>{{$nomination->email}}</td>
             <td>{{$nomination->description}}</td>
             <td>{{$nomination->prof->firstName}}</td>
-        </tr>      
+        </tr>
           @endforeach
 
     </table>
     </div>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+var options = [];
+$( '.dropdown-menu a' ).on( 'click', function( event ) {
+
+ var $target = $( event.currentTarget ),
+     val = $target.attr( 'data-value' ),
+     $inp = $target.find( 'input' ),
+     idx;
+
+ if ( ( idx = options.indexOf( val ) ) > -1 ) {
+    options.splice( idx, 1 );
+    setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+ } else {    options.push( val );
+    setTimeout( function() { $inp.prop( 'checked', true ) }, 0); }
+
+ $( event.target ).blur();
+
+ console.log( options );
+ return false;
+});
+    </script>
+
+
 
 @endsection
