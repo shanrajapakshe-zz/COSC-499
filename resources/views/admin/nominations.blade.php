@@ -1,33 +1,23 @@
 @extends('main')
-@section('title', 'Nominations')
-
+@section('title', 'Nominations Report')
 
 @section('content')
 
-<div class="container">
-    <ul class="nav nav-tabs nav-justified">
-      <li><a href="report">Report</a></li>
-      <li class="active"><a href="nominations">Nominations</a></li>
-    </ul>
-</div>
+@include('partials._adminNav')
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Nominations</h1>
-        <p>Nominations Should include</p>
-        <ul>
-        	<li>List of approved Nominations</li>
-        	<li>List of approved awards</li>
-				</ul>
-                <p> Nomination Report
-			</div>
+        <h1>Nomination Report</h1>
+		</div>
+
+    <div class="col-md-12">
+      <select>
+        <option value="Year">Year</option>
+        <option value="Course">Course</option>
+      </select>
+    </div>
 </div>
 
-Order By
-<select>
-  <option value="Year">Year</option>
-  <option value="Course">Course</option>
-</select>
 
 <br>
 
@@ -72,27 +62,27 @@ Filter By...
 <div class="row">
         <h1>All Nominations</h1>
 
-    <table style="width:75%">
+    <table class="table table-striped table-bordered" style="width:75%">
       <tr>
+        <th>Award</th>
         <th>Student Number</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
-        <th>Grad This Year?</th>
         <th>Description</th>
-        <th>Professor Number</th>
+        <th>Professor Name</th>
       </tr>
 
           <tr>
           @foreach ($nominations as $nomination)
+            <td>{{$nomination->award->name}}</td>
             <td>{{$nomination->studentNumber}}</td>
             <td>{{$nomination->studentFirstName}}</td>
             <td>{{$nomination->studentLastName}}</td>
             <td>{{$nomination->email}}</td>
-            <td>{{$nomination->gradThisYear}}</td>
             <td>{{$nomination->description}}</td>
-            <td>{{$nomination->professorNo}}</td>
-        </tr>
+            <td>{{$nomination->prof->firstName}}</td>
+        </tr>      
           @endforeach
 
     </table>

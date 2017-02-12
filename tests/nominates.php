@@ -4,15 +4,11 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class checkDatabaseTest extends TestCase
+class nominates extends testCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    protected $fillable = ['snum', 'sfirstname', 'slastname']
+    public function findsnum($query)
     {
-        $this->assertTrue(true);
+        return $query->where('snum', '==', 41841099)
     }
 }

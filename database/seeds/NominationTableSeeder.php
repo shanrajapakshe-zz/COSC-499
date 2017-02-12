@@ -13,13 +13,25 @@ class NominationTableSeeder extends Seeder
     {
     	DB::table('nomination')->delete();
         DB::table('nomination')->insert([
+            'award_id' => 1,
             'studentNumber' => 12345678,
             'studentFirstName' => 'John',
             'studentLastName' => 'Bon Jovi',
             'gradThisYear'=> 1,
             'email'=>'bon@jovi.com',
             'description'=>"He's a great musician",
-            'professorNo'=>1,   
+            'prof_id'=>1,   
+        ]);
+
+        DB::table('nomination')->insert([
+            'award_id' => 2,
+            'studentNumber' => 66521148,
+            'studentFirstName' => 'Dewan',
+            'studentLastName' => 'Wahid',
+            'gradThisYear'=> 1,
+            'email'=>'dewan@wahid.com',
+            'description'=>"He is really good",
+            'prof_id'=>1,   
         ]);
     }
 }

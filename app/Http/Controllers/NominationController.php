@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Nomination;
 use App\Course;
 use App\Award;
+use App\Prof;
 
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class NominationController extends Controller
         $nominations = Nomination::all();
         $courses = Course::all();
         $awards = Award::all();
-        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards);
+        $profs = Prof::all();
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs);
     }
 
     /**
@@ -42,26 +44,46 @@ class NominationController extends Controller
      */
     public function store(Request $request) {
         $this->validate($request, [
+            // 'award'=>'required',
             'studentNumber'=>'required',
             'studentFirstName'=>'required',
             'studentLastName'=>'required',
             ]);
 
         $nomination = new Nomination;
-        $nomination->studentNum = $request->studentNum;
+        $award = new Award;
+        
+        // obtain the right award from the id
+        $award = Award::where('name',$request->award)->get()->first();
+        $nomination->award_id = $award->id;
+
+        $nomination->studentNumber = $request->studentNumber;
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
-        $nomination->gradDate = $request->gradDate;
+        $nomination->description = $request->description;
         $nomination -> save();
 
         $course = new Course;
-        // $course->courseName = $request->awardName;
-        $course->section = $request->section;
-        $course->semester = $request->semester;
-        $course->actGrade = $request->actGrade;
-        $course->estGrade = $request->estGrade;
-        $course -> estRank = $request -> estRank;
-        $course->description = $request->description;
+        $course->courseName0 = $request->courseName0;
+        $course->courseNumber0 = $request->courseNumber0;
+        $course->sectionNumber0 = $request->sectionNumber0;
+        // $course->semester = $request->semester;
+        
+        // check if grade,estimatedGrade,estimatedRanke are blank
+        if($request->finalGrade0 =='') {
+            $request->finalGrade0 = null;
+        }
+        
+        if($request->estimatedGrade0 =='') {
+            $request->estimatedGrade0 = null;
+        }
+        
+        if($request->estimatedRank0 =='') {
+            $request->estimatedRank0 = null;
+        }
+        $course->finalGrade0 = $request->finalGrade0;
+        $course->estimatedGrade0 = $request->estimatedGrade0;
+        $course->rank0 = $request->rank0;
         $course ->save();
         // the blog post is valid - Store in database
 
@@ -121,4 +143,30 @@ class NominationController extends Controller
     public function destroy($id) {
         //
     }
+
+    // private function addCourse($number, $request) {
+    //     $course = new Course;
+    //     $course->courseName0 = $request->courseName0;
+    //     $course->courseNumber0 = $request->courseNumber0;
+    //     $course->sectionNumber0 = $request->sectionNumber0;
+    //     // $course->semester = $request->semester;
+        
+    //     // check if grade,estimatedGrade,estimatedRanke are blank
+    //     if($request->finalGrade0 =='') {
+    //         $request->finalGrade0 = null;
+    //     }
+        
+    //     if($request->estimatedGrade0 =='') {
+    //         $request->estimatedGrade0 = null;
+    //     }
+        
+    //     if($request->estimatedRank0 =='') {
+    //         $request->estimatedRank0 = null;
+    //     }
+        
+    //     $course->finalGrade0 = $request->finalGrade0;
+    //     $course->estimatedGrade0 = $request->estimatedGrade0;
+    //     $course->rank0 = $request->rank0;
+    //     $course ->save();
+    // }
 }

@@ -13,15 +13,23 @@ class CreateNominationTable extends Migration
      */
     public function up() {
         Schema::create('nomination', function (Blueprint $table) {
-            $table->increments('nominationNo');
+            // Primary Key
+            // $table->increments('id');
+            $table->increments('id');
+
+            // 
             $table->integer('studentNumber');
             $table->string('studentFirstName');
             $table->string('studentLastName');
-            $table->string('email');
-            $table->tinyInteger('gradThisYear');
-            $table->string('description');
-            $table->integer('professorNo');
+            $table->string('email')->nullable();
+            $table->tinyInteger('gradThisYear')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
+            
+            // Foreign Keys
+            $table->string('award_id')->default(1);
+            $table->integer('prof_id')->default(2);
+            // $table->integer('awardId'); 
         });
     }
 

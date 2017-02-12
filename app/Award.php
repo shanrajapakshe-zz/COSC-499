@@ -8,4 +8,8 @@ class Award extends Model
 {
     // sets up this class to refer to the table nominations, allowing us to access it via eloquent
     protected $table = 'award';
+
+    public function nomination() {
+		return $this->hasMany('App\Nomination');	
+	}
 }
