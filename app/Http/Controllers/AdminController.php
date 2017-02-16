@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Nomination;
 use App\Award;
 use App\Prof;
+use App\course;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -27,8 +28,9 @@ class AdminController extends Controller {
 
 	public function nominations() {
         $awards = Award::all();
+        $courses = course::all();
         $nominations = Nomination::all();
-        return view('admin.nominations')->with('nominations', $nominations)->with('awards',$awards);
+        return view('admin.nominations')->with('nominations', $nominations)->with('awards',$awards)->with('courses', $courses);
     }
 
     public function storeAward(Request $request) {
