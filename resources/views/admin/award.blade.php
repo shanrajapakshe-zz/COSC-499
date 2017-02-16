@@ -38,7 +38,7 @@
               {{ csrf_field() }}
               <div class="form-group">
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-danger">Remove</button>
+                  <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Remove</button>
                 </div>
               </div>
             </form>
@@ -77,28 +77,18 @@
         <button type="submit" class="btn btn-primary">Add</button>
       </div>
     </div>
-    <a href="#" data-toggle="modal" data-target="#myModal">Administrator</a>
   </form>
 
 
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content"> 
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Confirm Deletion?</h4>
-          </div>
-          <div class="modal-body">
-              
-<!-- need to fill in the address of the admin page eg. admin.php -->
-            <form action="adminLogin.php" method="POST" style="text-align: center">
-              
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>  Yes</button>
-
-            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  No</button>
-          </form>
-          </div>
-      </div>
-    </div>
-  </div >   
+  <script type="text/javascript">
+    function confirmDelete() {
+      var result = confirm('Are you sure you want to delete this award?')
+      if (result) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  </script>
 @endsection
