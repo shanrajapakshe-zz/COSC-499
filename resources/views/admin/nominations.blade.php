@@ -59,23 +59,26 @@
     <table class="table table-striped table-bordered" style="width:75%">
       <tr>
         <th>Award</th>
-        <th>Professor Name</th>
+        <th>Nominated by</th>
         <th>Student Number</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Student Name</th>
         <th>Nomination Date</th>
+        <th>Course</th>
+        <th>Grade</th>
 
         </tr>
 
           <tr>
           @foreach ($nominations as $nomination)
             <td>{{$nomination->award->name}}</td>
-            <td>{{$nomination->prof->firstName}}</td>
+            <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>
             <td>{{$nomination->studentNumber}}</td>
-            <td>{{$nomination->studentFirstName}}</td>
-            <td>{{$nomination->studentLastName}}</td>
+            <td>{{$nomination->studentFirstName}} {{$nomination->studentLastName}}</td>
             <td>{{$nomination->created_at}}</td>
-            </tr>
+            {{$courses = $nomination->courses}}
+            <td>{{$nomination->courses}}</td>
+            <td></td>
+          </tr>
           @endforeach
 
     </table>

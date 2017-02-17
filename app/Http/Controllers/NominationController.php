@@ -63,10 +63,11 @@ class NominationController extends Controller
         $nomination->description = $request->description;
         $nomination -> save();
 
-        $course = new Course;
-        $course->courseName0 = $request->courseName0;
-        $course->courseNumber0 = $request->courseNumber0;
-        $course->sectionNumber0 = $request->sectionNumber0;
+        // saving each course
+        $course0 = new Course;
+        $course0->courseName0 = $request->courseName0;
+        $course0->courseNumber0 = $request->courseNumber0;
+        $course0->sectionNumber0 = $request->sectionNumber0;
         // $course->semester = $request->semester;
         
         // check if grade,estimatedGrade,estimatedRanke are blank
@@ -81,10 +82,12 @@ class NominationController extends Controller
         if($request->estimatedRank0 =='') {
             $request->estimatedRank0 = null;
         }
-        $course->finalGrade0 = $request->finalGrade0;
-        $course->estimatedGrade0 = $request->estimatedGrade0;
-        $course->rank0 = $request->rank0;
-        $course ->save();
+        $course0->finalGrade0 = $request->finalGrade0;
+        $course0->estimatedGrade0 = $request->estimatedGrade0;
+        $course0->rank0 = $request->rank0;
+        $course0->save();
+
+        
         // the blog post is valid - Store in database
 
         $nominations = Nomination::all();
