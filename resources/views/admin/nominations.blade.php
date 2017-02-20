@@ -72,18 +72,6 @@
             <td>{{$nomination->studentNumber}}</td>
             <td>{{$nomination->studentFirstName}} {{$nomination->studentLastName}}</td>
             <td>{{$nomination->created_at}}</td>
-            {{-- <td>
-              @foreach ($nomination->course as $course)
-              <ul>
-                <li>
-                  <p>Course: {{$course->courseName}}  {{$course->courseNumber}}</p>
-                  <p>Grade: {{$course->finalGrade}}</p>
-                  <p>Rank: {{$course->rank}}</p>
-                </li>
-              </ul> 
-              @endforeach
-            </td> --}}
-            
             <td>
               @foreach ($nomination->course as $course)
               <p>{{$course->courseName}}  {{$course->courseNumber}}</p>

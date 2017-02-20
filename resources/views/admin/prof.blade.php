@@ -75,7 +75,7 @@
 
     <script type="text/javascript">
     function confirmDelete() {
-      var result = confirm('Are you sure you want to delete this award?')
+      var result = confirm('Are you sure you want to delete this professor?')
       if (result) {
         return true;
       }

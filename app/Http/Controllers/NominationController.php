@@ -16,7 +16,6 @@ class NominationController extends Controller
     private function generateCourse($id, $request) {
         $course = new Course;
 
-        
         $cName = 'courseName'.$id;
         $course->courseName = $request->$cName;
 
@@ -142,7 +141,8 @@ class NominationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $nomination = Nomination::find($id);
+        return view('nominations.edit')->with('nomination', $nomination);
     }
 
     /**
@@ -153,7 +153,15 @@ class NominationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+
+        $nomination = Nomination::find($id);
+        $nomination->name = $request->name;
+        $nomination->category = $request->category;
+        $nomination->save();
+
+        $nominations = Award::all();
+        $courses = Course::all();
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
     }
 
     /**
@@ -163,6 +171,10 @@ class NominationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+        $nomination = Nomination::find($id)->delete();
+
+        $nominations = Nomination::all();
+        $courses = Course::all();
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
     }
 }

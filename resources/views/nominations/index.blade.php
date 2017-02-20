@@ -42,18 +42,18 @@
 		        	@endforeach
 		        </td>
 		        <td>
-	              <form class="form-horizontal" action="{{url ('#')}}" method="POST">
+	              <form class="form-horizontal" action="{{url ('/nominations/destroy/'.$nomination->id) }}" method="POST">
 	                <input type="hidden" name="_method" value="DELETE">
 	                {{ csrf_field() }}
 	                <div class="form-group">
 	                  <div class="col-sm-10">
-	                    <button type="submit" class="btn btn-danger">X</button>
+	                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">X</button>
 	                  </div>
 	                </div>
 	              </form>
 	            </td>
 	            <td>
-	              <form class="form-horizontal" action="{{url ('#') }}" method="GET">
+	              <form class="form-horizontal" action="{{url ('/nominations/'.$nomination->id.'/edit') }}" method="GET">
 	                {{ csrf_field() }}
 	                <div class="form-group">
 	                  <div class="col-sm-10">
@@ -67,4 +67,16 @@
 	        @endforeach
 		</table>
     </div>
+
+<script>
+function confirmDelete() {
+    var result = confirm('Are you sure you want to delete this nomination?')
+    if (result) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+</script>
 @endsection
