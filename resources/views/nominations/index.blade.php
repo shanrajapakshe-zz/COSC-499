@@ -16,6 +16,7 @@
 				<th>Email</th>
 				<th>Description</th>
 				<th>Professor Name</th>
+				<th>Course Grades</th>
 				<th>Delete</th>
 				<th>Edit</th>
 			</tr>
@@ -28,7 +29,18 @@
 		        <td>{{$nomination->studentLastName}}</td>
 		        <td>{{$nomination->email}}</td>
 		        <td>{{$nomination->description}}</td>
-		        <td>{{$nomination->prof->firstName}}</td>
+		        <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>
+		        <td>
+		        	@foreach ($nomination->course as $course)
+		        	<ul>
+		        		<li>
+		        			<p>Course: {{$course->courseName}}	{{$course->courseNumber}}</p>
+		        			<p>Grade: {{$course->finalGrade}}</p>
+		        			<p>Rank: {{$course->rank}}</p>
+		        		</li>
+		        	</ul>	
+		        	@endforeach
+		        </td>
 		        <td>
 	              <form class="form-horizontal" action="{{url ('#')}}" method="POST">
 	                <input type="hidden" name="_method" value="DELETE">

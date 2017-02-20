@@ -100,7 +100,6 @@ class NominationController extends Controller
         // saving each course
         for ($i = 0; $i <=5; $i++) {
             $courseName = 'courseName'.$i;
-            echo $courseName;
             // check if courseName 'i' exists
             if ($request->$courseName != '' && $request->$courseName != null) {
                 $course = new Course;
