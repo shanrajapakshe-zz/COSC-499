@@ -21,7 +21,7 @@
 <button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown">Award(s) <span class="caret"></span></button>
 <span class="dropdown-menu" id= "awardOptions">
   @foreach ($awards as $award)
-    <li><a href="#" class="small" data-value="{{$award->name}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$award->name}}</option></a></li>
+    <li><a href="#" class="small" data-value="{{$award->name}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp; <option>{{$award->name}}</option></a></li>"
   @endforeach
 </span></div>
 
@@ -31,7 +31,7 @@
 <button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown">Date(s) <span class="caret"></span></button>
  <span class="dropdown-menu"  id="dateOptions">
    @foreach  ($nominations as $nomination)
-     <li><a href="#" class="small" data-value="{{$nomination->created_at}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$nomination->created_at}}</option></a></li>
+     <li><a href="#" class="small" data-value="{{$nomination->created_at}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$nomination->created_at}}</option></a></li>"
    @endforeach
  </span> </div>
 
@@ -40,14 +40,9 @@
  <button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown">Course(s) <span class="caret"></span></button>
   <span class="dropdown-menu"  id="courseOptions">
     @foreach  ($courses as $course)
-      <li><a href="#" class="small" data-value="{{$course->courseName0}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$course->courseName0}}</option></a></li>
+      <li><a href="#" class="small" data-value="{{$course->courseName0}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$course->courseName0}}</option></a></li>"
     @endforeach
   </span> </div>
-
-  <div class="btn-group">
-
-            <input type="text" class="form-control" placeholder="Search" name="keyWords">
- </div>
  <div class="btn-group">
           <button type="submit" class="btn btn-default">Submit</button>
         </div>
@@ -56,7 +51,8 @@
 
 
 
-    <table class="table table-striped table-bordered" style="width:75%">
+    <table id="myTable" class="table table-striped table-bordered" style="width:75%">
+<thead>
       <tr>
         <th>Award</th>
         <th>Nominated by</th>
@@ -67,7 +63,8 @@
         <th>Grade</th>
 
         </tr>
-
+      </thead>
+<tbody>
           <tr>
           @foreach ($nominations as $nomination)
             <td>{{$nomination->award->name}}</td>
@@ -81,13 +78,18 @@
           </tr>
           @endforeach
 
+</tbody>
+
     </table>
     </div>
 
 
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
+
+
 
 var awardOptions = [];
 $( '#awardOptions a' ).on( 'click', function( event ) {
@@ -153,6 +155,10 @@ $( '#courseOptions a' ).on( 'click', function( event ) {
 });
 
 
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+
 
   function confirmDelete() {
     var result = confirm('Are you sure you want to delete this award?')
@@ -164,6 +170,7 @@ $( '#courseOptions a' ).on( 'click', function( event ) {
     }
   }
 </script>
+
 
 
 

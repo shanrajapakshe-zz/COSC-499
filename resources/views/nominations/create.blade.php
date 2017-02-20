@@ -51,33 +51,18 @@
         </div>
 
         <div class="form-group" id="askGrad">
-          <label class="control-label col-sm-4" for="checkbox">Graduating this Year?:</label>
+          <label class="control-label col-sm-4" for="checkbox">Also nominate for Distinguished Graduating student?:</label>
           <div class="checkbox" >
-            <label><input type="checkbox" name="askGrad" onclick="toggle(yesGradNom, $(this))">Graduating</label>
+            <label><input type="checkbox" name="askGrad" onclick="toggle(confirmGradNom, $(this))">Yes</label>
             </div>
 
         </div >
 
-        <div class="form-group" id="yesGradNom">
-
-          <label class="control-label col-sm-4" for="checkbox">Would you also like to nominate this student for the graduating studne award?:</label>
-
-            <div class="checkbox">
-              <label><input type="checkbox" value="yesGradNom" onclick="toggle(confirmGradNom, $(this))">Yes</label>
-          </div>
-          </div>
 
           <div class="form-group" id="confirmGradNom" >
 
               <div class="form-group">
-              <label class="control-label col-sm-1" for="GPA">GPA:</label>
-              <div class="col-sm-1">
-              <input type="text" name='GPA' placeholder='4.0' pattern='[0-4]$' class="control-label col-sm-1"/>
-                </div>
-                </div>
-
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="gradDescription">Graduat Student Award Description:</label>
+                <label class="control-label col-sm-2" for="gradDescription">Distinguished Graduate Student Award Description:</label>
                 <div class="col-sm-8">
                   <textarea rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Why are you nominating this student for the graduating student award and did they TA any courses?  Please state" name = "gradDescription"></textarea>
                 </div>
@@ -173,8 +158,9 @@
   <script>
   window.onload = function(){
   // your code here
-  $(yesGradNom).hide();
+
   $(confirmGradNom).hide()
+  $(askGrad).hide()
 };
 
   //function for adding and removing rows, limited to 6 rows total
@@ -204,18 +190,46 @@
     var $input = $(obj);
     if ($input.prop('checked')) $(className).show();
     else {
-    $('#yesGradNom').prop('checked', false);
-    $('#yesGradNom').removeAttr('checked');
-     $(className).hide();
+         $(className).hide();
      $(confirmGradNom).hide() ;
 
       }
-}
+};
 
-// for hover option put its <a title="string"> in tag and it will show in hover
+
+// only runs when doc is loaded and ready
 $(document).ready(function(){
+
+  // for hover option put its <a title="string"> in tag and it will show in hover
     $('[data-toggle="tooltip"]').tooltip();
+
+    // to check if a grad award has beeen selected
+    document.getElementById('award').addEventListener('change',function(){
+    if ( ($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1)) {
+      //show
+    $(askGrad).show()
+
+    } else if (($('#award option:selected').text().toLowerCase().indexOf("distinguished")>-1)) {
+      //hide if distinguish grad
+      $(askGrad).hide()
+
+    }
+    else {
+      // hide if not grad
+      $(askGrad).hide()
+    }
+  })
+
+
 });
+
+
+
+
+
+
+
+
   </script>
 
 </body>

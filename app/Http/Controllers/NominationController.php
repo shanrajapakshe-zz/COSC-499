@@ -52,7 +52,7 @@ class NominationController extends Controller
 
         $nomination = new Nomination;
         $award = new Award;
-        
+
         // obtain the right award from the id
         $award = Award::where('name',$request->award)->get()->first();
         $nomination->award_id = $award->id;
@@ -69,16 +69,16 @@ class NominationController extends Controller
         $course0->courseNumber0 = $request->courseNumber0;
         $course0->sectionNumber0 = $request->sectionNumber0;
         // $course->semester = $request->semester;
-        
+
         // check if grade,estimatedGrade,estimatedRanke are blank
         if($request->finalGrade0 =='') {
             $request->finalGrade0 = null;
         }
-        
+
         if($request->estimatedGrade0 =='') {
             $request->estimatedGrade0 = null;
         }
-        
+
         if($request->estimatedRank0 =='') {
             $request->estimatedRank0 = null;
         }
@@ -153,20 +153,20 @@ class NominationController extends Controller
     //     $course->courseNumber0 = $request->courseNumber0;
     //     $course->sectionNumber0 = $request->sectionNumber0;
     //     // $course->semester = $request->semester;
-        
+
     //     // check if grade,estimatedGrade,estimatedRanke are blank
     //     if($request->finalGrade0 =='') {
     //         $request->finalGrade0 = null;
     //     }
-        
+
     //     if($request->estimatedGrade0 =='') {
     //         $request->estimatedGrade0 = null;
     //     }
-        
+
     //     if($request->estimatedRank0 =='') {
     //         $request->estimatedRank0 = null;
     //     }
-        
+
     //     $course->finalGrade0 = $request->finalGrade0;
     //     $course->estimatedGrade0 = $request->estimatedGrade0;
     //     $course->rank0 = $request->rank0;
