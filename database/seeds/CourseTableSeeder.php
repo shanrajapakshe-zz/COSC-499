@@ -14,13 +14,13 @@ class CourseTableSeeder extends Seeder
         DB::table('course')->delete();
         DB::table('course')->insert([
             'nomination_id' => 1,
-            'courseName0' => 'COSC',
-            'courseNumber0' => 101,
-            'sectionNumber0' => 001,
+            'courseName' => 'COSC',
+            'courseNumber' => 101,
+            'sectionNumber' => 001,
             'semester'=> 2,
-            'finalGrade0'=> 99,
-            'estimatedGrade0'=> 0,
-            'rank0' => 0,
+            'finalGrade'=> 99,
+            'estimatedGrade'=> 0,
+            'rank' => 0,
         ]);
     }
 }

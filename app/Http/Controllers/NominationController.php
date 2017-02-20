@@ -13,6 +13,46 @@ use App\Http\Requests;
 
 class NominationController extends Controller
 {
+    private function generateCourse($id, $request) {
+        $course = new Course;
+
+        $courseName = $request->courseName;
+        $$courseName = 'courseName'.$id;
+        $course->courseName = $request->$$courseName;
+
+        $courseNumber = $request->courseNumber;
+        $$courseNumber = 'courseNumber'.$id;
+        $course->courseNumber = $request->$$courseNumber;
+
+        $sectionNumber = $request->sectionNumber;
+        $$sectionNumber = 'courseNumber'.$id;
+        $course->sectionNumber = $request->$$sectionNumber;
+
+        // check if grade,estimatedGrade,estimatedRank are blank
+        $finalGrade = $request->finalGrade;
+        $$finalGrade = 'finalGrade'.$id;
+        if($request->$$finalGrade =='') {
+            $request->$$finalGrade = null;
+        }
+
+        $estimatedGrade = $request->estimatedGrade;
+        $$estimatedGrade = 'estimatedGrade'.$id;
+        if($request->$$estimatedGrade =='') {
+            $request->$$estimatedGrade = null;
+        }
+
+        $rank = $request->rank;
+        $$rank = 'rank'.$id;
+        if($request->$$rank =='') {
+            $request->$$rank = null;
+        }
+
+        $course->finalGrade = $request->$$finalGrade;
+        $course->estimatedGrade = $request->$$estimatedGrade;
+        $course->rank = $request->$$rank;
+        // $course->nomination_id = $request->
+        return $course;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -56,40 +96,22 @@ class NominationController extends Controller
         // obtain the right award from the id
         $award = Award::where('name',$request->award)->get()->first();
         $nomination->award_id = $award->id;
-
         $nomination->studentNumber = $request->studentNumber;
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
         $nomination->description = $request->description;
-        $nomination -> save();
+        $nomination->save();
 
         // saving each course
-        $course0 = new Course;
-        $course0->courseName0 = $request->courseName0;
-        $course0->courseNumber0 = $request->courseNumber0;
-        $course0->sectionNumber0 = $request->sectionNumber0;
-        // $course->semester = $request->semester;
-
-        // check if grade,estimatedGrade,estimatedRanke are blank
-        if($request->finalGrade0 =='') {
-            $request->finalGrade0 = null;
+        for ($i = 0; $i <=5; $i++) {
+            if ($request->studentNumber.$i != '' && $request->studentNumber.$i != null) {
+                $course = new Course;
+                $course = NominationController::generateCourse($i, $request);
+                $nomination->course()->save($course);
+            }   
         }
 
-        if($request->estimatedGrade0 =='') {
-            $request->estimatedGrade0 = null;
-        }
-
-        if($request->estimatedRank0 =='') {
-            $request->estimatedRank0 = null;
-        }
-        $course0->finalGrade0 = $request->finalGrade0;
-        $course0->estimatedGrade0 = $request->estimatedGrade0;
-        $course0->rank0 = $request->rank0;
-        $course0->save();
-
-        
-        // the blog post is valid - Store in database
-
+        // return all nominations
         $nominations = Nomination::all();
         $courses = Course::all();
         return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
@@ -146,30 +168,4 @@ class NominationController extends Controller
     public function destroy($id) {
         //
     }
-
-    // private function addCourse($number, $request) {
-    //     $course = new Course;
-    //     $course->courseName0 = $request->courseName0;
-    //     $course->courseNumber0 = $request->courseNumber0;
-    //     $course->sectionNumber0 = $request->sectionNumber0;
-    //     // $course->semester = $request->semester;
-
-    //     // check if grade,estimatedGrade,estimatedRanke are blank
-    //     if($request->finalGrade0 =='') {
-    //         $request->finalGrade0 = null;
-    //     }
-
-    //     if($request->estimatedGrade0 =='') {
-    //         $request->estimatedGrade0 = null;
-    //     }
-
-    //     if($request->estimatedRank0 =='') {
-    //         $request->estimatedRank0 = null;
-    //     }
-
-    //     $course->finalGrade0 = $request->finalGrade0;
-    //     $course->estimatedGrade0 = $request->estimatedGrade0;
-    //     $course->rank0 = $request->rank0;
-    //     $course ->save();
-    // }
 }
