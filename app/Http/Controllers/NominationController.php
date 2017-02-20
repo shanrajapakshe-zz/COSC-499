@@ -16,40 +16,35 @@ class NominationController extends Controller
     private function generateCourse($id, $request) {
         $course = new Course;
 
-        $courseName = $request->courseName;
-        $$courseName = 'courseName'.$id;
-        $course->courseName = $request->$$courseName;
+        
+        $cName = 'courseName'.$id;
+        $course->courseName = $request->$cName;
 
-        $courseNumber = $request->courseNumber;
-        $$courseNumber = 'courseNumber'.$id;
-        $course->courseNumber = $request->$$courseNumber;
+        $cNumber = 'courseNumber'.$id;
+        $course->courseNumber = $request->$cNumber;
 
-        $sectionNumber = $request->sectionNumber;
-        $$sectionNumber = 'courseNumber'.$id;
-        $course->sectionNumber = $request->$$sectionNumber;
+        $sNumber = 'sectionNumber'.$id;
+        $course->sectionNumber = $request->$sNumber;
 
         // check if grade,estimatedGrade,estimatedRank are blank
-        $finalGrade = $request->finalGrade;
-        $$finalGrade = 'finalGrade'.$id;
-        if($request->$$finalGrade =='') {
-            $request->$$finalGrade = null;
+        $fGrade = 'finalGrade'.$id;
+        if($request->$fGrade =='') {
+            $request->$fGrade = null;
         }
 
-        $estimatedGrade = $request->estimatedGrade;
-        $$estimatedGrade = 'estimatedGrade'.$id;
-        if($request->$$estimatedGrade =='') {
-            $request->$$estimatedGrade = null;
+        $eGrade = 'estimatedGrade'.$id;
+        if($request->$eGrade =='') {
+            $request->$eGrade = null;
         }
 
-        $rank = $request->rank;
-        $$rank = 'rank'.$id;
-        if($request->$$rank =='') {
-            $request->$$rank = null;
+        $rank = 'rank'.$id;
+        if($request->$rank =='') {
+            $request->$rank = null;
         }
 
-        $course->finalGrade = $request->$$finalGrade;
-        $course->estimatedGrade = $request->$$estimatedGrade;
-        $course->rank = $request->$$rank;
+        $course->finalGrade = $request->$fGrade;
+        $course->estimatedGrade = $request->$eGrade;
+        $course->rank = $request->$rank;
         // $course->nomination_id = $request->
         return $course;
     }
@@ -104,7 +99,10 @@ class NominationController extends Controller
 
         // saving each course
         for ($i = 0; $i <=5; $i++) {
-            if ($request->studentNumber.$i != '' && $request->studentNumber.$i != null) {
+            $courseName = 'courseName'.$i;
+            echo $courseName;
+            // check if courseName 'i' exists
+            if ($request->$courseName != '' && $request->$courseName != null) {
                 $course = new Course;
                 $course = NominationController::generateCourse($i, $request);
                 $nomination->course()->save($course);
