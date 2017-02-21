@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Nomination;
 use App\Award;
 use App\Prof;
-use App\course;
+use App\Course;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
