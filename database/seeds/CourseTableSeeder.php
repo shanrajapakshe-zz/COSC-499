@@ -22,5 +22,9 @@ class CourseTableSeeder extends Seeder
             'estimatedGrade0'=> 0,
             'rank0' => 0,
         ]);
+        factory(App\Course::class, 5)->create()->each(function($u) {
+            $u->Course()->save(factory(App\Course::class)->make());
+        });    
+               
     }
 }
