@@ -17,7 +17,6 @@ class CreateNominationTable extends Migration
             // $table->increments('id');
             $table->increments('id');
 
-            // 
             $table->integer('studentNumber');
             $table->string('studentFirstName');
             $table->string('studentLastName');
@@ -29,7 +28,9 @@ class CreateNominationTable extends Migration
             // Foreign Keys
             $table->string('award_id')->default(1);
             $table->integer('prof_id')->default(2);
-            // $table->integer('awardId'); 
+            
+            // $table->onDelete('cascade');
+
         });
     }
 

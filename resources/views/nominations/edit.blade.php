@@ -1,21 +1,11 @@
 @extends('main')
-@section('title', 'Create Nomination')
+@section('title', 'Edit Nomination')
+
 @section('content')
+<h3>Edit Nomination: {{$nomination->studentFirstName}} {{$nomination->studentLastName}} by {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</h3>
 
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <h1>Create New Nomination</h1>
-      @if (count($errors) > 0)
-      <div class="alert alert-danger">
-        <ul>
-         @foreach ($errors ->all() as $error)
-         <li>{{$error}}</li>
-         @endforeach
-       </ul>
-      </div>
-     @endif
-
-      <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
+<form class="form-horizontal" action="{{url ('/nominations/'.$nomination->id.'/update') }}" method="POST">
+		<input type="hidden" name="_method" value="PUT">
         {{ csrf_field() }}
 
         <div class="form-group">
@@ -32,21 +22,21 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentNumber">Student Number*:</label>
           <div class="col-sm-8">
-            <input type="textarea" class="form-control" id="studentNumber" placeholder="Enter Student Number" required pattern='[0-9]{8}' name="studentNumber">
+            <input type="textarea" class="form-control" id="studentNumber" placeholder="Enter Student Number" required pattern='[0-9]{8}' name="studentNumber" value={{$nomination->studentNumber}}>
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentFirstName">First Name*:</label>
           <div class="col-sm-8">
-            <input type="textarea" class="form-control" id="studentFirstName" placeholder="Enter First Name" required name = "studentFirstName">
+            <input type="textarea" class="form-control" id="studentFirstName" placeholder="Enter First Name" required name = "studentFirstName" value={{$nomination->studentFirstName}}>
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentLastName">Last Name*:</label>
           <div class="col-sm-8">
-            <input type="textarea" class="form-control" id="studentLastName" placeholder="Enter Last Name" required name = "studentLastName">
+            <input type="textarea" class="form-control" id="studentLastName" placeholder="Enter Last Name" required name = "studentLastName" value={{$nomination->studentLastName}}>
           </div>
         </div>
 
@@ -106,32 +96,34 @@
                                 </th>
                             </tr>
                         </thead>
+                        @foreach ($nomination->course as $course)
                         <tbody>
                             <tr id='addr0'>
                                 <td>
                                 1
                                 </td>
                                 <td>
-                                <input type="text" name='courseName0'  placeholder='Eg. COSC' class="form-control"/>
+                                <input type="text" name='courseName0'  placeholder='Eg. COSC' class="form-control" value={{$course->courseName}}>
                                 </td>
                                 <td>
-                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control"/>
+                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control" value={{$course->courseNumber}}>
                                 </td>
                                 <td>
-                                <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
+                                <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control" value="00".{{$course->sectionNumber}}>
                                 </td>
                                 <td title="This or predicted grade">
-                                <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                                <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" value={{$course->finalGrade}}>
                                 </td>
                                 <td title="This or final grade">
-                                <input type="text" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                                <input type="text" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" value={{$course->estimatedGrade}}>
                                 </td>
                                 <td>
-                                <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
+                                <input type="text" name='rank0' placeholder='Eg. 1' class="form-control" value={{$course->rank}}>
                                 </td>
                             </tr>
                             <tr id='addr1'></tr>
                         </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
@@ -141,13 +133,13 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8">
-            <textarea rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
+            <textarea rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description" value={{$nomination->description}}></textarea>
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-sm-8">
-            <button type="submit" class="btn btn-primary">Nominate!</button>
+            <button type="submit" class="btn btn-primary">Submit Changes</button>
           </div>
         </div>
       </form>

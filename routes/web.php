@@ -17,6 +17,9 @@ Route::get('/nominations/create','NominationController@create');
 Route::get('/nominations/{nomination}', 'NominationController@show');
 Route::post('/nominations', 'NominationController@store');
 Route::post('/nominations/{nomination}', 'NominationController@store');
+Route::get('/nominations/{nomination}/edit','NominationController@edit');
+Route::put('/nominations/{nomination}/update', 'NominationController@update');
+Route::delete('/nominations/destroy/{nomination}','NominationController@destroy');
 
 // Admin - awards
 Route::get('/admin/award/{award}/edit','AdminController@editAward');
@@ -25,17 +28,21 @@ Route::delete('/admin/award/destroy/{award}','AdminController@destroyAward');
 Route::post('/admin/award/store','AdminController@storeAward');
 Route::get('/admin/award','AdminController@award');	//This includes portal and nominations page(tabs)
 
+
 // Admin - profs
 Route::get('/admin/prof/{prof}/edit','AdminController@editProf');
 Route::delete('/admin/prof/destroy/{prof}','AdminController@destroyProf');
 Route::put('/admin/prof/{prof}/update','AdminController@updateProf');
 Route::post('/admin/prof/store','AdminController@storeProf');
-Route::get('/admin/prof','AdminController@prof');	
+Route::get('/admin/prof','AdminController@prof');
+
 
 
 // Admin - Other
 Route::get('/admin/search','AdminController@search');
 Route::get('/admin/nominations', 'AdminController@nominations');
+
+
 
 // Other pages
 Route::get('/about', 'PageController@getAbout');

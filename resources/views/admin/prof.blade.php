@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Awards Report</h1>
+        <h1>Professor Report</h1>
 	</div>
 </div>
 
@@ -39,7 +39,7 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                  	<div class="col-sm-10">
-                   		<button type="submit" class="btn btn-danger">Remove</button>
+                   		<button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Remove</button>
                 	</div>
                 </div>
             </form>
@@ -71,4 +71,17 @@
 	    	</div>
 	    </div>
   	</form>
+
+
+    <script type="text/javascript">
+    function confirmDelete() {
+      var result = confirm('Are you sure you want to delete this professor?')
+      if (result) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  </script>
 @endsection
