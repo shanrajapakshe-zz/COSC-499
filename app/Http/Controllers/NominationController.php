@@ -157,6 +157,11 @@ class NominationController extends Controller
     public function update(Request $request, $id) {
 
         $nomination = Nomination::find($id);
+
+        $award = new Award;
+        $award = Award::where('name',$request->award)->get()->first();
+        $nomination->award_id = $award->id;
+        
         $nomination->studentNumber = $request->studentNumber;
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;

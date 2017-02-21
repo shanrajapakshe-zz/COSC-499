@@ -23,9 +23,11 @@ class CreateCourseTable extends Migration
             $table->integer('rank')->nullable();
             $table->timestamps();
 
-            // Foreign Keeys
-            // $table->integer('prof_id')->default(1);
+            // Foreign Keys
             $table->integer('nomination_id')->default(1);
+
+            // $table->onDelete('cascade');
+
         });
     }
 

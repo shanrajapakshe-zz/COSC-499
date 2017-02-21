@@ -16,6 +16,8 @@ class CreateNominatesTable extends Migration
         Schema::create('nominates', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            // $table->onDelete('cascade');
         });
     }
 

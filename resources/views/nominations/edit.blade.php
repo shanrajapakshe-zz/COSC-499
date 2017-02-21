@@ -109,7 +109,7 @@
                                 <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control" value={{$course->courseNumber}}>
                                 </td>
                                 <td>
-                                <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control" value={{$course->sectionNumber}}>
+                                <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control" value="00".{{$course->sectionNumber}}>
                                 </td>
                                 <td title="This or predicted grade">
                                 <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" value={{$course->finalGrade}}>

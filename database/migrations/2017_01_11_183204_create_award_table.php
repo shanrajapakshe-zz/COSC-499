@@ -16,10 +16,11 @@ class CreateAwardTable extends Migration
             // Primary Key
             $table->increments('id');
             
-            //
             $table->string('name');
             $table->string('category')->default("uncategorized");
             $table->timestamps();
+            // $table->onDelete('cascade');
+
         });
     }
 

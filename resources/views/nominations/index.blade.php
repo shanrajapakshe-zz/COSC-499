@@ -1,5 +1,5 @@
 @extends('main')
-@section('title', 'Nominations')
+@section('title', 'My Nominations')
 
 
 @section('content')
@@ -62,8 +62,7 @@
 	                </div>
 	              </form>
 	            </td>
-        </tr>
-		    </tr>      
+		    </tr>   
 	        @endforeach
 		</table>
     </div>
