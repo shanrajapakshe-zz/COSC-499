@@ -25,8 +25,8 @@ class ProfTableSeeder extends Seeder
             'lastName' => 'Hopkinson',
             'email' =>'john.hopkinson@ubc.ca',
         ]);
-          // factory(App\Prof::class, 2)->create()->each(function($u) {
-          //   $u->prof()->save(factory(App\Prof::class)->make());
-          // });
+          factory(App\Prof::class, 2)->create()->each(function($u) {
+            $u->prof()->save(factory(App\Prof::class)->make());
+          });
     }
 }

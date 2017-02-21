@@ -34,8 +34,8 @@ class NominationTableSeeder extends Seeder
             'prof_id'=>1,   
         ]);
 
-          // factory(App\nomination::class, 2)->create()->each(function($u) {
-          //   $u->nomination()->save(factory(App\nomination::class)->make());
-          // });        
+          factory(App\nomination::class, 2)->create()->each(function($u) {
+            $u->nomination()->save(factory(App\nomination::class)->make());
+          });        
     }
 }
