@@ -5,17 +5,15 @@
 
 @include('partials._adminNav')
 
-
-
-<br>
+<div class="row">
+    <div class="col-md-12">
+        <h1>Nominations Report</h1>
+  </div>
+</div>
 <br>
 
 <!-- nav bar  -->
-
-
 <nav class="navbar navbar-default">
-
-
 
 <div class="btn-group">
 <button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown">Award(s) <span class="caret"></span></button>

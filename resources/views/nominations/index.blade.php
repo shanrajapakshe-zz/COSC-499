@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="row">	
-        <h1>All Nominations</h1>
+        <h1>My Nominations</h1>
 		
 		<table class="table table-striped table-bordered" style="width:85%">
 			<tr>

@@ -142,7 +142,9 @@ class NominationController extends Controller
      */
     public function edit($id) {
         $nomination = Nomination::find($id);
-        return view('nominations.edit')->with('nomination', $nomination);
+        $awards = Award::all();
+
+        return view('nominations.edit')->with('nomination', $nomination)->with('awards', $awards);
     }
 
     /**
@@ -155,13 +157,29 @@ class NominationController extends Controller
     public function update(Request $request, $id) {
 
         $nomination = Nomination::find($id);
-        $nomination->name = $request->name;
-        $nomination->category = $request->category;
+        $nomination->studentNumber = $request->studentNumber;
+        $nomination->studentFirstName = $request->studentFirstName;
+        $nomination->studentLastName = $request->studentLastName;
+        $nomination->description = $request->description;
         $nomination->save();
 
-        $nominations = Award::all();
+        // saving each course
+        $courses = $nomination->course;
+        // for ($course in $courses) {
+        //     $courseName = 'courseName'.$i;
+        //     // check if courseName 'i' exists
+        //     if ($request->$courseName != '' && $request->$courseName != null) {
+        //         $course = new Course;
+        //         $course = NominationController::generateCourse($i, $request);
+        //         $nomination->course()->save($course);
+        //     }   
+        // }
+
+        $nominations = Nomination::all();
         $courses = Course::all();
-        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
+        $awards = Award::all();
+        $profs = Prof::all();
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs);
     }
 
     /**

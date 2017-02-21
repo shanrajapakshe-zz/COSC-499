@@ -18,7 +18,7 @@ Route::get('/nominations/{nomination}', 'NominationController@show');
 Route::post('/nominations', 'NominationController@store');
 Route::post('/nominations/{nomination}', 'NominationController@store');
 Route::get('/nominations/{nomination}/edit','NominationController@edit');
-Route::put('/nominations/{nomination}/update', 'NominationCOntroller@update');
+Route::put('/nominations/{nomination}/update', 'NominationController@update');
 Route::delete('/nominations/destroy/{nomination}','NominationController@destroy');
 
 // Admin - awards

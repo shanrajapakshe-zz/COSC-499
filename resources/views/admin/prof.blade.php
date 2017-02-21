@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Awards Report</h1>
+        <h1>Professor Report</h1>
 	</div>
 </div>
 
