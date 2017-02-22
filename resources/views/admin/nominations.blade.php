@@ -38,7 +38,7 @@
  <button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown">Course(s) <span class="caret"></span></button>
   <span class="dropdown-menu"  id="courseOptions">
     @foreach  ($courses as $course)
-      <li><a href="#" class="small" data-value="{{$course->courseName0}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$course->courseName0}}</option></a></li>"
+      <li><a href="#" class="small" data-value="{{$course->courseName}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$course->courseName}}</option></a></li>"
     @endforeach
   </span> </div>
  <div class="btn-group">
@@ -59,6 +59,8 @@
         <th>Nomination Date</th>
         <th>Course</th>
         <th>Grade</th>
+        <th>Delete</th>
+        <th>Edit</th>
 
         </tr>
       </thead>
@@ -81,7 +83,28 @@
               <p>Rank: {{$course->rank}}</p>
               @endforeach
             </td>
-            
+            <td>
+               <form class="form-horizontal" action="{{url ('/nominations/destroy/'.$nomination->id) }}" method="POST">
+                 <input type="hidden" name="_method" value="DELETE">
+                 {{ csrf_field() }}
+                 <div class="form-group">
+                   <div class="col-sm-10">
+                     <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">X</button>
+                   </div>
+                 </div>
+               </form>
+             </td>
+             <td>
+               <form class="form-horizontal" action="{{url ('/nominations/'.$nomination->id.'/edit') }}" method="GET">
+                 {{ csrf_field() }}
+                 <div class="form-group">
+                   <div class="col-sm-10">
+                     <button type="submit" class="btn btn-primary">Edit</button>
+                   </div>
+                 </div>
+               </form>
+             </td>
+
           </tr>
           @endforeach
 
@@ -92,8 +115,7 @@
 
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
-
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="../js/DataTables/media/js/jquery.datatables.js"></script>
 <script type="text/javascript">
 
 
@@ -176,6 +198,18 @@ $(document).ready( function () {
       return false;
     }
   }
+
+// {
+// var table = $('#myTable').DataTable();
+//
+// var filteredData = table
+//     .columns( [0, 1] )
+//     .data()
+//     .eq( 0 )
+//     .filter( function ( value, index ) {
+//         return value > 20 ? true : false;
+//     } );
+//   }
 </script>
 
 
