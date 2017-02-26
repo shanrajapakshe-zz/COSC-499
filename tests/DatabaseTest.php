@@ -8,12 +8,13 @@ class DatabaseTest extends TestCase
 {
 		use DatabaseTransactions;
 
-		public function setUp()
-		{
-			parent::setUp();
-
-			Artisan::call('migrate');
-		}
+		//--Migration is not needed as the data and table is already present there
+		// public function setUp()
+		// {
+		// 	parent::setUp();
+		//
+		// 	Artisan::call('migrate');
+		// }
 
 		#USE DatabaseMigrations;
 		/**
@@ -53,29 +54,6 @@ class DatabaseTest extends TestCase
 		#$view = $response->original;
 		#$this->assertEquals('Omer', $view['name']);
 
-
-		#	VIEW TESTS
-		#	Dont add a / after localhost pages as it doesnt need it
-		$this->visit('/about')
-             ->see('Mathematics');
-
-		$this->visit('/about')
-             ->see('Physics');
-
-		$this->visit('/profile')
-             ->see('Contact');
-
-		$this->visit('admin/award')
-             ->see('Second Year Physics');     
-
-		$this->visit('nominations/index')
-             ->see('Award');
-
-		$this->visit('admin/prof')
-             ->see('Bowen');
-
-		$this->visit('admin/award')
-             ->dontSee('abadaba');        
 
 		#Here it needs a class named nominations
 		#		php artisan generate model nominate (this does not work)
