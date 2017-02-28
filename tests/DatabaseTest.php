@@ -8,12 +8,12 @@ class DatabaseTest extends TestCase
 {
 		use DatabaseTransactions;
 
-		public function setUp()
-		{
-			parent::setUp();
+		// public function setUp()
+		// {
+		// 	parent::setUp();
 
-			Artisan::call('migrate');
-		}
+		// 	Artisan::call('migrate');
+		// }
 
 		#USE DatabaseMigrations;
 		/**
