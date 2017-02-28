@@ -4,11 +4,12 @@
 
 @section('content')
 
-    <div class="row">	
+    <div class="row">
         <h1>My Nominations</h1>
-		
-		<table class="table table-striped table-bordered" style="width:85%">
-			<tr>
+
+		<table id= "myTable" class="table table-striped table-bordered" style="width:85%">
+      <thead>
+      <tr>
 				<th>Award</th>
 				<th>Student Number</th>
 				<th>First Name</th>
@@ -20,7 +21,8 @@
 				<th>Delete</th>
 				<th>Edit</th>
 			</tr>
-	        
+    </thead>
+<tbody>
 	        <tr>
 	        @foreach ($nominations as $nomination)
 	        	<td>{{$nomination->award->name}}</td>
@@ -38,7 +40,7 @@
 		        			<p>Grade: {{$course->finalGrade}}</p>
 		        			<p>Rank: {{$course->rank}}</p>
 		        		</li>
-		        	</ul>	
+		        	</ul>
 		        	@endforeach
 		        </td>
 		        <td>
@@ -62,12 +64,16 @@
 	                </div>
 	              </form>
 	            </td>
-		    </tr>   
+		    </tr>
 	        @endforeach
+
+    </tbody>
 		</table>
     </div>
 
-<script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
 function confirmDelete() {
     var result = confirm('Are you sure you want to delete this nomination?')
     if (result) {
@@ -77,5 +83,8 @@ function confirmDelete() {
       return false;
     }
   }
+  $(document).ready( function () {
+      $('#myTable').DataTable();
+  } );
 </script>
 @endsection

@@ -64,7 +64,7 @@
               <div class="form-group">
                 <label class="control-label col-sm-2" for="gradDescription">Distinguished Graduate Student Award Description:</label>
                 <div class="col-sm-8">
-                  <textarea rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Why are you nominating this student for the graduating student award and did they TA any courses?  Please state" name = "gradDescription"></textarea>
+                  <textarea rows='4' cols='80'class="form-control" id="gradDescription" placeholder="The distinguished graduating student award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
                 </div>
               </div>
 
@@ -112,7 +112,7 @@
                                 1
                                 </td>
                                 <td>
-                                <input type="text" name='courseName0'  placeholder='Eg. COSC' class="form-control"/>
+                                <input type="text" name='courseName0'  placeholder='Eg. COSC'  required class="form-control"/>
                                 </td>
                                 <td>
                                 <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control"/>
@@ -216,6 +216,7 @@ $(document).ready(function(){
     }
     else {
       // hide if not grad
+      $(confirmGradNom).hide()
       $(askGrad).hide()
     }
   })
