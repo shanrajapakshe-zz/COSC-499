@@ -129,8 +129,6 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 
-
-
 var awardOptions = [];
 $( '#awardOptions a' ).on( 'click', function( event ) {
 
@@ -204,21 +202,20 @@ $( '#courseOptions a' ).on( 'click', function( event ) {
       return false;
     }
   }
-  $(document).on('click', '#sortIt', function () {
-    
-    var table = $('#myTable').DataTable();
-    var filteredData = table
-        .columns( [0, 1] )
+
+    $(document).on('click', '#sortIt', function ()  {
+        var table = $('#myTable').DataTable();
+
+        var filteredData = table
+        .columns( [0, 7] )
         .data()
         .eq( 0 )
         .filter( function ( value, index ) {
-            return ((awardOptions.includes(value))) ;
+          return awardOptions.includes(value)  ? true : false;
         } );
+
         table.draw();
-      }
     });
-
-
 
 </script>
 
