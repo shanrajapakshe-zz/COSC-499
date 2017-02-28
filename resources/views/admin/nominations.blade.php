@@ -5,6 +5,20 @@
 
 @include('partials._adminNav')
 
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+
+
+</script>
 <div class="row">
     <div class="col-md-12">
         <h1>Nominations Report</h1>
@@ -42,7 +56,7 @@
     @endforeach
   </span> </div>
  <div class="btn-group">
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button id="sortIt" type="button" class="btn btn-default">Filter</button>
         </div>
 </nav>
 
@@ -113,9 +127,6 @@
     </table>
     </div>
 
-
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
-<script type="text/javascript" src="../js/DataTables/media/js/jquery.datatables.js"></script>
 <script type="text/javascript">
 
 
@@ -184,11 +195,6 @@ $( '#courseOptions a' ).on( 'click', function( event ) {
 });
 
 
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-
-
   function confirmDelete() {
     var result = confirm('Are you sure you want to delete this award?')
     if (result) {
@@ -198,18 +204,22 @@ $(document).ready( function () {
       return false;
     }
   }
+  $(document).on('click', '#sortIt', function () {
+    
+    var table = $('#myTable').DataTable();
+    var filteredData = table
+        .columns( [0, 1] )
+        .data()
+        .eq( 0 )
+        .filter( function ( value, index ) {
+            return ((awardOptions.includes(value))) ;
+        } );
+        table.draw();
+      }
+    });
 
-// {
-// var table = $('#myTable').DataTable();
-//
-// var filteredData = table
-//     .columns( [0, 1] )
-//     .data()
-//     .eq( 0 )
-//     .filter( function ( value, index ) {
-//         return value > 20 ? true : false;
-//     } );
-//   }
+
+
 </script>
 
 
