@@ -8,6 +8,11 @@ class DatabaseTest extends TestCase
 {
 		use DatabaseTransactions;
 
+
+		// public function setUp()
+		// {
+		// 	parent::setUp();
+
 		//--Migration is not needed as the data and table is already present there
 		// public function setUp()
 		// {
