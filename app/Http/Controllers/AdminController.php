@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
+
+
     public function award() {
         $awards = Award::all();
         return view('admin.award')->with('awards', $awards);

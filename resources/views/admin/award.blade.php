@@ -42,7 +42,7 @@
                 </div>
               </div>
             </form>
-          </td>            
+          </td>
         </tr>
           @endforeach
 

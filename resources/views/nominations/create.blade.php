@@ -53,27 +53,10 @@
         <div class="form-group" id="askGrad">
           <label class="control-label col-sm-4" for="checkbox">Also nominate for Distinguished Graduating student?:</label>
           <div class="checkbox" >
-            <label><input type="checkbox" name="askGrad" onclick="toggle(confirmGradNom, $(this))">Yes</label>
+            <label><input type="checkbox" id ="checkForDis" name="askGrad" onclick="toggle(confirmGradNom, $(this))">Yes</label>
             </div>
 
         </div >
-
-
-          <div class="form-group" id="confirmGradNom" >
-
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="gradDescription">Distinguished Graduate Student Award Description:</label>
-                <div class="col-sm-8">
-                  <textarea rows='4' cols='80'class="form-control" id="gradDescription" placeholder="The distinguished graduating student award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="control-label col-sm-10" >This student will automatically be nominated for the graduating student award</label>
-              </div>
-
-
-          </div>
 
 {{--                             grid starts  --}}
         <div class="container-fluid form-group">
@@ -143,6 +126,22 @@
           <div class="col-sm-8">
             <textarea rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
           </div>
+        </div>
+
+        <div class="form-group" id="confirmGradNom" >
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="gradDescription">Distinguished Graduate Student Award Description:</label>
+              <div class="col-sm-8">
+                <textarea rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-10" >This student will be nominated for the distinguished graduating student award as well</label>
+            </div>
+
+
         </div>
 
         <div class="form-group">
@@ -218,6 +217,7 @@ $(document).ready(function(){
       // hide if not grad
       $(confirmGradNom).hide()
       $(askGrad).hide()
+      $(checkForDis).prop('checked', false)
     }
   })
 
