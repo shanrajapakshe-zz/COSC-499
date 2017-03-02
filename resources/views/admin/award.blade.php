@@ -1,5 +1,5 @@
 @extends('main')
-@section('title', 'Admin Report')
+@section('title', 'Edit Award')
 
 @section('content')
 
@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Awards Report</h1>
+        <h1>Edit Awards </h1>
 		</div>
 </div>
 

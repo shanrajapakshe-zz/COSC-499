@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Nomination;
 use App\Award;
 use App\Prof;
@@ -14,6 +13,12 @@ class AdminController extends Controller {
 
 
 
+  public function awardReport(){
+
+      $awards = Award::all();
+      return view('admin.awardReport')->with('awards', $awards);
+    }
+
     public function award() {
         $awards = Award::all();
         return view('admin.award')->with('awards', $awards);
@@ -23,6 +28,8 @@ class AdminController extends Controller {
         $profs = Prof::all();
         return view('admin.prof')->with('profs', $profs);
     }
+
+
 
     public function search() {
         return view('admin.search');
