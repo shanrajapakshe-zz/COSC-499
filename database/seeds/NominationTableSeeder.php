@@ -33,5 +33,9 @@ class NominationTableSeeder extends Seeder
             'description'=>"He is really good",
             'prof_id'=>1,   
         ]);
+
+          factory(App\nomination::class, 2)->create()->each(function($u) {
+            $u->nomination()->save(factory(App\nomination::class)->make());
+          });        
     }
 }

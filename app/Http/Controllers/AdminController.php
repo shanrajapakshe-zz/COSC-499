@@ -1,16 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Nomination;
 use App\Award;
 use App\Prof;
-use App\course;
+use App\Course;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
+
+
+
+  public function awardReport(){
+
+      $awards = Award::all();
+      $nominations = Nomination::all();
+
+      return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards);
+    }
 
     public function award() {
         $awards = Award::all();
@@ -21,6 +30,8 @@ class AdminController extends Controller {
         $profs = Prof::all();
         return view('admin.prof')->with('profs', $profs);
     }
+
+
 
     public function search() {
         return view('admin.search');
