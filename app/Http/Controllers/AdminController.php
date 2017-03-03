@@ -6,8 +6,8 @@ use App\Award;
 use App\Prof;
 use App\Course;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller {
 
@@ -17,8 +17,9 @@ class AdminController extends Controller {
 
       $awards = Award::all();
       $nominations = Nomination::all();
-
-      return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards);
+      $unique_Years = DB::select('SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears FROM nomination group by uniqueYears');
+      $countNoms = DB::select('SELECT  count(id) AS countID ,award_id from nomination group by award_id');
+      return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards)->with('unique_Years' ,$unique_Years)->with('$countNoms',$countNoms);
     }
 
     public function award() {
