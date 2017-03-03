@@ -32,17 +32,24 @@
         <th>Count</th>
       </tr>
 
-<tr>
-        @foreach ($awards as $award )
-          <td>{{$award->name}}</td>
-          <td>{{$award->category}}</td>
-          <td>
-            $key = array_search( {{$award->id}},$countNoms->award_id);
-              if( $key !== false ) { array_search( {{$award->id}}  ,$countNoms->countID);}
-              else {0;}  </td>
-        </tr>
-          @endforeach
+<tr>      @php
+        foreach ($awards as $award ){
+          echo "<td>" . $award->name . "</td>";
+           echo "<td>" . $award->category . "</td>";
+          echo "<td>";
 
+              $theCount= 0;
+            foreach ($countNoms as $countNom ){
+
+            if ($countNom->award_id == $award->id) {
+             $theCount =$countNom->countID;
+            }
+          }
+          echo $theCount;
+        echo  "</td>";
+      echo  "</tr>";
+}
+ @endphp
 </table>
 
 
