@@ -6,6 +6,7 @@
 @include('partials._adminNav')
 
 
+<script type="text/javascript">
 
 $(document).ready(function() {
     $('#myTable').DataTable( {
@@ -16,6 +17,7 @@ $(document).ready(function() {
     } );
 } );
 
+</script>
 
 </script>
 <div class="row">
