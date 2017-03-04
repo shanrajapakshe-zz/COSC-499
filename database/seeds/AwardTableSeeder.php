@@ -24,12 +24,7 @@ class AwardTableSeeder extends Seeder
             'category'=> 'Second Year',
         ]);
 
-        DB::table('award')->insert([
-            'id' => 3,
-            'name' => 'Second Year Physics',
-            'category'=> 'Second Year',
-        ]);
-
+      
         DB::table('award')->insert([
             'id' => 4,
             'name' => 'Second Year Data',
