@@ -38,7 +38,7 @@
           <td> {{$award->name}} </td>
             <td> {{$award->category}} </td>
           <td>
-{{-- blade does not handle php assigmnets so will have to use php tags--}}            
+{{-- blade does not handle php assigmnets so will have to use php tags--}}
             <?php $theCount= 0  ?>
            @foreach ($countNoms as $countNom )
               @if ($countNom->award_id == $award->id)
@@ -57,5 +57,25 @@
 
   <script type="text/javascript">
 
+
+  var uniqueYears = [];
+  $( '#uniqueYears a' ).on( 'click', function( event ) {
+
+   var $target = $( event.currentTarget ),
+       val = $target.attr( 'data-value' ),
+       $inp = $target.find( 'input' ),
+       idx;
+
+   if ( ( idx = uniqueYears.indexOf( val ) ) > -1 ) {
+      uniqueYears.splice( idx, 1 );
+      setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+   } else {    uniqueYears.push( val );
+      setTimeout( function() { $inp.prop( 'checked', true ) }, 0); }
+
+   $( event.target ).blur();
+
+   console.log( uniqueYears );
+   return false;
+  });
   </script>
 @endsection
