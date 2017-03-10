@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Nomination;
+
+use App\Nominee;
 use App\Course;
 use App\Award;
 use App\Prof;
@@ -57,7 +58,9 @@ class NominationController extends Controller
         $courses = Course::all();
         $awards = Award::all();
         $profs = Prof::all();
-        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs);
+
+        $nominees = Nominee::all();
+        return view('nominations.index')->with('nominees', $nominees)->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs);
     }
 
     /**
@@ -87,14 +90,18 @@ class NominationController extends Controller
         $nomination = new Nomination;
         $award = new Award;
 
+        $nominee = new Nominee;
+
         // obtain the right award from the id
         $award = Award::where('name',$request->award)->get()->first();
         $nomination->award_id = $award->id;
         $nomination->studentNumber = $request->studentNumber;
-        $nomination->studentFirstName = $request->studentFirstName;
-        $nomination->studentLastName = $request->studentLastName;
+        $nominee->studentNumber = $request->studentNumber;
+        $nominee->firstName = $request->studentFirstName;
+        $nominee->lastName = $request->studentLastName;
         $nomination->description = $request->description;
         $nomination->save();
+        $nominee->save();
 
         // saving each course
         for ($i = 0; $i <=5; $i++) {
@@ -104,13 +111,14 @@ class NominationController extends Controller
                 $course = new Course;
                 $course = NominationController::generateCourse($i, $request);
                 $nomination->course()->save($course);
-            }   
+            }
         }
 
         // return all nominations
         $nominations = Nomination::all();
         $courses = Course::all();
-        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
+        $nominees = Nominee::all();
+        return view('nominations.index')->with('nominees', $nominees)->with('nominations', $nominations)->with('courses',$courses);
     }
 
     /**
@@ -161,7 +169,7 @@ class NominationController extends Controller
         $award = new Award;
         $award = Award::where('name',$request->award)->get()->first();
         $nomination->award_id = $award->id;
-        
+
         $nomination->studentNumber = $request->studentNumber;
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
@@ -177,7 +185,7 @@ class NominationController extends Controller
         //         $course = new Course;
         //         $course = NominationController::generateCourse($i, $request);
         //         $nomination->course()->save($course);
-        //     }   
+        //     }
         // }
 
         $nominations = Nomination::all();

@@ -26,10 +26,10 @@ Route::put('/admin/award/{award}/update','AdminController@updateAward');
 Route::delete('/admin/award/destroy/{award}','AdminController@destroyAward');
 Route::post('/admin/award/store','AdminController@storeAward');
 Route::get('/admin/award','AdminController@award');	//This includes portal and nominations page(tabs)
-
-// Admin - awardReport
 Route::get('/admin/awardReport','AdminController@awardReport');
 Route::get('/admin/awardReport/filter','AdminController@getReportByYear');
+
+Route::get('/admin/allAwardNominee/{award}','AdminController@allAwardNominee');
 
 // Admin - profs
 Route::get('/admin/prof/{prof}/edit','AdminController@editProf');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Nomination;
+
+use App\Nominee;
 use App\Award;
 use App\Prof;
 use App\Course;
@@ -13,6 +15,10 @@ class AdminController extends Controller {
 
 
 
+  public function allAwardNominee($award) {
+
+      return view('admin.allAwardNominee');
+  }
   public function awardReport(){
 
       $awards = Award::all();

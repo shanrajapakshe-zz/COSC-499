@@ -33,9 +33,12 @@
       </tr>
 
 <tr>
+
         @foreach ($awards as $award )
 
-          <td> {{$award->name}} </td>
+
+        
+          <td><a href="{{url ('/admin/allAwardNominee/' . $award->id)}}"> {{$award->name}}  </a></td>
             <td> {{$award->category}} </td>
           <td>
 {{-- blade does not handle php assigmnets so will have to use php tags--}}
@@ -47,7 +50,9 @@
             @endforeach
             {{$theCount}}
       </td>
+      </a>
       </tr>
+
         @endforeach
 </table>
 
@@ -62,7 +67,7 @@
     var requestData = JSON.stringify(uniqueYears);
        console.log(requestData);
        //logs correct json object
-    
+
 
        var request;
        console.log("test");
