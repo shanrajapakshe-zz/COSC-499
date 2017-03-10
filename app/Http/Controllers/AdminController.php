@@ -22,14 +22,12 @@ class AdminController extends Controller {
       return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards)->with('unique_Years' ,$unique_Years)->with('countNoms',$countNoms);
     }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
     public function getReportByYear(Request $request){
       $awards = Award::all();
       $nominations = Nomination::all();
       $unique_Years = DB::select('SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears FROM nomination group by uniqueYears  ');
-      $countNoms = DB::select('SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears, count(id) AS countID ,award_id from nomination group by award_id HAVING uniqueYears IN ');
+      $countNoms = DB::select("SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears, count(id) AS countID ,award_id from nomination group by award_id HAVING uniqueYears
+      IN(" . $request->inSetString . ")");
       return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards)->with('unique_Years' ,$unique_Years)->with('countNoms',$countNoms);
     }
 
@@ -48,19 +46,7 @@ class AdminController extends Controller {
         return view('admin.award')->with('awards', $awards);
     }
 
->>>>>>> Stashed changes
-=======
-    public function getReportByYear($years){
-      $awards = Award::all();
-      $nominations = Nomination::all();
-      $unique_Years = DB::select('SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears FROM nomination group by uniqueYears');
-      $countNoms = DB::select('SELECT  count(id) AS countID ,award_id from nomination group by award_id');
-      return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards)->with('unique_Years' ,$unique_Years)->with('countNoms',$countNoms);
 
-
-    }
-
->>>>>>> master
     public function award() {
         $awards = Award::all();
         return view('admin.award')->with('awards', $awards);
