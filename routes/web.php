@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // Nomination Routes
 Route::get('/nominations/index', 'NominationController@index');
 Route::get('/nominations/create','NominationController@create');
@@ -30,6 +29,8 @@ Route::get('/admin/award','AdminController@award');	//This includes portal and n
 
 // Admin - awardReport
 Route::get('/admin/awardReport','AdminController@awardReport');
+
+Route::get('/admin/award/filter','AdminController@getReportByYear');
 
 // Admin - profs
 Route::get('/admin/prof/{prof}/edit','AdminController@editProf');

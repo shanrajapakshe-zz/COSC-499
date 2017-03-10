@@ -31,12 +31,12 @@ $factory->define(App\Prof::class, function (Faker\Generator $faker){
 });
 $factory->define(App\Course::class, function (Faker\Generator $faker) {
     return [
-    'courseName0'       =>$faker->  name,
-    'courseNumber0'     =>$faker->  numberBetween($min = 100, $max = 500),
-    'sectionNumber0'    =>$faker->  numberBetween($min = 0, $max = 3),
-    'semester'          =>$faker->  numberBetween($min = 1, $max = 2),
-    'finalGrade0'       =>$faker->  numberBetween($min = 75, $max = 100),
-    'rank0'             =>$faker->  unique()->numberBetween($min = 0, $max = 5),
+    'courseName'       =>$faker->  name,
+    'courseNumber'     =>$faker->  numberBetween($min = 100, $max = 500),
+    'sectionNumber'    =>$faker->  numberBetween($min = 0, $max = 3),
+    'semester'         =>$faker->  numberBetween($min = 1, $max = 2),
+    'finalGrade'       =>$faker->  numberBetween($min = 75, $max = 100),
+    'rank'             =>$faker->  unique()->numberBetween($min = 0, $max = 5),
     ];
 });
 
@@ -50,4 +50,3 @@ $factory->define(App\nomination::class, function (Faker\Generator $faker) {
         'description' => $faker -> text(),
     ];
 });
-

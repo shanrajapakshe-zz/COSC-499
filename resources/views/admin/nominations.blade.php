@@ -41,8 +41,8 @@ $(document).ready(function() {
 <div class="btn-group">
 <button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown">Date(s) <span class="caret"></span></button>
  <span class="dropdown-menu"  id="dateOptions">
-   @foreach  ($nominations as $nomination)
-     <li><a href="#" class="small" data-value="{{$nomination->created_at}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$nomination->created_at}}</option></a></li>"
+   @foreach  ($unique_Years as $unique_Year)
+     <li><a href="#" class="small" data-value="{{$unique_Year->uniqueYears}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$unique_Year->uniqueYears}}</option></a></li>"
    @endforeach
  </span> </div>
 
@@ -50,6 +50,7 @@ $(document).ready(function() {
 <div class="btn-group">
  <button type="button" class="btn btn-default btn-sm dropdown-toggle"  data-toggle="dropdown">Course(s) <span class="caret"></span></button>
   <span class="dropdown-menu"  id="courseOptions">
+
     @foreach  ($courses as $course)
       <li><a href="#" class="small" data-value="{{$course->courseName}}"+" tabIndex="-1"><input type="checkbox"/>&nbsp;<option>{{$course->courseName}}</option></a></li>"
     @endforeach
@@ -97,7 +98,7 @@ $(document).ready(function() {
               @endforeach
             </td>
             <td>
-               <form class="form-horizontal" action="{{url ('/nominations/destroy/'.$nomination->id) }}" method="POST">
+               <form class="form-horizontal" action="{{url ('/nominations/destroy/'.$nomination->id)}}" method="POST">
                  <input type="hidden" name="_method" value="DELETE">
                  {{ csrf_field() }}
                  <div class="form-group">
