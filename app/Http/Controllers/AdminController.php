@@ -32,7 +32,8 @@ class AdminController extends Controller {
       $awards = Award::all();
       $nominations = Nomination::all();
       $unique_Years = DB::select('SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears FROM nomination group by uniqueYears  ');
-      $countNoms = DB::select('SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears, count(id) AS countID ,award_id from nomination group by award_id HAVING uniqueYears IN ');
+      $countNoms = DB::select("SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears, count(id) AS countID ,award_id from nomination group by award_id HAVING uniqueYears
+      IN(" . $request->inSetString . ")");
       return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards)->with('unique_Years' ,$unique_Years)->with('countNoms',$countNoms);
     }
 

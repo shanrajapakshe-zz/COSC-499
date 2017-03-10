@@ -37,7 +37,7 @@
         @foreach ($awards as $award )
 
 
-        
+
           <td><a href="{{url ('/admin/allAwardNominee/' . $award->id)}}"> {{$award->name}}  </a></td>
             <td> {{$award->category}} </td>
           <td>
@@ -62,16 +62,34 @@
 
   <script type="text/javascript">
 
+  $.ajaxSetup({
+   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+  });
+
+var inSetString = '';
   function myFilter() {
 
+
     var requestData = JSON.stringify(uniqueYears);
+
+for (var i = 0; i < uniqueYears.length; i++) {
+  inSetString= inSetString + "'" + uniqueYears[i] + "'" ;
+  if (i != uniqueYears.length -1 ) {
+    inSetString = inSetString + "," ;
+  }
+}
+
+    var requestData = JSON.stringify(inSetString);
+
        console.log(requestData);
        //logs correct json object
 
 
        var request;
        console.log("test");
+
        request = $.ajax({
+
            url: "/admin/awardReport/filter",
            method: "GET",
            dataType: "JSON",
