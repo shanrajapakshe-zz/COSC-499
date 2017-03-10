@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNominatesTable extends Migration
+class CreateNomineesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateNominatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('nominates', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('nominee', function (Blueprint $table) {
+            // Primary Key
+            $table->integer('studentNumber');
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('email')->unique()->nullable();
             $table->timestamps();
-
             // $table->onDelete('cascade');
         });
     }
@@ -28,6 +31,7 @@ class CreateNominatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nominates');
+        //
+        Schema::dropIfExists('nominee');
     }
 }

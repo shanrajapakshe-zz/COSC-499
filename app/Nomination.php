@@ -20,4 +20,8 @@ class Nomination extends Model
 	public function course() {
 		return $this->hasMany('App\Course');	
 	}
+
+	public function nominee() {
+		return $this->hasOne('App\Nominee');
+	}
 }

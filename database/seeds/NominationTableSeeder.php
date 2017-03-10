@@ -14,28 +14,18 @@ class NominationTableSeeder extends Seeder
     	DB::table('nomination')->delete();
         DB::table('nomination')->insert([
             'award_id' => 1,
-            'studentNumber' => 12345678,
-            'studentFirstName' => 'John',
-            'studentLastName' => 'Bon Jovi',
-            'gradThisYear'=> 1,
-            'email'=>'bon@jovi.com',
+            'studentNumber' =>12345678,
             'description'=>"He's a great musician",
-            'prof_id'=>1,   
+            'created_at'=>"2014-03-02 18:31:08",
+            'prof_id'=>1,
         ]);
 
         DB::table('nomination')->insert([
             'award_id' => 2,
-            'studentNumber' => 66521148,
-            'studentFirstName' => 'Dewan',
-            'studentLastName' => 'Wahid',
-            'gradThisYear'=> 1,
-            'email'=>'dewan@wahid.com',
+            'studentNumber' =>66521148,
+            'created_at'=>"2017-03-02 18:31:08",
             'description'=>"He is really good",
-            'prof_id'=>1,   
-        ]);
-
-          factory(App\nomination::class, 2)->create()->each(function($u) {
-            $u->nomination()->save(factory(App\nomination::class)->make());
-          });        
+            'prof_id'=>1,
+        ]);         
     }
 }

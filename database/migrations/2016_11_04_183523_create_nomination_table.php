@@ -16,21 +16,14 @@ class CreateNominationTable extends Migration
             // Primary Key
             // $table->increments('id');
             $table->increments('id');
-
-            $table->integer('studentNumber');
-            $table->string('studentFirstName');
-            $table->string('studentLastName');
-            $table->string('email')->nullable();
-            $table->tinyInteger('gradThisYear')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
             
             // Foreign Keys
             $table->string('award_id')->default(1);
             $table->integer('prof_id')->default(2);
-            
-            // $table->onDelete('cascade');
-
+            # for nominee table
+            $table->integer('studentNumber');
         });
     }
 

@@ -32,24 +32,23 @@
         <th>Count</th>
       </tr>
 
-<tr>      @php
-        foreach ($awards as $award ){
-          echo "<td>" . $award->name . "</td>";
-           echo "<td>" . $award->category . "</td>";
-          echo "<td>";
+<tr>
+        @foreach ($awards as $award )
 
-              $theCount= 0;
-            foreach ($countNoms as $countNom ){
-
-            if ($countNom->award_id == $award->id) {
-             $theCount =$countNom->countID;
-            }
-          }
-          echo $theCount;
-        echo  "</td>";
-      echo  "</tr>";
-}
- @endphp
+          <td> {{$award->name}} </td>
+            <td> {{$award->category}} </td>
+          <td>
+{{-- blade does not handle php assigmnets so will have to use php tags--}}
+            <?php $theCount= 0  ?>
+           @foreach ($countNoms as $countNom )
+              @if ($countNom->award_id == $award->id)
+              <?php $theCount =$countNom->countID ?>
+              @endif
+            @endforeach
+            {{$theCount}}
+      </td>
+      </tr>
+        @endforeach
 </table>
 
 
@@ -58,8 +57,6 @@
 
   <script type="text/javascript">
 
-<<<<<<< Updated upstream
-=======
   function myFilter() {
     var requestData = JSON.stringify(uniqueYears);
        console.log(requestData);
@@ -85,8 +82,6 @@
      }
 
 
-                //
-
   var uniqueYears = [];
   $( '#uniqueYears a' ).on( 'click', function( event ) {
 
@@ -106,6 +101,6 @@
    console.log( uniqueYears );
    return false;
   });
->>>>>>> Stashed changes
+
   </script>
 @endsection
