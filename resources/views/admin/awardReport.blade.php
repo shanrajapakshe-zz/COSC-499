@@ -58,23 +58,16 @@
   <script type="text/javascript">
 
   function myFilter() {
+
     var requestData = JSON.stringify(uniqueYears);
        console.log(requestData);
        //logs correct json object
+    
+
        var request;
        console.log("test");
-       //what are you trying ot do here?VVV
-       //depending on if youre trying to do a get for a json document
-       //youll want to parse for a specific part of the json first
-       //then get that specific part and stringify that.
-       //or search trough the json string with a string parsing library
-
-       //I think I know what you might be doing wrong. You might
-       //not be getting the right item specifically in the ajax request
-       //it probably thinks you want the entire json object as a filter
-       //(which wont work). You'd need to find the exact item in the json object first.
        request = $.ajax({
-           url: "/admin/award/filter",
+           url: "/admin/awardReport/filter",
            method: "GET",
            dataType: "JSON",
              data: {data : requestData}
