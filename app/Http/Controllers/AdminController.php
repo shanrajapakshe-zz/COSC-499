@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Nomination;
-
 use App\Nominee;
 use App\Award;
 use App\Prof;
@@ -15,10 +14,24 @@ class AdminController extends Controller {
 
 
 
-  public function allAwardNominee($award) {
+  public function allAwardNominee($id) {
 
-      return view('admin.allAwardNominee');
+      $award = Award::find($id);
+      $uniqueCourse=  DB::select("SELECT courseName, courseNumber from course where nomination_id
+        IN (SELECT id from nomination where award_id in (SELECT id  from award where id = $id ))
+        GROUP BY courseName ,courseNumber");
+      $studentForAward = DB::select("SELECT * from nominee Where studentNumber in (SELECT studentNumber
+        from nomination where award_id = $id )");
+
+        $studentCourses = DB::select("SELECT * from course INNER JOIN nomination
+ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from nomination where award_id = $id)";
+
+      return view('admin.allAwardNominee')->with('studentCourses',$studentCourses)->with('uniqueCourse',$uniqueCourse)->with('award',$award)->with('studentForAward', $studentForAward);
   }
+
+
+
+
   public function awardReport(){
 
       $awards = Award::all();
@@ -32,8 +45,7 @@ class AdminController extends Controller {
       $awards = Award::all();
       $nominations = Nomination::all();
       $unique_Years = DB::select('SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears FROM nomination group by uniqueYears  ');
-      $countNoms = DB::select("SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears, count(id) AS countID ,award_id from nomination group by award_id HAVING uniqueYears
-      IN(" . $request->inSetString . ")");
+      $countNoms = DB::select('SELECT EXTRACT(YEAR FROM created_at) AS uniqueYears, count(id) AS countID ,award_id from nomination group by award_id HAVING uniqueYears IN ');
       return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards)->with('unique_Years' ,$unique_Years)->with('countNoms',$countNoms);
     }
 

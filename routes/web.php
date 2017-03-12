@@ -28,11 +28,9 @@ Route::post('/admin/award/store','AdminController@storeAward');
 Route::get('/admin/award','AdminController@award');	//This includes portal and nominations page(tabs)
 Route::get('/admin/awardReport','AdminController@awardReport');
 Route::get('/admin/awardReport/filter','AdminController@getReportByYear');
-<<<<<<< HEAD
 
 Route::get('/admin/allAwardNominee/{award}','AdminController@allAwardNominee');
-=======
->>>>>>> ba2791b095cae654aaf29b9080fe489722a02ce2
+
 
 // Admin - profs
 Route::get('/admin/prof/{prof}/edit','AdminController@editProf');

@@ -33,11 +33,7 @@
       </tr>
 
 <tr>
-
-        @foreach ($awards as $award )
-
-
-
+  @foreach ($awards as $award )
           <td><a href="{{url ('/admin/allAwardNominee/' . $award->id)}}"> {{$award->name}}  </a></td>
             <td> {{$award->category}} </td>
           <td>
@@ -49,11 +45,9 @@
               @endif
             @endforeach
             {{$theCount}}
-      </td>
-      </a>
+      </td> </a>
       </tr>
-
-        @endforeach
+      @endforeach
 </table>
 
 
