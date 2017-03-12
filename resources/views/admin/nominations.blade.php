@@ -62,9 +62,6 @@ $(document).ready(function() {
         </div>
 </nav>
 
-
-
-
     <table id="myTable" class="table table-striped table-bordered" style="width:75%">
 <thead>
       <tr>

@@ -24,7 +24,8 @@ class AdminController extends Controller {
         from nomination where award_id = $id )");
 
         $studentCourses = DB::select("SELECT * from course INNER JOIN nomination
-ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from nomination where award_id = $id)";
+ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from nomination where award_id = $id)");
+
 
       return view('admin.allAwardNominee')->with('studentCourses',$studentCourses)->with('uniqueCourse',$uniqueCourse)->with('award',$award)->with('studentForAward', $studentForAward);
   }
