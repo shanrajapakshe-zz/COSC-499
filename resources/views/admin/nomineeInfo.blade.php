@@ -31,9 +31,8 @@ $(document).ready(function() {
       <tr>
         <th>Student Number</th>
         <th>Student Name</th>
-        <th>Nominated For</th>
         <th>Email</th>
-        <th>Delete</th>
+        <!-- <th>Delete</th> -->
         <th>Edit</th>
 
         </tr>
@@ -43,10 +42,9 @@ $(document).ready(function() {
           @foreach ($nominees as $nominee)
             <td>{{$nominee->studentNumber}}</td>
             <td>{{$nominee->firstName}} {{$nominee->lastName}}</td>
-            <td></td>
             <td>{{$nominee->email}}</td>
             <td>
-               <form class="form-horizontal" action="{{url ('/nominee/destroy/'.$nominee->studentNumber)}}" method="POST">
+               <!-- <form class="form-horizontal" action="{{url ('/nominee/destroy/'.$nominee->studentNumber)}}" method="POST">
                  <input type="hidden" name="_method" value="DELETE">
                  {{ csrf_field() }}
                  <div class="form-group">
@@ -56,8 +54,8 @@ $(document).ready(function() {
                  </div>
                </form>
              </td>
-             <td>
-               <form class="form-horizontal" action="{{url ('/nominees/'.$nominee->id.'/edit') }}" method="GET">
+             <td> -->
+               <form class="form-horizontal" action="{{url ('/nominees/'.$nominee->email.'/edit') }}" method="GET">
                  {{ csrf_field() }}
                  <div class="form-group">
                    <div class="col-sm-10">

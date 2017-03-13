@@ -47,6 +47,7 @@ Route::get('/admin/nominations', 'AdminController@nominations');
 
 // Nominee Info Page
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
+Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
 
 
 // Other pages
