@@ -45,6 +45,8 @@ Route::get('/admin/prof','AdminController@prof');
 Route::get('/admin/search','AdminController@search');
 Route::get('/admin/nominations', 'AdminController@nominations');
 
+// Nominee Info Page
+Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
 
 
 // Other pages

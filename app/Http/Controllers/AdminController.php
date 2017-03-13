@@ -91,6 +91,13 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
 
+  /*  This is the NomineeInfo Tab*/
+  public function nomineeInfo() {
+        $nominees = Nominee::all();
+        return view('admin.nomineeInfo')->with('nominees', $nominees);
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
