@@ -37,11 +37,10 @@
           <td><a href="{{url ('/admin/allAwardNominee/' . $award->id)}}"> {{$award->name}}  </a></td>
             <td> {{$award->category}} </td>
           <td>
-{{-- blade does not handle php assigmnets so will have to use php tags--}}
-            <?php $theCount= 0  ?>
+            @php ($theCount= 0 )
            @foreach ($countNoms as $countNom )
               @if ($countNom->award_id == $award->id)
-              <?php $theCount =$countNom->countID ?>
+              @php ($theCount =$countNom->countID )
               @endif
             @endforeach
             {{$theCount}}

@@ -1,7 +1,6 @@
 @extends('main')
 @section('title', 'Create Nomination')
 @section('content')
-
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h1>Create New Nomination</h1>
@@ -104,10 +103,10 @@
                                 <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
                                 </td>
                                 <td title="This or predicted grade">
-                                <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                                <input type="text" onkeyup="disableEst()" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" />
                                 </td>
                                 <td title="This or final grade">
-                                <input type="text" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                                <input type="text" onkeyup="disableFinal()" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
                                 </td>
                                 <td>
                                 <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
@@ -124,7 +123,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8">
-            <textarea rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
+            <textarea rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description" ></textarea>
           </div>
         </div>
 
@@ -155,13 +154,23 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
+
+
   window.onload = function(){
   // your code here
-
   $(confirmGradNom).hide()
   $(askGrad).hide()
+
+
 };
 
+
+  //function for disableing one or the other estimated grade or final grade
+
+
+function disableEst() {
+document.getElementsByName("estimatedGrade0")[0].style.borderColor = "red";
+}
   //function for adding and removing rows, limited to 6 rows total
   var i=1;
   $("#add_row").click(function(){
@@ -223,13 +232,6 @@ $(document).ready(function(){
 
 
 });
-
-
-
-
-
-
-
 
   </script>
 
