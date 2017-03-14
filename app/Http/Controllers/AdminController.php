@@ -139,7 +139,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 /*--------------------------------------------------------------------------*/
 
-<<<<<<< HEAD
   public function sendEmail(){
         $nominees = Nominee::all();
         $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
@@ -149,8 +148,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
 
-=======
->>>>>>> 46852fcd8b7a940c9826b796fbdbf43dcc02f3bc
     /**
      * Show the form for editing the specified resource.
      *
