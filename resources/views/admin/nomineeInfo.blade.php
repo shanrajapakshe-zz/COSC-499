@@ -74,11 +74,4 @@ $(document).ready(function() {
     </div>
 
 
-
-
-
-
-
-
-
 @endsection

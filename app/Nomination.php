@@ -22,6 +22,6 @@ class Nomination extends Model
 	}
 
 	public function nominee() {
-		return $this->hasOne('App\Nominee');
+		return $this->belongsTo('App\Nominee');
 	}
 }

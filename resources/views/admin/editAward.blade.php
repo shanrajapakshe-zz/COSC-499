@@ -18,12 +18,10 @@
       <label class="control-label col-sm-2" for="category">Award Category*:</label>
       <div class="col-sm-4">
         <select class="form-control" id="category" name="category">
-              <option>First Year</option>
-              <option>Second Year</option>
-              <option>Upper Year</option>
-              <option>Graduating</option>
-              <option>Other</option>
-            </select>
+          @foreach ($categories as $category)
+              <option>{{$category->name}}</option>
+          @endforeach
+        </select>
       </div>
     </div>
 

@@ -34,8 +34,8 @@
 
 <tr>
   @foreach ($awards as $award )
-          <td><a href="{{url ('/admin/allAwardNominee/' . $award->id)}}"> {{$award->name}}  </a></td>
-            <td> {{$award->category}} </td>
+          <td><a href="{{url ('/admin/allAwardNominee/' . $award->id)}}"> {{$award->name}} {{$award->category->name}} </a></td>
+            <td> {{$award->category->name}} </td>
           <td>
             @php ($theCount= 0 )
            @foreach ($countNoms as $countNom )

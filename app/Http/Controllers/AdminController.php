@@ -6,6 +6,8 @@ use App\Nominee;
 use App\Award;
 use App\Prof;
 use App\Course;
+use App\Category;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -68,14 +70,14 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
     public function award() {
         $awards = Award::all();
-        return view('admin.award')->with('awards', $awards);
+        $categories = Category::all();
+        return view('admin.award')->with('awards', $awards)->with('categories', $categories);
     }
 
     public function prof() {
         $profs = Prof::all();
-        return view('admin.prof')->with('profs', $profs);}
-
-
+        return view('admin.prof')->with('profs', $profs);
+      }
 
     public function search() {
         return view('admin.search');
@@ -103,8 +105,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         return view('admin.editEmail')->with('nominees', $nominees);
     }
 
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -114,9 +114,10 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     public function editAward($id) {
         // get the award
         $award = Award::find($id);
+        $categories = Category::all();
 
         // show edit form and pass on award
-        return view('admin.editAward')->with('award', $award);
+        return view('admin.editAward')->with('award', $award)->with('categories', $categories);
     }
 
     /**
@@ -140,7 +141,8 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         // Session::flash('message', 'Successfully updated award!');
         // return redirect()->route('award.report');
         $awards = Award::all();
-        return view('admin.award')->with('awards', $awards);
+        $categories = Category::all();
+        return view('admin.award')->with('awards', $awards)->with('categories', $categories);
     }
 
     /**
@@ -204,5 +206,32 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
         $profs = Prof::all();
         return view('admin.prof')->with('profs', $profs);
+    }
+
+    public function Categories() {
+        $categories = Category::all();
+        return view('admin.categories')->with('categories', $categories);
+    }
+
+    public function editCategory($id) {
+        // get the category
+        $category = Category::find($id);
+
+        // show edit form and pass on category
+        return view('admin.editCategory')->with('category', $category);
+    }
+
+    public function updateCategory(Request $request, $id) {
+      
+    }
+
+    public function storeCategory(Request $request) {
+      
+    }
+
+    public function destroyCategory() {
+        $category = Category::find($id)->delete();
+        $categories = Category::all();
+        return view('admin.categories')->with('categories', $categories);
     }
 }

@@ -6,7 +6,7 @@
 <script type="text/javascript" src="../../js/DataTables/media/js/jquery.datatables.js"></script>
 <div class="row">
     <div class="col-md-12">
-        <h1>All Nominations for {{$award->name}}</h1>
+        <h1>All Nominations for {{$award->name}} {{$award->category->name}}</h1>
 		</div>
 </div>
 
