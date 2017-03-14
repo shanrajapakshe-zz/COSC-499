@@ -20,8 +20,8 @@
       </tr>
       <tr>
         @foreach ($awards as $award)
-          <td>{{$award->name}}</td>
-          <td>{{$award->category}}</td>
+          <td>{{$award->category->name}} {{$award->name}}</td>
+          <td>{{$award->category->name}}</td>
           <td>
             <form class="form-horizontal" action="{{url ('/admin/award/'.$award->id.'/edit') }}" method="GET">
               {{ csrf_field() }}
@@ -63,12 +63,10 @@
       <label class="control-label col-sm-2" for="category">Award Category*:</label>
       <div class="col-sm-4">
         <select class="form-control" id="category" name="category">
-              <option>First Year</option>
-              <option>Second Year</option>
-              <option>Upper Year</option>
-              <option>Graduating</option>
-              <option>Other</option>
-            </select>
+          @foreach ($categories as $category)
+            <option>{{$category->name}}</option>
+          @endforeach
+        </select>
       </div>
     </div>
 
