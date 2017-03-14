@@ -94,8 +94,6 @@ class NominationController extends Controller
         $nomination = new Nomination;
         $award = new Award;
 
-        $nominee = new Nominee;
-
         // obtain the right award from the id        
         $full_award = $request->award;
         $award_name = "";
@@ -125,12 +123,20 @@ class NominationController extends Controller
 
         $nomination->award_id = $award->id;
         $nomination->studentNumber = $request->studentNumber;
-        $nominee->studentNumber = $request->studentNumber;
-        $nominee->firstName = $request->studentFirstName;
-        $nominee->lastName = $request->studentLastName;
+        
         $nomination->description = $request->description;
         $nomination->save();
-        $nominee->save();
+
+        // Check if nominee is already in database
+        $nominee = Nominee::where('studentNumber',$request->studentNumber)->get()->first();
+
+        if ($nominee =="") {
+            $nominee = new Nominee;
+            $nominee->studentNumber = $request->studentNumber;
+            $nominee->firstName = $request->studentFirstName;
+            $nominee->lastName = $request->studentLastName;
+            $nominee->save();
+        }
 
         // saving each course
         for ($i = 0; $i <=5; $i++) {

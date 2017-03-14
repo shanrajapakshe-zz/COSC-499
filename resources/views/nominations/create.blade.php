@@ -18,17 +18,6 @@
       <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
         {{ csrf_field() }}
 
-        {{-- <div class="form-group">
-          <label class="control-label col-sm-2" for="category">Award Category*:</label>
-          <div class="col-sm-8">
-            <select class="form-control" id="category" name="category">
-              @foreach ($categories as $category)
-                <option>{{$category->name}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div> --}}
-
         <div class="form-group">
           <label class="control-label col-sm-2" for="award">Award*:</label>
           <div class="col-sm-8">
