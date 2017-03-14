@@ -74,7 +74,19 @@ $(document).ready(function() {
     </div>
 
 
-
+return array(
+  "driver" => "smtp",
+  "host" => "smtp.mailtrap.io",
+  "port" => 2525,
+  "from" => array(
+      "address" => "from@example.com",
+      "name" => "Example"
+  ),
+  "username" => "dffd4de636fa9b",
+  "password" => "cc97298a1edfda",
+  "sendmail" => "/usr/sbin/sendmail -bs",
+  "pretend" => false
+);
 
 
 
