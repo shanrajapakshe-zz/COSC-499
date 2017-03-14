@@ -11,6 +11,8 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
 
 class AdminController extends Controller {
 
@@ -104,6 +106,13 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         return view('admin.editEmail')->with('nominees', $nominees);
     }
 
+  public function sendEmail(){
+        $nominees = Nominee::all();
+        $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
+        $message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
+        });
+        return view('admin.email')->with('nominees', $nominees);
+    }
 
 
     /**
