@@ -23,7 +23,7 @@
           <div class="col-sm-8">
             <select class="form-control" id="award" name="award">
               @foreach ($awards as $award)
-                <option>{{$award->name}}</option>
+                <option>{{$award->name}}  {{$award->category->name}}</option>
               @endforeach
             </select>
           </div>

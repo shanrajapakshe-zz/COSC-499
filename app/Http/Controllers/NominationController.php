@@ -7,6 +7,7 @@ use App\Nominee;
 use App\Course;
 use App\Award;
 use App\Prof;
+use App\Category;
 
 use Illuminate\Http\Request;
 
@@ -58,9 +59,10 @@ class NominationController extends Controller
         $courses = Course::all();
         $awards = Award::all();
         $profs = Prof::all();
+        $categories = Category::all();
 
         $nominees = Nominee::all();
-        return view('nominations.index')->with('nominees', $nominees)->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs);
+        return view('nominations.index')->with('nominees', $nominees)->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs)->with('categories',$categories);
     }
 
     /**
@@ -70,7 +72,9 @@ class NominationController extends Controller
      */
     public function create() {
         $awards = Award::all();
-        return view('nominations.create')->with('awards',$awards);
+        $categories = Category::all();
+
+        return view('nominations.create')->with('awards',$awards)->with('categories',$categories);
     }
 
     /**
@@ -90,18 +94,49 @@ class NominationController extends Controller
         $nomination = new Nomination;
         $award = new Award;
 
-        $nominee = new Nominee;
+        // obtain the right award from the id        
+        $full_award = $request->award;
+        $award_name = "";
+        $category = "";
+        
+        if (strpos($full_award,"Physics")) {
+            $award_name = substr($full_award, 0, -8);
+            $category = 1;
+        }
+        elseif (strpos($full_award,"Mathematics")) {
+            $award_name = substr($full_award, 0, -12);
+            $category = 2;
+        }
+        elseif (strpos($full_award,"Computer Science")) {
+            $award_name = substr($full_award, 0, -17);
+            $category = 3;
+        }
+        elseif (strpos($full_award,"Statistics/Data Science")) {
+            $award_name = substr($full_award, 0, -24);
+            $category = 4;
+        }
+        else {
+            $award_name = "Distinguished";
+        }
+        $award = Award::where('category_id',$category);
+        $award = $award->where('name', $award_name)->get()->first();
 
-        // obtain the right award from the id
-        $award = Award::where('name',$request->award)->get()->first();
         $nomination->award_id = $award->id;
         $nomination->studentNumber = $request->studentNumber;
-        $nominee->studentNumber = $request->studentNumber;
-        $nominee->firstName = $request->studentFirstName;
-        $nominee->lastName = $request->studentLastName;
+        
         $nomination->description = $request->description;
         $nomination->save();
-        $nominee->save();
+
+        // Check if nominee is already in database
+        $nominee = Nominee::where('studentNumber',$request->studentNumber)->get()->first();
+
+        if ($nominee =="") {
+            $nominee = new Nominee;
+            $nominee->studentNumber = $request->studentNumber;
+            $nominee->firstName = $request->studentFirstName;
+            $nominee->lastName = $request->studentLastName;
+            $nominee->save();
+        }
 
         // saving each course
         for ($i = 0; $i <=5; $i++) {
@@ -118,7 +153,9 @@ class NominationController extends Controller
         $nominations = Nomination::all();
         $courses = Course::all();
         $nominees = Nominee::all();
-        return view('nominations.index')->with('nominees', $nominees)->with('nominations', $nominations)->with('courses',$courses);
+        $categories = Category::all();
+
+        return view('nominations.index')->with('nominees', $nominees)->with('nominations', $nominations)->with('courses',$courses)->with('categories',$categories);
     }
 
     /**
@@ -151,8 +188,9 @@ class NominationController extends Controller
     public function edit($id) {
         $nomination = Nomination::find($id);
         $awards = Award::all();
+        $categories = Category::all();
 
-        return view('nominations.edit')->with('nomination', $nomination)->with('awards', $awards);
+        return view('nominations.edit')->with('nomination', $nomination)->with('awards', $awards)->with('categories',$categories);
     }
 
     /**
@@ -192,7 +230,9 @@ class NominationController extends Controller
         $courses = Course::all();
         $awards = Award::all();
         $profs = Prof::all();
-        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs);
+        $categories = Category::all();
+
+        return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs)->with('categories',$categories);
     }
 
     /**

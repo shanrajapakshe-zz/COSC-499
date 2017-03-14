@@ -14,7 +14,6 @@ class CreateNominationTable extends Migration
     public function up() {
         Schema::create('nomination', function (Blueprint $table) {
             // Primary Key
-            // $table->increments('id');
             $table->increments('id');
             $table->string('description')->nullable();
             $table->timestamps();

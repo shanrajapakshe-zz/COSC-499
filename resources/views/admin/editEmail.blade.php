@@ -2,23 +2,18 @@
 @section('title', 'Edit Nominee Email')
 
 @section('content')
-<h3>Edit Nominee Email: {{$nominee->email}}</h3>
+<h3>Edit Nominee Email: {{$nominee->studentNumber}}</h3>
 
-  <form class="form-horizontal" action="{{url ('/admin/award/'.$nomineeInfo->email.'/update') }}" method="POST">
+  <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/'.$nominee->email.'/update') }}" method="POST">
     <input type="hidden" name="_method" value="PUT">
     {{ csrf_field() }}
 
-    <!-- <div class="form-group">
-      <label class="control-label col-sm-2" for="name">Nominee Student Number:</label>
-      <div class="col-sm-4">
-        <input type="textarea" class="form-control" id="studentNumber" placeholder="Given Student Number" required  name="studentNumber">
-      </div>
-    </div> -->
+    <!-- Add all nominee info to the page but only allow email edits -->
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="name">Nominee Email*:</label>
+      <label class="control-label col-sm-2" for="email">Nominee Email*:</label>
       <div class="col-sm-4">
-        <input type="textarea" class="form-control" id="nomineeInfo" placeholder="Enter Nominee Email" required  name="email">
+        <input type="textarea" class="form-control" id="email" placeholder="Enter Nominee Email" required  name="email">
       </div>
     </div>
 

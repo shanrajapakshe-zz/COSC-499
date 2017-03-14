@@ -31,6 +31,13 @@ Route::get('/admin/awardReport/filter','AdminController@getReportByYear');
 
 Route::get('/admin/allAwardNominee/{award}','AdminController@allAwardNominee');
 
+// Admin - award Categories
+Route::get('/admin/categories', 'AdminController@Categories');
+Route::get('/admin/categories/{category}/edit','AdminController@editCategory');
+Route::put('/admin/categories/{category}/update','AdminController@updateCategory');
+Route::delete('/admin/categories/destroy/{category}','AdminController@destroyCategory');
+Route::post('/admin/categories/store','AdminController@storeCategory');
+
 
 // Admin - profs
 Route::get('/admin/prof/{prof}/edit','AdminController@editProf');
@@ -47,8 +54,16 @@ Route::get('/admin/nominations', 'AdminController@nominations');
 
 // Admin - Nominee Info Page
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
-Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
-Route::get('/admin/nomineeInfo/{nomineeInfo}/update','AdminController@updateEmail');
+Route::get('/admin/nomineeInfo/{nominee}/edit','AdminController@editEmail');
+Route::put('/admin/nomineeInfo/{nominee}/update','AdminController@updateEmail');
+Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
+
+Route::get('admin/nomineeInfo/email', function(){
+	Mail::send('admin.emails',['name' => 'Brandon'], function($message){
+		$message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
+	});
+});
+
 
 // Other pages
 Route::get('/about', 'PageController@getAbout');
