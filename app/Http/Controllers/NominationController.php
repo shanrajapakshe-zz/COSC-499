@@ -72,6 +72,8 @@ class NominationController extends Controller
      */
     public function create() {
         $awards = Award::all();
+        $categories = Category::all();
+
         return view('nominations.create')->with('awards',$awards)->with('categories',$categories);
     }
 
@@ -94,8 +96,33 @@ class NominationController extends Controller
 
         $nominee = new Nominee;
 
-        // obtain the right award from the id
-        $award = Award::where('name',$request->award)->get()->first();
+        // obtain the right award from the id        
+        $full_award = $request->award;
+        $award_name = "";
+        $category = "";
+        
+        if (strpos($full_award,"Physics")) {
+            $award_name = substr($full_award, 0, -8);
+            $category = 1;
+        }
+        elseif (strpos($full_award,"Mathematics")) {
+            $award_name = substr($full_award, 0, -12);
+            $category = 2;
+        }
+        elseif (strpos($full_award,"Computer Science")) {
+            $award_name = substr($full_award, 0, -17);
+            $category = 3;
+        }
+        elseif (strpos($full_award,"Statistics/Data Science")) {
+            $award_name = substr($full_award, 0, -24);
+            $category = 4;
+        }
+        else {
+            $award_name = "Distinguished";
+        }
+        $award = Award::where('category_id',$category);
+        $award = $award->where('name', $award_name)->get()->first();
+
         $nomination->award_id = $award->id;
         $nomination->studentNumber = $request->studentNumber;
         $nominee->studentNumber = $request->studentNumber;
