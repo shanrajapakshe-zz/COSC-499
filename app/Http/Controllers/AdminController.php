@@ -99,6 +99,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
   public function editEmail($studentNumber) {
         $nominees = Nominee::find($studentNumber);
+
         return view('admin.editEmail')->with('nominees', $nominees);
     }
 
