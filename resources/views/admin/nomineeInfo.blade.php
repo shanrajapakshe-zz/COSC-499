@@ -62,5 +62,13 @@ $(document).ready(function() {
     </table>
     </div>
 
+{{--using a new view to send email--}}
+<form class="form-horizontal" action="{{url ('/admin/nomineeInfo/email') }}" method="GET">
+	<div class="form-group">
+		<div class="col-sm-10">
+			 <button type="submit" class="btn btn-primary">Send Emails</button>
+		</div>
+	</div>
+</form>
 
 @endsection

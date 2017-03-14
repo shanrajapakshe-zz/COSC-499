@@ -63,6 +63,9 @@ Route::get('admin/nomineeInfo/email', function(){
 		$message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
 	});
 });
+=======
+Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
+Route::get('admin/nomineeInfo/email', 'AdminController@sendEmail');
 
 
 // Other pages
