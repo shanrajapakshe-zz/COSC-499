@@ -102,9 +102,5 @@ class CourseTableSeeder extends Seeder
             'rank' => 0,
             'created_at'=>"2017-03-02 18:31:08",
         ]);
-
-
-        
-
     }
 }

@@ -20,7 +20,6 @@ class CreateNomineesTable extends Migration
             $table->string('lastName');
             $table->string('email')->unique()->nullable();
             $table->timestamps();
-            // $table->onDelete('cascade');
         });
     }
 
@@ -31,7 +30,6 @@ class CreateNomineesTable extends Migration
      */
     public function down()
     {
-        //
         Schema::dropIfExists('nominee');
     }
 }
