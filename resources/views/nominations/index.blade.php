@@ -27,8 +27,8 @@
 	        @foreach ($nominations as $nomination)
 	        	<td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
 		       	<td>{{$nomination->studentNumber}}</td>
-		        <td>{{$nomination->studentFirstName}}</td>
-		        <td>{{$nomination->studentLastName}}</td>
+		        <td>{{$nomination->firstName}}</td>
+		        <td>{{$nomination->lastName}}</td>
 		        <td>{{$nomination->email}}</td>
 		        <td>{{$nomination->description}}</td>
 		        <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>

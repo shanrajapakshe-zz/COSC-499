@@ -106,6 +106,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         return view('admin.editEmail')->with('nominees', $nominees);
     }
 
+<<<<<<< HEAD
   public function sendEmail(){
         $nominees = Nominee::all();
         $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
@@ -115,6 +116,8 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
 
+=======
+>>>>>>> 46852fcd8b7a940c9826b796fbdbf43dcc02f3bc
     /**
      * Show the form for editing the specified resource.
      *
@@ -216,5 +219,32 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
         $profs = Prof::all();
         return view('admin.prof')->with('profs', $profs);
+    }
+
+    public function Categories() {
+        $categories = Category::all();
+        return view('admin.categories')->with('categories', $categories);
+    }
+
+    public function editCategory($id) {
+        // get the category
+        $category = Category::find($id);
+
+        // show edit form and pass on category
+        return view('admin.editCategory')->with('category', $category);
+    }
+
+    public function updateCategory(Request $request, $id) {
+      
+    }
+
+    public function storeCategory(Request $request) {
+      
+    }
+
+    public function destroyCategory() {
+        $category = Category::find($id)->delete();
+        $categories = Category::all();
+        return view('admin.categories')->with('categories', $categories);
     }
 }
