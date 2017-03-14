@@ -45,10 +45,10 @@ Route::get('/admin/prof','AdminController@prof');
 Route::get('/admin/search','AdminController@search');
 Route::get('/admin/nominations', 'AdminController@nominations');
 
-// Nominee Info Page
+// Admin - Nominee Info Page
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
 Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
-
+Route::get('/admin/nomineeInfo/{nomineeInfo}/update','AdminController@updateEmail');
 
 // Other pages
 Route::get('/about', 'PageController@getAbout');

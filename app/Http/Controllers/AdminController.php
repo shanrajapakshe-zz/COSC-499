@@ -91,6 +91,10 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
 
+
+/*--------------------------------------------------------------------------*/
+/*--------------------The Error is still not fixed for EDIT-----------------*/
+
   /*  This is the NomineeInfo Tab*/
   public function nomineeInfo() {
         $nominees = Nominee::all();
@@ -102,6 +106,23 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         return view('admin.editEmail')->with('nominees', $nominees);
     }
 
+  public function updateEmail(Request $request, $studentNumber) {
+        $this->validate($request, [
+            // 'award'=>'required',
+            'email'=>'required',
+            // 'category'=>'required',
+            ]);
+        $nomineeEmail = Nominee::find($studentNumber);
+        $nomineeEmail->email = $request->email;
+        // $award->category = $request->category;
+        $nomineeEmail->save();
+
+        // Session::flash('message', 'Successfully updated award!');
+        // return redirect()->route('award.report');
+        $nominee = Nominee::all();
+        return view('admin.nomineeInfo')->with('nominee', $nomineeEmail);
+    }
+/*--------------------------------------------------------------------------*/
 
 
     /**
