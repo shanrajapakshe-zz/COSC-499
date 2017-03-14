@@ -12,4 +12,8 @@ class Award extends Model
     public function nomination() {
 		return $this->hasMany('App\Nomination');	
 	}
+
+	pubic function category() {
+		return $this->hasOne('App\Category')
+	}
 }
