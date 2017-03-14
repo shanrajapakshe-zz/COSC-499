@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 </script>
 
-</script>
+
 <div class="row">
     <div class="col-md-12">
         <h1>Nominations Report</h1>

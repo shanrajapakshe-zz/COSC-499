@@ -1,21 +1,9 @@
 @extends('main')
-@section('title', 'Edit Award')
+@section('title', 'Award Nominee')
 
 @section('content')
 
-<script type="text/javascript">
-
-$(document).ready(function() {
-    $('#myTable').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
-} );
-
-</script>
-</script>
+<script type="text/javascript" src="../../js/DataTables/media/js/jquery.datatables.js"></script>
 <div class="row">
     <div class="col-md-12">
         <h1>All Nominations for {{$award->name}} {{$award->category->name}}</h1>
@@ -62,4 +50,16 @@ $(document).ready(function() {
       </tbody>
 </table>
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+
+</script>
 @endsection
