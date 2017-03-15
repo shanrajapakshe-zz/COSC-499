@@ -113,7 +113,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         return view('admin.editEmail')->with('nominee', $nominee);
     }
 
-    public function updateEmail(Request $request, $studentNumber) {
+  public function updateEmail(Request $request, $studentNumber) {
         $this->validate($request, [
             // 'award'=>'required',
             'email'=>'required',
@@ -125,7 +125,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $nominees = nominee::all();
         return view('admin.nomineeInfo')->with('nominees', $nominees);
     }
-    public function storeEmail(Request $request) {
+  public function storeEmail(Request $request) {
         $this->validate($request, [
             // 'award'=>'required',
             'email'=>'required',
@@ -146,6 +146,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         });
         return view('admin.email')->with('nominees', $nominees);
     }
+
 
 
     /**
