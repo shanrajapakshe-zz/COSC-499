@@ -4,12 +4,12 @@
 
 @section('content')
 
-    <div class="row">
-        <h1>My Nominations</h1>
+<div class="row">
+	<h1>My Nominations</h1>
 
-		<table id= "myTable" class="table table-striped table-bordered" style="width:85%">
-      <thead>
-      <tr>
+	<table id= "myTable" class="table table-striped table-bordered" style="width:85%">
+      	<thead>
+      		<tr>
 				<th>Award</th>
 				<th>Student Number</th>
 				<th>Name</th>
@@ -20,8 +20,8 @@
 				<th>Remove</th>
 				<th>Edit</th>
 			</tr>
-    </thead>
-<tbody>
+    	</thead>
+		<tbody>
 	        <tr>
 	        @foreach ($nominations as $nomination)
 	        	<td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
@@ -64,10 +64,9 @@
 	            </td>
 		    </tr>
 	        @endforeach
-
-    </tbody>
-		</table>
-    </div>
+    	</tbody>
+	</table>
+</div>
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>

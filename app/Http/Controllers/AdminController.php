@@ -250,7 +250,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
             ]);
         $category = new Category;
         $category->name = $request->name;
-        $prof->save();
+        $category->save();
 
         $categories = Category::all();
         return view('admin.categories')->with('categories', $categories);
