@@ -47,23 +47,23 @@ Route::post('/admin/prof/store','AdminController@storeProf');
 Route::get('/admin/prof','AdminController@prof');
 
 
-
 // Admin - Other
 Route::get('/admin/search','AdminController@search');
 Route::get('/admin/nominations', 'AdminController@nominations');
+
 
 // Admin - Nominee Info Page
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
 Route::get('/admin/nomineeInfo/{nominee}/edit','AdminController@editEmail');
 Route::put('/admin/nomineeInfo/{nominee}/update','AdminController@updateEmail');
-Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
+// Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
 
-Route::get('admin/nomineeInfo/email', function(){
-	Mail::send('admin.emails',['name' => 'Brandon'], function($message){
-		$message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
-	});
-});
-=======
+// Route::get('admin/nomineeInfo/email', function(){
+// 	Mail::send('admin.emails',['name' => 'Brandon'], function($message){
+// 		$message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
+// 	});
+// });
+
 Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
 Route::get('admin/nomineeInfo/email', 'AdminController@sendEmail');
 
