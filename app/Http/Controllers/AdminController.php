@@ -11,6 +11,8 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
 
 class AdminController extends Controller {
 
@@ -77,6 +79,10 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
 
+
+/*--------------------------------------------------------------------------*/
+/*--------------------The Error is still not fixed for EDIT-----------------*/
+
   /*  This is the NomineeInfo Tab*/
   public function nomineeInfo() {
         $nominees = Nominee::all();
@@ -84,9 +90,47 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
   public function editEmail($studentNumber) {
-        $nominees = Nominee::find($studentNumber);
-        return view('admin.editEmail')->with('nominees', $nominees);
+        // get the nominee info including the email
+        $nominee = nominee::find($studentNumber);
+
+        // show edit form and pass on Email
+        return view('admin.editEmail')->with('nominee', $nominee);
     }
+
+    public function updateEmail(Request $request, $studentNumber) {
+        $this->validate($request, [
+            // 'award'=>'required',
+            'email'=>'required',
+            ]);
+        $nominee = nominee::find($studentNumber);
+        $nominee->email = $request->email;
+        $nominee->save();
+
+        $nominees = nominee::all();
+        return view('admin.nomineeInfo')->with('nominees', $nominees);
+    }
+    public function storeEmail(Request $request) {
+        $this->validate($request, [
+            // 'award'=>'required',
+            'email'=>'required',
+            ]);
+        $nominee = new Nominee;
+        $nominee->email = $request->email;
+        $award -> save();
+
+        $nominees = nominee::all();
+        return view('admin.nomineeInfo')->with('nominees', $nominees);
+    }
+/*--------------------------------------------------------------------------*/
+
+  public function sendEmail(){
+        $nominees = Nominee::all();
+        $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
+        $message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
+        });
+        return view('admin.email')->with('nominees', $nominees);
+    }
+
 
     public function storeAward(Request $request) {
         $this->validate($request, [

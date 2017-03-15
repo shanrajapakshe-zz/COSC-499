@@ -44,18 +44,7 @@ $(document).ready(function() {
             <td>{{$nominee->firstName}} {{$nominee->lastName}}</td>
             <td>{{$nominee->email}}</td>
             <td>
-               <!-- <form class="form-horizontal" action="{{url ('/nominee/destroy/'.$nominee->studentNumber)}}" method="POST">
-                 <input type="hidden" name="_method" value="DELETE">
-                 {{ csrf_field() }}
-                 <div class="form-group">
-                   <div class="col-sm-10">
-                     <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">X</button>
-                   </div>
-                 </div>
-               </form>
-             </td>
-             <td> -->
-               <form class="form-horizontal" action="{{url ('/nominees/'.$nominee->email.'/edit') }}" method="GET">
+               <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/'.$nominee->studentNumber.'/edit') }}" method="GET">
                  {{ csrf_field() }}
                  <div class="form-group">
                    <div class="col-sm-10">
@@ -73,5 +62,13 @@ $(document).ready(function() {
     </table>
     </div>
 
+{{--using a new view to send email--}}
+<form class="form-horizontal" action="{{url ('/admin/nomineeInfo/email') }}" method="GET">
+	<div class="form-group">
+		<div class="col-sm-10">
+			 <button type="submit" class="btn btn-primary">Send Emails</button>
+		</div>
+	</div>
+</form>
 
 @endsection
