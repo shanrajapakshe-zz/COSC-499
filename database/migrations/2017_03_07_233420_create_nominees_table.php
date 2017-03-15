@@ -20,6 +20,7 @@ class CreateNomineesTable extends Migration
             $table->string('lastName');
             $table->string('email')->unique()->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
