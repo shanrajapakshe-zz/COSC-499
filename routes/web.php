@@ -56,7 +56,7 @@ Route::get('/admin/nominations', 'AdminController@nominations');
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
 Route::get('/admin/nomineeInfo/{nominee}/edit','AdminController@editEmail');
 Route::put('/admin/nomineeInfo/{nominee}/update','AdminController@updateEmail');
-<<<<<<< HEAD
+
 // Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
 
 // Route::get('admin/nomineeInfo/email', function(){
@@ -64,14 +64,13 @@ Route::put('/admin/nomineeInfo/{nominee}/update','AdminController@updateEmail');
 // 		$message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
 // 	});
 // });
-=======
+
 Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
 Route::get('admin/nomineeInfo/email', function(){
 	Mail::send('admin.emails',['name' => 'Brandon'], function($message){
 		$message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
 	});
 });
->>>>>>> 4a01db27822ff68f1d84fe14c77054911f215730
 
 Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
 Route::get('admin/nomineeInfo/email', 'AdminController@sendEmail');
