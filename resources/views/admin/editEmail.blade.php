@@ -4,7 +4,7 @@
 @section('content')
 <h3>Edit Nominee Email for Student: {{$nominee->studentNumber}}</h3>
 
-  <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/'.$nominee->email.'/update') }}" method="POST">
+  <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/'.$nominee->studentNumber.'/update') }}" method="POST">
     <input type="hidden" name="_method" value="PUT">
     {{ csrf_field() }}
 
