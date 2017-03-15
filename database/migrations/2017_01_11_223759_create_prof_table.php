@@ -21,6 +21,7 @@ class CreateProfTable extends Migration
             $table->string('lastName');
             $table->string('email')->unique()->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // $table->onDelete('cascade');
         });
