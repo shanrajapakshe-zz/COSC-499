@@ -12,13 +12,12 @@
       <tr>
 				<th>Award</th>
 				<th>Student Number</th>
-				<th>First Name</th>
-				<th>Last Name</th>
+				<th>Name</th>
 				<th>Email</th>
 				<th>Description</th>
 				<th>Professor Name</th>
 				<th>Course Grades</th>
-				<th>Delete</th>
+				<th>Remove</th>
 				<th>Edit</th>
 			</tr>
     </thead>
@@ -27,8 +26,7 @@
 	        @foreach ($nominations as $nomination)
 	        	<td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
 		       	<td>{{$nomination->studentNumber}}</td>
-		        <td>{{$nomination->firstName}}</td>
-		        <td>{{$nomination->lastName}}</td>
+		        <td>{{$nomination->firstName}} {{$nomination->lastName}}</td>
 		        <td>{{$nomination->email}}</td>
 		        <td>{{$nomination->description}}</td>
 		        <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>
@@ -49,7 +47,7 @@
 	                {{ csrf_field() }}
 	                <div class="form-group">
 	                  <div class="col-sm-10">
-	                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">X</button>
+	                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Remove</button>
 	                  </div>
 	                </div>
 	              </form>
@@ -75,7 +73,7 @@
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
 function confirmDelete() {
-    var result = confirm('Are you sure you want to delete this nomination?')
+    var result = confirm('Are you sure you want to remove this nomination?')
     if (result) {
       return true;
     }
