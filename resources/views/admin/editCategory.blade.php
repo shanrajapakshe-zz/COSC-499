@@ -4,7 +4,7 @@
 @section('content')
 <h3>Edit Award Category: {{$category->name}}</h3>
 
-<form class="form-horizontal" action="{{url ('/admin/category/'.$category->id.'/update') }}" method="POST">
+<form class="form-horizontal" action="{{url ('/admin/categories/'.$category->id.'/update') }}" method="POST">
   	<input type="hidden" name="_method" value="PUT">
     {{ csrf_field() }}
 

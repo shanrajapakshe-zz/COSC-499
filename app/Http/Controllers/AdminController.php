@@ -156,7 +156,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
      */
     public function destroyAward($id) {
         $award = Award::find($id)->delete();
-        
+
         $awards = Award::all();
         $categories = Category::all();
 
@@ -236,7 +236,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
             ]);
         $category = Category::find($id);
         $category->name = $request->name;
-        $prof->save();
+        $category->save();
 
         // Session::flash('message', 'Successfully updated award!');
         // return redirect()->route('award.report');
