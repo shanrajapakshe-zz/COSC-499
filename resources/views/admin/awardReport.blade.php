@@ -12,7 +12,7 @@
         <h1>Awards Report</h1>
 		</div>
 </div>
-
+{{--
 <nav class="navbar navbar-default">
 
 <div class="btn-group">
@@ -24,6 +24,7 @@
 </span></div>
     <button type="submit" class="btn btn-primary" onclick="myFilter()">Filter</button>
 </nav>
+--}}
 
 <table class="table table-striped table-bordered" style="width:75%">
       <tr>

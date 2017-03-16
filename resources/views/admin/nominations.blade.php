@@ -27,6 +27,7 @@ $(document).ready(function() {
 </div>
 <br>
 
+{{-- 
 <!-- nav bar  -->
 <nav class="navbar navbar-default">
 
@@ -61,6 +62,7 @@ $(document).ready(function() {
           <button id="sortIt" type="button" class="btn btn-default">Filter</button>
         </div>
 </nav>
+--}}
 
     <table id="myTable" class="table table-striped table-bordered" style="width:75%">
 <thead>
