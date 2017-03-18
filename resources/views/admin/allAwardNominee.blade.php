@@ -15,8 +15,8 @@
       <tr>
         <th>Student Name</th>
         <th>ID No.</th>
-        @foreach ($uniqueCourse as $uniqueCourse )
-        <th>{{$uniqueCourse-> courseName }} {{$uniqueCourse->courseNumber}}</th> @endforeach
+        @foreach ($uniqueCourse as $uCourse )
+        <th>{{$uCourse-> courseName }} {{$uCourse->courseNumber}}</th> @endforeach
         <th>Description</th>
       </tr>
       </thead>
@@ -26,29 +26,33 @@
       <td>{{$student-> studentNumber }} </td>
 
 
-      @foreach ($uniqueCourse as $uniqueCourse )
 
-          <td>@php ($grade = 'N/A')
-              @php ($rank = 'N/A')
-          @foreach ($studentCourses as $studentCourse )
-              @if ($studentCourse-> studentNumber  === $student->studentNumber  )
-              @if ($uniqueCourse-> courseName === $studentCourse ->courseName)
-              @if ($studentCourse ->courseNumber === $uniqueCourse->courseNumber  )
-                    @if  (is_null($studentCourse->estimatedGrade) )
-                      @php ($grade = 'Final Grade = ' . $studentCourse-> finalGrade)
-                      @php ($rank = 'Rank = ' . $studentCourse -> rank)
-                    @else
-                      @php ($grade = 'Est Grade = ' . $studentCourse-> estimatedGrade)
-                      @php ($rank = 'Rank = ' . $studentCourse -> rank)
-                    @endif
-              @endif
-              @endif
-              @endif
-          @endforeach
-            {{$grade}} <hr>
-            {{$rank}}</td>
+                    @foreach($uniqueCourse as $uCourse )
 
-        @endforeach
+                                      <td>@php ($grade = 'N/A')
+                                          @php ($rank = 'N/A')
+                    @foreach ($studentCourses as $course)
+
+                        @if ($course-> studentNumber  === $student->studentNumber  )
+                        @if ($uCourse->courseName === $course->courseName )
+                        @if ($course ->courseNumber === $uCourse->courseNumber  )
+                            @if  (is_null($course->estimatedGrade) )
+                            @php ($grade = 'Final Grade = ' . $course-> finalGrade)
+                            @php ($rank = 'Rank = ' . $course -> rank)
+                            @else
+                            @php ($grade = 'Est Grade = ' . $course-> estimatedGrade)
+                            @php ($rank = 'Rank = ' . $course -> rank)
+                            @endif
+                        @endif
+                        @endif
+                        @endif
+                    @endForeach
+
+                    {{$grade}} <hr>
+                    {{$rank}}</td>
+                  @endforeach
+
+
           <td>
                 @foreach ($studentCourses as $studentCourse )
                   @if ($studentCourse-> studentNumber  === $student->studentNumber )
