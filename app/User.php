@@ -4,10 +4,15 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
     use Notifiable;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -27,8 +32,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function nominates()
-    {
-      return $this->hasMany(nominates::class);
+    public function nomination() {
+        return $this->hasMany('App\Nomination');
     }
 }

@@ -81,3 +81,7 @@ Route::get('/about', 'PageController@getAbout');
 Route::get('/profile', 'PageController@getContact' );
 Route::get('/help', 'PageController@getHelp' );
 Route::get('/', 'PageController@getIndex' );
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

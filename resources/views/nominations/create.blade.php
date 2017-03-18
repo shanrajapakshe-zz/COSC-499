@@ -124,7 +124,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8">
-            <textarea maxlength="254" rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
+            <textarea maxlength="800" rows='8' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
           </div>
         </div>
 
@@ -133,7 +133,7 @@
             <div class="form-group">
               <label class="control-label col-sm-2" for="gradDescription">Distinguished Graduate Student Award Description:</label>
               <div class="col-sm-8">
-                <textarea maxlength="254" rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
+                <textarea maxlength="800" rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
               </div>
             </div>
 
