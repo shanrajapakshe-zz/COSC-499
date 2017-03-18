@@ -90,11 +90,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
   public function editEmail($studentNumber) {
-<<<<<<< HEAD
-        $nominees = Nominee::find($studentNumber);
 
-        return view('admin.editEmail')->with('nominees', $nominees);
-=======
         // get the nominee info including the email
         $nominee = Nominee::find($studentNumber);
 
@@ -152,7 +148,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $awards = Award::all();
         $categories = Category::all();
         return view('admin.award')->with('awards', $awards)->with('categories', $categories);
->>>>>>> master
+
     }
 
     /**

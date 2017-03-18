@@ -124,6 +124,8 @@
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8">
 
+
+
             <textarea maxlength="800" rows='8' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
 
           </div>
