@@ -35,23 +35,32 @@ $(document).ready(function() {
   <tbody>
       <tr>@foreach ($studentForAward as $student)
       <td>{{$student-> firstName }} </td>
-      <td>{{$student-> studentNumber }} </td>@foreach ($studentCourses as $studentCourse )
-      <td> @php ($grade = 'N/A')
-            @php ($rank = 'N/A')
-              @if ($studentCourse-> studentNumber  === $student->studentNumber )
+      <td>{{$student-> studentNumber }} </td>
 
-                  @if  (is_null($studentCourse->estimatedGrade) )
-                    @php ($grade = 'Final Grade = ' . $studentCourse-> finalGrade)
-                    @php ($rank = 'Rank = ' . $studentCourse -> rank)
-                  @else
-                    @php ($grade = 'Est Grade = ' . $studentCourse-> estimatedGrade)
-                    @php ($rank = 'Rank = ' . $studentCourse -> rank)
-                  @endif
+
+      @foreach ($uniqueCourse as $uniqueCourse )
+
+          <td>@php ($grade = 'N/A')
+              @php ($rank = 'N/A')
+          @foreach ($studentCourses as $studentCourse )
+              @if ($studentCourse-> studentNumber  === $student->studentNumber  )
+              @if ($uniqueCourse-> courseName === $studentCourse ->courseName)
+              @if ($studentCourse ->courseNumber === $uniqueCourse->courseNumber  )
+                    @if  (is_null($studentCourse->estimatedGrade) )
+                      @php ($grade = 'Final Grade = ' . $studentCourse-> finalGrade)
+                      @php ($rank = 'Rank = ' . $studentCourse -> rank)
+                    @else
+                      @php ($grade = 'Est Grade = ' . $studentCourse-> estimatedGrade)
+                      @php ($rank = 'Rank = ' . $studentCourse -> rank)
+                    @endif
               @endif
+              @endif
+              @endif
+          @endforeach
             {{$grade}} <hr>
             {{$rank}}</td>
-            @endforeach
 
+        @endforeach
           <td>
                 @foreach ($studentCourses as $studentCourse )
                   @if ($studentCourse-> studentNumber  === $student->studentNumber )
