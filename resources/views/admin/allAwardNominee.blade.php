@@ -33,15 +33,13 @@ $(document).ready(function() {
       </tr>
       </thead>
   <tbody>
-      <tr>
-      @foreach ($studentForAward as $student)
+      <tr>@foreach ($studentForAward as $student)
       <td>{{$student-> firstName }} </td>
-      <td>{{$student-> studentNumber }} </td>
-           @foreach ($studentCourses as $studentCourse )
+      <td>{{$student-> studentNumber }} </td>@foreach ($studentCourses as $studentCourse )
       <td> @php ($grade = 'N/A')
             @php ($rank = 'N/A')
-              @if ($studentCourse-> studentNumber  === $student ->studentNumber )
-                  @php ($description =$studentCourse->description)
+              @if ($studentCourse-> studentNumber  === $student->studentNumber )
+
                   @if  (is_null($studentCourse->estimatedGrade) )
                     @php ($grade = 'Final Grade = ' . $studentCourse-> finalGrade)
                     @php ($rank = 'Rank = ' . $studentCourse -> rank)
@@ -50,16 +48,20 @@ $(document).ready(function() {
                     @php ($rank = 'Rank = ' . $studentCourse -> rank)
                   @endif
               @endif
-
             {{$grade}} <hr>
-
             {{$rank}}</td>
             @endforeach
 
-          <td>{{$description}} </td>
+          <td>
+                @foreach ($studentCourses as $studentCourse )
+                  @if ($studentCourse-> studentNumber  === $student->studentNumber )
+                    {{$studentCourse->description}} <hr>
+                  @endif
+                @endforeach
+              
+          </td>
         </tr>@endforeach
-
-      </tbody>
+</tbody>
 </table>
 
 @endsection
