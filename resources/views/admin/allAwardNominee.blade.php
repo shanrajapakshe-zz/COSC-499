@@ -27,8 +27,8 @@ $(document).ready(function() {
       <tr>
         <th>Student Name</th>
         <th>ID No.</th>
-        @foreach ($studentCourses as $studentCourse )
-        <th>{{$studentCourse-> courseName }} {{$studentCourse->courseNumber}}</th> @endforeach
+        @foreach ($uniqueCourse as $uniqueCourse )
+        <th>{{$uniqueCourse-> courseName }} {{$uniqueCourse->courseNumber}}</th> @endforeach
         <th>Description</th>
       </tr>
       </thead>
@@ -58,7 +58,7 @@ $(document).ready(function() {
                     {{$studentCourse->description}} <hr>
                   @endif
                 @endforeach
-              
+
           </td>
         </tr>@endforeach
 </tbody>
