@@ -11,6 +11,8 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
 
 class AdminController extends Controller {
 
@@ -52,22 +54,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
       return view('admin.awardReport')->with('nominations', $nominations)->with('awards', $awards)->with('unique_Years' ,$unique_Years)->with('countNoms',$countNoms);
     }
 
-    public function storeAward(Request $request) {
-        $this->validate($request, [
-            // 'award'=>'required',
-            'name'=>'required',
-            'category'=>'required',
-            ]);
-        $award = new Award;
-        $award->name = $request->name;
-        $award->category = $request->category;
-        $award -> save();
-
-        $awards = Award::all();
-        return view('admin.award')->with('awards', $awards);
-    }
-
-
     public function award() {
         $awards = Award::all();
         $categories = Category::all();
@@ -93,6 +79,10 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
 
+
+/*--------------------------------------------------------------------------*/
+/*--------------------The Error is still not fixed for EDIT-----------------*/
+
   /*  This is the NomineeInfo Tab*/
   public function nomineeInfo() {
         $nominees = Nominee::all();
@@ -100,9 +90,69 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
   public function editEmail($studentNumber) {
+<<<<<<< HEAD
         $nominees = Nominee::find($studentNumber);
 
         return view('admin.editEmail')->with('nominees', $nominees);
+=======
+        // get the nominee info including the email
+        $nominee = Nominee::find($studentNumber);
+
+        // show edit form and pass on Email
+        return view('admin.editEmail')->with('nominee', $nominee);
+    }
+
+  public function updateEmail(Request $request, $studentNumber) {
+        $this->validate($request, [
+            'email'=>'required',
+            ]);
+        $nominee = Nominee::find($studentNumber);
+        $nominee->email = $request->email;
+        $nominee->save();
+
+        $nominees = nominee::all();
+        return view('admin.nomineeInfo')->with('nominees', $nominees);
+    }
+  public function storeEmail(Request $request) {
+        $this->validate($request, [
+            'email'=>'required',
+            ]);
+        $nominee = new Nominee;
+        $nominee->email = $request->email;
+        $award -> save();
+
+        $nominees = nominee::all();
+        return view('admin.nomineeInfo')->with('nominees', $nominees);
+    }
+/*--------------------------------------------------------------------------*/
+
+  public function sendEmail(){
+        $nominees = Nominee::all();
+        $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
+        $message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
+        });
+        return view('admin.email')->with('nominees', $nominees);
+    }
+
+    public function storeAward(Request $request) {
+        $this->validate($request, [
+            // 'award'=>'required',
+            'name'=>'required',
+            'category'=>'required',
+            ]);
+
+        $award = new Award;
+        $award->name = $request->name;
+
+        // find the correct category ID from the supplied name
+        $category = Category::where('name', $request->category)->first();
+        $award->category_id = $category->id;
+        $award -> save();
+
+        $awards = Award::all();
+        $categories = Category::all();
+        return view('admin.award')->with('awards', $awards)->with('categories', $categories);
+>>>>>>> master
     }
 
     /**
@@ -153,9 +203,14 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
      */
     public function destroyAward($id) {
         $award = Award::find($id)->delete();
+
         $awards = Award::all();
-        return view('admin.award')->with('awards', $awards);
+        $categories = Category::all();
+
+        return view('admin.award')->with('awards', $awards)->with('categories', $categories);
     }
+
+
 
     public function storeProf(Request $request) {
         $this->validate($request, [
@@ -222,11 +277,30 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
     public function updateCategory(Request $request, $id) {
-      
+
+      $this->validate($request, [
+            'name'=>'required',
+            ]);
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->save();
+
+        // Session::flash('message', 'Successfully updated award!');
+        // return redirect()->route('award.report');
+        $categories = Category::all();
+        return view('admin.categories')->with('categories', $categories);
     }
 
     public function storeCategory(Request $request) {
-      
+      $this->validate($request, [
+            'name'=>'required',
+            ]);
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
+
+        $categories = Category::all();
+        return view('admin.categories')->with('categories', $categories);
     }
 
     public function destroyCategory() {

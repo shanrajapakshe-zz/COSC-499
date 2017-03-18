@@ -13,16 +13,15 @@ class CreateProfTable extends Migration
      */
     public function up()
     {
-        //
         Schema::create('prof', function (Blueprint $table) {
-            // Primary Key
             $table->increments('id');
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique()->nullable();
+            $table->string('password')->default($password = bcrypt('unit5'));
             $table->timestamps();
-
-            // $table->onDelete('cascade');
+            $table->rememberToken();
+            $table->softDeletes();
         });
     }
 

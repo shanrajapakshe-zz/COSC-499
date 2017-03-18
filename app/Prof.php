@@ -3,12 +3,28 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Prof extends Model {
-    // sets up this class to refer to the table nominations, allowing us to access it via eloquent
+class Prof extends Authenticatable {
+    
+    use SoftDeletes;
+    use Notifiable;
+
     protected $table = 'prof';
+    protected $dates = ['deleted_at'];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     public function nomination() {
-		return $this->hasMany('App\Nomination');	
+		return $this->hasMany('App\Nomination');
 	}
 }
