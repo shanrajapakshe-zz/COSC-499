@@ -24,11 +24,13 @@ class AdminController extends Controller {
       $uniqueCourse=  DB::select("SELECT courseName, courseNumber from course where nomination_id
         IN (SELECT id from nomination where award_id in (SELECT id  from award where id = $id ))
         GROUP BY courseName ,courseNumber");
+        $studentCourses = DB::select("SELECT * from course INNER JOIN nomination
+ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from nomination where award_id = $id)");
+
       $studentForAward = DB::select("SELECT * from nominee Where studentNumber in (SELECT studentNumber
         from nomination where award_id = $id )");
 
-        $studentCourses = DB::select("SELECT * from course INNER JOIN nomination
-ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from nomination where award_id = $id)");
+
 
 
       return view('admin.allAwardNominee')->with('studentCourses',$studentCourses)->with('uniqueCourse',$uniqueCourse)->with('award',$award)->with('studentForAward', $studentForAward);
@@ -90,6 +92,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
   public function editEmail($studentNumber) {
+
         // get the nominee info including the email
         $nominee = Nominee::find($studentNumber);
 
@@ -164,6 +167,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $awards = Award::all();
         $categories = Category::all();
         return view('admin.award')->with('awards', $awards)->with('categories', $categories);
+
     }
 
     /**

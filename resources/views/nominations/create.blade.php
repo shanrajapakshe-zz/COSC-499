@@ -1,7 +1,6 @@
 @extends('main')
 @section('title', 'Create Nomination')
 @section('content')
-
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h1>Create New Nomination</h1>
@@ -104,10 +103,10 @@
                                 <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
                                 </td>
                                 <td title="This or predicted grade">
-                                <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                                <input type="text" onkeyup="disableEst($(this))" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" />
                                 </td>
                                 <td title="This or final grade">
-                                <input type="text" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                                <input type="text" onkeyup="disableFinal($(this))" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
                                 </td>
                                 <td>
                                 <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
@@ -124,7 +123,11 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8">
-            <textarea maxlength="254" rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
+
+
+
+            <textarea maxlength="800" rows='8' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
+
           </div>
         </div>
 
@@ -133,7 +136,7 @@
             <div class="form-group">
               <label class="control-label col-sm-2" for="gradDescription">Distinguished Graduate Student Award Description:</label>
               <div class="col-sm-8">
-                <textarea maxlength="254" rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
+                <textarea maxlength="800" rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
               </div>
             </div>
 
@@ -155,13 +158,41 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
+
+
   window.onload = function(){
   // your code here
-
   $(confirmGradNom).hide()
   $(askGrad).hide()
+
+
 };
 
+
+  //function for disableing one or the other estimated grade or final grade
+
+function disableEst(obj) {
+    var $input = $(obj);
+  if (  $input.val().length > 0) {
+    document.getElementsByName('estimatedGrade0')[0].disabled = true;
+
+  } else {
+
+      document.getElementsByName('estimatedGrade0')[0].disabled = false;
+  }
+}
+
+
+function disableFinal(obj) {
+
+    var $input = $(obj);
+  if (  $input.val().length > 0) {
+    document.getElementsByName('finalGrade0')[0].disabled = true;
+  } else {
+
+      document.getElementsByName('finalGrade0')[0].disabled = false;
+  }
+}
   //function for adding and removing rows, limited to 6 rows total
   var i=1;
   $("#add_row").click(function(){
@@ -170,8 +201,8 @@
   $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
   +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNumber"+i
   +"' type='text' placeholder='Eg. 001' required pattern='[0-9]{3}'  class='form-control input-md'></td><td><input  name='finalGrade"+i
-  +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
-  +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
+  +"' type='text' onkeyup='disableEst()' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
+  +"' type='text' onkeyup='disableFinal()' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
   +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>");
 
   $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
@@ -223,13 +254,6 @@ $(document).ready(function(){
 
 
 });
-
-
-
-
-
-
-
 
   </script>
 

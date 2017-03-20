@@ -15,10 +15,10 @@ class CreateNominationTable extends Migration
         Schema::create('nomination', function (Blueprint $table) {
             // Primary Key
             $table->increments('id');
-            $table->string('description')->nullable();
+            $table->string('description',1600)->nullable();
             $table->timestamps();
             $table->softDeletes();
-            
+
             // Foreign Keys
             $table->string('award_id')->default(1);
             $table->integer('prof_id')->default(2);
