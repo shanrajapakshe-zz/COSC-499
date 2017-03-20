@@ -56,28 +56,14 @@ Route::get('/admin/nominations', 'AdminController@nominations');
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
 Route::get('/admin/nomineeInfo/{nominee}/edit','AdminController@editEmail');
 Route::put('/admin/nomineeInfo/{nominee}/update','AdminController@updateEmail');
-
-// Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
-
-// Route::get('admin/nomineeInfo/email', function(){
-// 	Mail::send('admin.emails',['name' => 'Brandon'], function($message){
-// 		$message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
-// 	});
-// });
-
 Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
-Route::get('admin/nomineeInfo/email', function(){
-	Mail::send('admin.emails',['name' => 'Brandon'], function($message){
-		$message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
-	});
-});
-
 Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
-Route::get('admin/nomineeInfo/email', 'AdminController@sendEmail');
+Route::get('admin/nomineeInfo/emailTemplate', 'AdminController@emailTemplate');
+Route::get('admin/nomineeInfo/emailSent','AdminController@sendEmail');
 
 
 // Other pages
 Route::get('/about', 'PageController@getAbout');
 Route::get('/profile', 'PageController@getContact' );
 Route::get('/help', 'PageController@getHelp' );
-Route::get('/', 'PageController@getIndex' );
+Route::get('/', 'PageController@getIndex');

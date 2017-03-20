@@ -34,6 +34,7 @@ $(document).ready(function() {
         <th>Email</th>
         <!-- <th>Delete</th> -->
         <th>Edit</th>
+        <th>Email Sent</th>
 
         </tr>
       </thead>
@@ -53,6 +54,9 @@ $(document).ready(function() {
                  </div>
                </form>
              </td>
+             <td>
+             
+             </td>
 
           </tr>
           @endforeach
@@ -62,8 +66,10 @@ $(document).ready(function() {
     </table>
     </div>
 
+{{-- adding a line space --}}
+
 {{--using a new view to send email--}}
-<form class="form-horizontal" action="{{url ('/admin/nomineeInfo/email') }}" method="GET">
+<form class="form-horizontal" align='right' action="{{url ('/admin/nomineeInfo/emailTemplate') }}" method="GET">
 	<div class="form-group">
 		<div class="col-sm-10">
 			 <button type="submit" class="btn btn-primary">Send Emails</button>

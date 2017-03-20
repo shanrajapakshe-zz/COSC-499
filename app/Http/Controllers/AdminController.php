@@ -120,14 +120,31 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         return view('admin.nomineeInfo')->with('nominees', $nominees);
     }
 /*--------------------------------------------------------------------------*/
+/*BRANDON STUFF*/
+
+  public function emailTemplate(){
+        $nominees = Nominee::all();
+        return view('admin.emailTemplate');
+    }
 
   public function sendEmail(){
-        $nominees = Nominee::all();
+        $nominees = Nominee::all(); 
+        foreach ($nominees as $nominee) {
         $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
-        $message->to('brandon.t1995@gmail.com', 'Some Guy')->subject('Welcome!');
-        });
-        return view('admin.email')->with('nominees', $nominees);
+        $message->to('brandon.t1995@hotmail.com', 'Some Guy')->subject('Formal Invitation to Unit 5 Award Ceremony');
+        });  
+
+        }
+        // $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
+        // $message->to('$Nominee->email', '$Nominee->firstName')->subject('Formal Invitation to Unit 5 Award Ceremony');
+        // });
+
+
+        return view('admin.emailSent')->with('nominees', $nominees);
     }
+
+/*----------------------*/
+
 
     public function storeAward(Request $request) {
         $this->validate($request, [
