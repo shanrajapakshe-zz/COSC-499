@@ -22,7 +22,12 @@
           <div class="col-sm-8">
             <select class="form-control" id="award" name="award">
               @foreach ($awards as $award)
-                <option>{{$award->name}}  {{$award->category->name}}</option>
+                <option>
+                  @if($award->category->name  === "Distinguished")
+                  @else
+                  {{$award->name}}  {{$award->category->name}}
+                  @endif
+                </option>
               @endforeach
             </select>
           </div>
@@ -229,14 +234,14 @@ function disableFinal(i) {
 // only runs when doc is loaded and ready
 $(document).ready(function(){
 
-  // for hover option put its <a title="string"> in tag and it will show in hover
+    // for hover option put its <a title="string"> in tag and it will show in hover
     $('[data-toggle="tooltip"]').tooltip();
 
     // to check if a grad award has beeen selected
     document.getElementById('award').addEventListener('change',function(){
     if ( (($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1 )) &&
     !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
-      $(askGrad).show()
+      //$(askGrad).show()
     } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student distinguished")>-1)) {
       //hide if distinguish grad
       $(askGrad).hide()
