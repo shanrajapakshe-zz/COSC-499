@@ -23,7 +23,7 @@ class CreateNominationTable extends Migration
             $table->string('award_id')->default(1);
             $table->integer('user_id')->default(2);
             # for nominee table
-            $table->integer('studentNumber');
+            $table->integer('nominee_id');
         });
     }
 

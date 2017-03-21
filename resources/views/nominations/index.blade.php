@@ -25,7 +25,7 @@
 	        <tr>
 	        @foreach ($nominations as $nomination)
 	        	<td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
-		       	<td>{{$nomination->studentNumber}}</td>
+		       	<td>{{$nomination->nominee_id}}</td>
 		        <td>{{$nomination->firstName}} {{$nomination->lastName}}</td>
 		        <td>{{$nomination->email}}</td>
 		        <td>{{$nomination->description}}</td>

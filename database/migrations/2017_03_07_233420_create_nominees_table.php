@@ -15,7 +15,9 @@ class CreateNomineesTable extends Migration
     {
         Schema::create('nominee', function (Blueprint $table) {
             // Primary Key
-            $table->integer('studentNumber');
+            $table->integer('id');
+            $table->primary('id');
+            
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique()->nullable();

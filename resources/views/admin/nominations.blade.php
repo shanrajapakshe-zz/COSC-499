@@ -84,8 +84,8 @@ $(document).ready(function() {
           @foreach ($nominations as $nomination)
             <td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
             <td>Dr. {{$nomination->user->firstName}} {{$nomination->user->lastName}}</td>
-            <td>{{$nomination->studentNumber}}</td>
-            <td>{{$nomination->studentFirstName}} {{$nomination->studentLastName}}</td>
+            <td>{{$nomination->nominee_id}}</td>
+            <td>{{$nomination->nominee->firstName}} {{$nomination->nominee->lastName}}</td>
             <td>{{$nomination->created_at}}</td>
             <td>
               @foreach ($nomination->course as $course)
