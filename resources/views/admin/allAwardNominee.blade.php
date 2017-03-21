@@ -1,9 +1,12 @@
 @extends('main')
 @section('title', 'Award Nominee')
-
 @section('content')
+@include('partials._adminNav')
 
 <script type="text/javascript" src="../../js/DataTables/media/js/jquery.datatables.js"></script>
+
+
+
 <div class="row">
     <div class="col-md-12">
         <h1>All Nominations for {{$award->name}} {{$award->category->name}}</h1>
@@ -58,9 +61,7 @@
         </tr>@endforeach
 </tbody>
 </table>
-
 <script type="text/javascript">
-
 $(document).ready(function() {
     $('#myTable').DataTable( {
         dom: 'Bfrtip',
@@ -71,4 +72,6 @@ $(document).ready(function() {
 } );
 
 </script>
+
+
 @endsection

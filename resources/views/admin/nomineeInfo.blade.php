@@ -4,7 +4,6 @@
 @include('partials._adminNav')
 
 <script type="text/javascript">
-
 $(document).ready(function() {
     $('#myTable').DataTable( {
         dom: 'Bfrtip',
@@ -55,7 +54,7 @@ $(document).ready(function() {
                </form>
              </td>
              <td>
-             
+
              </td>
 
           </tr>
