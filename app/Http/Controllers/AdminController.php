@@ -131,14 +131,16 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
   public function sendEmail(){
-        $eMessage = $_POST['eMessage'];
+
         $nominees = Nominee::all(); 
+
+        /*Code fragments for ideas on possibly looping through nominees faster*/
         // $name = array();
         // $email = array(); 
         // array_push($name,$nominee->firstName." ".$nominee->lastName);
         // array_push($email,$nominee->email); 
 
-        //loop through each nominee
+        //loop through each nominee & set their name and emails as variables
         foreach ($nominees as $nominee) {
         $name = $nominee->firstName." ".$nominee->lastName;
         $email = $nominee->email;
@@ -151,21 +153,26 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
                     ->subject('Formal Invitation to Unit 5 Award Ceremony');
          });
 
-        /*MESSAGES USING eMessage string from $_POST form*/
-        // Mail::raw($eMessage,function($message)use($email,$name){
-        //     $message->to($email,$name)
-        //             ->subject('Formal Invitation to Unit 5 Award Ceremony');
-
-        // });
         };     
         
         return view('admin.emailSent');
     }
 
   public function editTemplate(){
-        $nominees = Nominee::all();
         return view('admin.editTemplate');
     }
+
+  public function changeTemplate(){
+        //setting $_Post variable
+        $a = $_POST['editedMessage'];
+        //specifying where file is
+        $path = resource_path('views\admin\emailMessage.blade.php');
+        //emptying the file
+        $f = fopen($path,'w+');
+        //writing into file new content
+        file_put_contents($path, $a);
+        return view('admin.templateChanged');
+  }
 
 /*----------------------*/
 

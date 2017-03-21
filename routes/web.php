@@ -61,6 +61,7 @@ Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
 Route::get('admin/nomineeInfo/emailTemplate', 'AdminController@emailTemplate');
 Route::post('admin/nomineeInfo/emailSent','AdminController@sendEmail');
 Route::get('admin/nomineeInfo/editTemplate', 'AdminController@editTemplate');
+Route::post('admin/nomineeInfo/templateChanged','AdminController@changeTemplate');
 
 // Other pages
 Route::get('/about', 'PageController@getAbout');
