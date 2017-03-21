@@ -1,5 +1,5 @@
 @extends('main')
-@section('title', 'Email Template')
+@section('title', 'Email Sent')
 @section('content')
 <form class="form-horizontal" action="{{url ('/admin/nomineeInfo') }}" method="get">
 

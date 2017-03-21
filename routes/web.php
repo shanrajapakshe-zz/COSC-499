@@ -59,8 +59,8 @@ Route::put('/admin/nomineeInfo/{nominee}/update','AdminController@updateEmail');
 Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
 Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
 Route::get('admin/nomineeInfo/emailTemplate', 'AdminController@emailTemplate');
-Route::get('admin/nomineeInfo/emailSent','AdminController@sendEmail');
-
+Route::post('admin/nomineeInfo/emailSent','AdminController@sendEmail');
+Route::get('admin/nomineeInfo/editTemplate', 'AdminController@editTemplate');
 
 // Other pages
 Route::get('/about', 'PageController@getAbout');
