@@ -132,17 +132,19 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
   public function sendEmail(){
         $nominees = Nominee::all(); 
+        //loop through each nominee
         foreach ($nominees as $nominee) {
-        $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
-        $message->to('brandon.t1995@hotmail.com', 'Some Guy')->subject('Formal Invitation to Unit 5 Award Ceremony');
-        });  
+        //setting nominee variables 
+        $name = $nominee->firstName." ".$nominee->lastName;
+        $email = $nominee->email;
+        $data=['email'=> '$email', 'name'=>'$name'];
+        //sending mail
+        Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
+
+            $message->to($email,$name)->subject('Formal Invitation to Unit 5 Award Ceremony');
+        });
 
         }
-        // $sendMessage = Mail::send('admin.emailMessage',['name' => 'Brandon'], function($message){
-        // $message->to('$Nominee->email', '$Nominee->firstName')->subject('Formal Invitation to Unit 5 Award Ceremony');
-        // });
-
-
         return view('admin.emailSent')->with('nominees', $nominees);
     }
 
