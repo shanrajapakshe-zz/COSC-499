@@ -22,12 +22,13 @@
           <div class="col-sm-8">
             <select class="form-control" id="award" name="award">
               @foreach ($awards as $award)
-                <option>
-                  @if($award->category->name  === "Distinguished")
-                  @else
+
+                  @if($award->category->name  !== "Distinguished")
+                  <option>
                   {{$award->name}}  {{$award->category->name}}
+                    </option>
                   @endif
-                </option>
+
               @endforeach
             </select>
           </div>
