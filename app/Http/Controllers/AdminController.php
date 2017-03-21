@@ -17,9 +17,9 @@ ini_set('max_execution_time', 120);
 
 class AdminController extends Controller {
 
-  public function __construct() {
-    $this->middleware('auth');
-  }
+  // public function __construct() {
+  //   $this->middleware('auth');
+  // }
 
   public function allAwardNominee($id) {
 
