@@ -26,8 +26,9 @@
 	        @foreach ($nominations as $nomination)
 	        	<td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
 		       	<td>{{$nomination->studentNumber}}</td>
-		        <td>{{$nomination->firstName}} {{$nomination->lastName}}</td>
-		        <td>{{$nomination->email}}</td>
+		        <td>{{App\Nominee::find($nomination->studentNumber)['firstName']}} {{App\Nominee::find($nomination->studentNumber)['lastName']}}
+		        </td>
+		        <td>{{App\Nominee::find($nomination->studentNumber)['email']}}</td>
 		        <td>{{$nomination->description}}</td>
 		        <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>
 		        <td>

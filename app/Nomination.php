@@ -23,6 +23,6 @@ class Nomination extends Model
 	}
 
 	public function nominee() {
-		return $this->belongsTo('App\Nominee');
+		return $this->belongsTo('App\Nominee', 'studentNumber','studentNumber');
 	}
 }

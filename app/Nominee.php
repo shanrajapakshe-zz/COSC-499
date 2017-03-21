@@ -16,6 +16,6 @@ class Nominee extends Model
     protected $dates = ['deleted_at'];
 
     public function nomination() {
-		return $this->hasMany('App\Nomination', 'foreign_key','studentNumber');	
+		return $this->hasMany('App\Nomination', 'studentNumber','studentNumber');	
 	}
 }

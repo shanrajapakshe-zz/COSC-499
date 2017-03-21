@@ -85,7 +85,7 @@ $(document).ready(function() {
             <td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
             <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>
             <td>{{$nomination->studentNumber}}</td>
-            <td>{{$nomination->studentFirstName}} {{$nomination->studentLastName}}</td>
+            <td>{{App\Nominee::find($nomination->studentNumber)['firstName']}} {{App\Nominee::find($nomination->studentNumber)['lastName']}}</td>
             <td>{{$nomination->created_at}}</td>
             <td>
               @foreach ($nomination->course as $course)
