@@ -198,7 +198,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $awards = Award::all();
         $categories = Category::all();
         return view('admin.award')->with('awards', $awards)->with('categories', $categories);
-
     }
 
     /**
@@ -292,7 +291,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $prof->save();
 
         // Session::flash('message', 'Successfully updated award!');
-        // return redirect()->route('award.report');
         $profs = Prof::all();
         return view('admin.prof')->with('profs', $profs);
     }

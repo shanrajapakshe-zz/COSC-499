@@ -1,7 +1,6 @@
 @extends('main')
 @section('title', 'My Nominations')
 
-
 @section('content')
 
 <div class="row">
