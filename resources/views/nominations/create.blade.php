@@ -103,10 +103,10 @@
                                 <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
                                 </td>
                                 <td title="This or predicted grade">
-                                <input type="text" onkeyup="disableEst($(this))" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" />
+                                <input type="text" onkeyup="disableEst(0)" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" />
                                 </td>
                                 <td title="This or final grade">
-                                <input type="text" onkeyup="disableFinal($(this))" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
+                                <input type="text" onkeyup="disableFinal(0)" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
                                 </td>
                                 <td>
                                 <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
@@ -171,26 +171,25 @@
 
   //function for disableing one or the other estimated grade or final grade
 
-function disableEst(obj) {
-    var $input = $(obj);
-  if (  $input.val().length > 0) {
-    document.getElementsByName('estimatedGrade0')[0].disabled = true;
+function disableEst(i) {
+  if (  document.getElementsByName('finalGrade'+i)[0].value.length  > 0 ) {
+
+    document.getElementsByName('estimatedGrade'+i)[0].disabled = true;
 
   } else {
 
-      document.getElementsByName('estimatedGrade0')[0].disabled = false;
+      document.getElementsByName('estimatedGrade'+i)[0].disabled = false;
   }
 }
 
 
-function disableFinal(obj) {
+function disableFinal(i) {
 
-    var $input = $(obj);
-  if (  $input.val().length > 0) {
-    document.getElementsByName('finalGrade0')[0].disabled = true;
+  if (  document.getElementsByName('estimatedGrade'+i)[0].value.length > 0) {
+    document.getElementsByName('finalGrade'+i)[0].disabled = true;
   } else {
 
-      document.getElementsByName('finalGrade0')[0].disabled = false;
+      document.getElementsByName('finalGrade'+i)[0].disabled = false;
   }
 }
   //function for adding and removing rows, limited to 6 rows total
@@ -201,8 +200,8 @@ function disableFinal(obj) {
   $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
   +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNumber"+i
   +"' type='text' placeholder='Eg. 001' required pattern='[0-9]{3}'  class='form-control input-md'></td><td><input  name='finalGrade"+i
-  +"' type='text' onkeyup='disableEst()' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
-  +"' type='text' onkeyup='disableFinal()' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
+  +"' type='text' onkeyup='disableEst("+i+")' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
+  +"' type='text' onkeyup='disableFinal("+i+")' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
   +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>");
 
   $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
@@ -235,11 +234,10 @@ $(document).ready(function(){
 
     // to check if a grad award has beeen selected
     document.getElementById('award').addEventListener('change',function(){
-    if ( ($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1)) {
-      //show
-    $(askGrad).show()
-
-    } else if (($('#award option:selected').text().toLowerCase().indexOf("distinguished")>-1)) {
+    if ( (($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1 )) &&
+    !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
+      $(askGrad).show()
+    } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student distinguished")>-1)) {
       //hide if distinguish grad
       $(askGrad).hide()
 

@@ -24,15 +24,10 @@
       <tr>@foreach ($studentForAward as $student)
       <td>{{$student-> firstName }} </td>
       <td>{{$student-> studentNumber }} </td>
-
-
-
                     @foreach($uniqueCourse as $uCourse )
-
                                       <td>@php ($grade = 'N/A')
                                           @php ($rank = 'N/A')
                     @foreach ($studentCourses as $course)
-
                         @if ($course-> studentNumber  === $student->studentNumber  )
                         @if ($uCourse->courseName === $course->courseName )
                         @if ($course ->courseNumber === $uCourse->courseNumber  )
@@ -47,7 +42,6 @@
                         @endif
                         @endif
                     @endForeach
-
                     {{$grade}} <hr>
                     {{$rank}}</td>
                   @endforeach
