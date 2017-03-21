@@ -18,7 +18,7 @@ class NomineeTableSeeder extends Seeder
             'studentNumber' => 12345678,
             'firstName' => 'John',
             'lastName' => 'Bon Jovi',
-            'email'=>'bon@jovi.com',
+            'email'=>'UBCONomination@gmail.com',
         ]);
 
         DB::table('nominee')->insert([
