@@ -235,11 +235,10 @@ $(document).ready(function(){
 
     // to check if a grad award has beeen selected
     document.getElementById('award').addEventListener('change',function(){
-    if ( ($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1)) {
-      //show
-    $(askGrad).show()
-
-    } else if (($('#award option:selected').text().toLowerCase().indexOf("distinguished")>-1)) {
+    if ( (($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1 )) &&
+    !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
+      $(askGrad).show()
+    } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student distinguished")>-1)) {
       //hide if distinguish grad
       $(askGrad).hide()
 
