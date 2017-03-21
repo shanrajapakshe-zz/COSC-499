@@ -21,7 +21,7 @@ class CreateNominationTable extends Migration
 
             // Foreign Keys
             $table->string('award_id')->default(1);
-            $table->integer('prof_id')->default(2);
+            $table->integer('user_id')->default(2);
             # for nominee table
             $table->integer('studentNumber');
         });

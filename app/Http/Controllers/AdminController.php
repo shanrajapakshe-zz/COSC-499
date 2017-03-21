@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Nomination;
 use App\Nominee;
 use App\Award;
-use App\Prof;
+use App\User;
 use App\Course;
 use App\Category;
 
@@ -63,7 +63,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
     public function prof() {
-        $profs = Prof::all();
+        $profs = User::all();
         return view('admin.prof')->with('profs', $profs);
       }
 
@@ -234,18 +234,18 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
             'firstName'=>'required',
             'lastName'=>'required',
             ]);
-        $prof = new Prof;
+        $prof = new User;
         $prof->firstName = $request->firstName;
         $prof->lastName = $request->lastName;
         $prof->save();
 
-        $profs = Prof::all();
+        $profs = User::all();
         return view('admin.prof')->with('profs', $profs);
     }
 
     public function editProf($id) {
         // get the prof
-        $prof = Prof::find($id);
+        $prof = User::find($id);
 
         // show edit form and pass on prof
         return view('admin.editProf')->with('prof', $prof);
@@ -256,14 +256,14 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
             'firstName'=>'required',
             'lastName'=>'required',
             ]);
-        $prof = Prof::find($id);
+        $prof = User::find($id);
         $prof->firstName = $request->firstName;
         $prof->lastName = $request->lastName;
         $prof->save();
 
         // Session::flash('message', 'Successfully updated award!');
         // return redirect()->route('award.report');
-        $profs = Prof::all();
+        $profs = User::all();
         return view('admin.prof')->with('profs', $profs);
     }
 
@@ -274,9 +274,9 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
      * @return \Illuminate\Http\Response
      */
     public function destroyProf($id) {
-        $prof = Prof::find($id)->delete();
+        $prof = User::find($id)->delete();
 
-        $profs = Prof::all();
+        $profs = User::all();
         return view('admin.prof')->with('profs', $profs);
     }
 

@@ -83,7 +83,7 @@ $(document).ready(function() {
           <tr>
           @foreach ($nominations as $nomination)
             <td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
-            <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>
+            <td>Dr. {{$nomination->user->firstName}} {{$nomination->user->lastName}}</td>
             <td>{{$nomination->studentNumber}}</td>
             <td>{{$nomination->studentFirstName}} {{$nomination->studentLastName}}</td>
             <td>{{$nomination->created_at}}</td>

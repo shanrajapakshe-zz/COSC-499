@@ -29,7 +29,7 @@
 		        <td>{{$nomination->firstName}} {{$nomination->lastName}}</td>
 		        <td>{{$nomination->email}}</td>
 		        <td>{{$nomination->description}}</td>
-		        <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>
+		        <td>Dr. {{$nomination->user->firstName}} {{$nomination->user->lastName}}</td>
 		        <td>
 		        	@foreach ($nomination->course as $course)
 		        	<ul>

@@ -6,7 +6,7 @@ use App\Nomination;
 use App\Nominee;
 use App\Course;
 use App\Award;
-use App\Prof;
+use App\User;
 use App\Category;
 
 use Illuminate\Http\Request;
@@ -58,7 +58,7 @@ class NominationController extends Controller
         $nominations = Nomination::all();
         $courses = Course::all();
         $awards = Award::all();
-        $profs = Prof::all();
+        $profs = User::all();
         $categories = Category::all();
 
         $nominees = Nominee::all();
@@ -229,7 +229,7 @@ class NominationController extends Controller
         $nominations = Nomination::all();
         $courses = Course::all();
         $awards = Award::all();
-        $profs = Prof::all();
+        $profs = User::all();
         $categories = Category::all();
 
         return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs)->with('categories',$categories);
