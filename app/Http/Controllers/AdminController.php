@@ -11,7 +11,8 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Facades\Mail;
+use Mail;
 ini_set('max_execution_time', 120);
 
 class AdminController extends Controller {
