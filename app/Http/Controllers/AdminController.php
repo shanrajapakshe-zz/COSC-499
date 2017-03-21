@@ -17,7 +17,9 @@ ini_set('max_execution_time', 120);
 
 class AdminController extends Controller {
 
-
+  public function __construct() {
+    $this->middleware('auth');
+  }
 
   public function allAwardNominee($id) {
 
@@ -229,7 +231,8 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
             ]);
         $award = Award::find($id);
         $award->name = $request->name;
-        $award->category = $request->category;
+        $category = Category::where('name', $request->category)->first();
+        $award->category_id = $category->id;
         $award->save();
 
         // Session::flash('message', 'Successfully updated award!');
