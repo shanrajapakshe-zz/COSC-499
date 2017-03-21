@@ -15,6 +15,12 @@ use App\Http\Requests;
 
 class NominationController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    
     private function generateCourse($id, $request) {
         $course = new Course;
 
@@ -115,8 +121,13 @@ class NominationController extends Controller
             $award_name = substr($full_award, 0, -24);
             $category = 4;
         }
+        elseif (strpos($full_award,"Distinguished")) {
+            $award_name = substr($full_award, 0, -14);
+            $category = 5;
+        }
         else {
-            $award_name = "Distinguished";
+            $award_name = $full_award;
+            $category = 6;
         }
         $award = Award::where('category_id',$category);
         $award = $award->where('name', $award_name)->get()->first();

@@ -38,7 +38,6 @@ Route::put('/admin/categories/{category}/update','AdminController@updateCategory
 Route::delete('/admin/categories/destroy/{category}','AdminController@destroyCategory');
 Route::post('/admin/categories/store','AdminController@storeCategory');
 
-
 // Admin - profs
 Route::get('/admin/prof/{prof}/edit','AdminController@editProf');
 Route::delete('/admin/prof/destroy/{prof}','AdminController@destroyProf');
@@ -46,11 +45,9 @@ Route::put('/admin/prof/{prof}/update','AdminController@updateProf');
 Route::post('/admin/prof/store','AdminController@storeProf');
 Route::get('/admin/prof','AdminController@prof');
 
-
 // Admin - Other
 Route::get('/admin/search','AdminController@search');
 Route::get('/admin/nominations', 'AdminController@nominations');
-
 
 // Admin - Nominee Info Page
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
@@ -67,7 +64,6 @@ Route::get('/about', 'PageController@getAbout');
 Route::get('/profile', 'PageController@getContact' );
 Route::get('/help', 'PageController@getHelp' );
 Route::get('/', 'PageController@getIndex' );
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

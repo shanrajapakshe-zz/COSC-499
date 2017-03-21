@@ -6,9 +6,12 @@ namespace App\Http\Controllers;
 // ie. use Instance
 
 class PageController extends Controller {
-    // the logic of our pages will go here
-
-    // we name our functions based on what is going on (get, pull, post, delete, etc)
+    
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    
     public function getIndex() {
         return view('pages.welcome');
     }

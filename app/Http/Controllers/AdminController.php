@@ -13,10 +13,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
-
 class AdminController extends Controller {
 
-
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
   public function allAwardNominee($id) {
 
@@ -30,13 +32,8 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
       $studentForAward = DB::select("SELECT * from nominee Where studentNumber in (SELECT studentNumber
         from nomination where award_id = $id )");
 
-
-
-
       return view('admin.allAwardNominee')->with('studentCourses',$studentCourses)->with('uniqueCourse',$uniqueCourse)->with('award',$award)->with('studentForAward', $studentForAward);
   }
-
-
 
 
   public function awardReport(){
@@ -79,7 +76,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
         return view('admin.nominations')->with('nominations', $nominations)->with('awards',$awards)->with('courses', $courses)->with('unique_Years',$unique_Years);
     }
-
 
 
 /*--------------------------------------------------------------------------*/
@@ -149,7 +145,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     }
 
 /*----------------------*/
-
 
     public function storeAward(Request $request) {
         $this->validate($request, [

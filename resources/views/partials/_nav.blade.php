@@ -19,6 +19,9 @@
                 <li class="{{Request::is('about') ? "active" : "" }}"><a href="/about">About</a></li>
                 <li class="{{Request::is('nominations/create') ? "active" : "" }}"><a href="/nominations/create">Create Nomination</a></li>
                 <li class="{{Request::is('nominations/index') ? "active" : "" }}"><a href="/nominations/index">My Nominations</a></li>
+                @if (Auth::check())
+                <li><a href="#">{{Auth::user()->name}}</a></li>
+                @endif
                 {{-- <li class="{{Request::is('profile') ? "active" : "" }}"><a href="/profile">Contact</a></li> --}}
                 {{-- <li class="{{Request::is('help') ? "active" : "" }}"><a href="/help">Help</a></li> --}}
             </ul>
