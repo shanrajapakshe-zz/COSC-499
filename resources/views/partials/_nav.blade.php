@@ -19,16 +19,18 @@
                 <li class="{{Request::is('about') ? "active" : "" }}"><a href="/about">About</a></li>
                 <li class="{{Request::is('nominations/create') ? "active" : "" }}"><a href="/nominations/create">Create Nomination</a></li>
                 <li class="{{Request::is('nominations/index') ? "active" : "" }}"><a href="/nominations/index">My Nominations</a></li>
-                @if (Auth::check())
-                <li><a href="#">{{Auth::user()->firstName}}</a></li>
-                @endif
                 {{-- <li class="{{Request::is('profile') ? "active" : "" }}"><a href="/profile">Contact</a></li> --}}
                 {{-- <li class="{{Request::is('help') ? "active" : "" }}"><a href="/help">Help</a></li> --}}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->firstName}} {{Auth::user()->lastName}}<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    @if (Auth::check())
+                    {{Auth::user()->firstName}} {{Auth::user()->lastName}}
+                    @else
+                    My Account
+                    @endif<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/nominations/index">My Nominations</a></li>
                         <li><a href="/admin/awardReport">Admin Page</a></li>

@@ -16,10 +16,10 @@ use App\Http\Requests;
 class NominationController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     private function generateCourse($id, $request) {
         $course = new Course;

@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'lastName' => 'Hui',
             'email' =>'bowen.hui@ubc.ca',
             'password'=>bcrypt('bhui'),
+            'admin'=>0,
         ]);
 
         DB::table('users')->insert([
@@ -25,7 +26,8 @@ class UsersTableSeeder extends Seeder
             'firstName' => 'John',
             'lastName' => 'Hopkinson',
             'email' =>'john.hopkinson@ubc.ca',
-            'password'=>'jhop',
+            'password'=>bcrypt('jhop'),
+            'admin'=>1,
         ]);
     }
 }
