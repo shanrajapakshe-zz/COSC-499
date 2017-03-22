@@ -35,7 +35,7 @@
                         <li><a href="/nominations/index">My Nominations</a></li>
                         <li><a href="/admin/awardReport">Admin Page</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Log Out</a></li>
+                        <li><a href="/logout">Log Out</a></li>
                     </ul>
                 </li>
             </ul>

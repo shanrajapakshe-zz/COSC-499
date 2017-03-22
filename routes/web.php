@@ -65,5 +65,6 @@ Route::get('/profile', 'PageController@getContact' );
 Route::get('/help', 'PageController@getHelp' );
 Route::get('/', 'PageController@getIndex' );
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index');
