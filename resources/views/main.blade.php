@@ -8,6 +8,7 @@
         @include('partials._nav')
 
         <div class="container">
+            {{Auth::check() ? "Logged In!" : "Logged Out"}}
             @yield('content')
         </div>
 
