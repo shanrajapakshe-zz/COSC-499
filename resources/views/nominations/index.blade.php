@@ -14,7 +14,6 @@
 				<th>Name</th>
 				<th>Email</th>
 				<th>Description</th>
-				<th>Professor Name</th>
 				<th>Course Grades</th>
 				<th>Remove</th>
 				<th>Edit</th>
@@ -23,13 +22,13 @@
 		<tbody>
 	        <tr>
 	        @foreach ($nominations as $nomination)
+	        	@if (Auth::user()->id === $nomination->user_id)
 	        	<td>{{$nomination->award->name}} {{$nomination->award->category->name}}</td>
 		       	<td>{{$nomination->studentNumber}}</td>
 		        <td>{{App\Nominee::find($nomination->studentNumber)['firstName']}} {{App\Nominee::find($nomination->studentNumber)['lastName']}}
 		        </td>
 		        <td>{{App\Nominee::find($nomination->studentNumber)['email']}}</td>
 		        <td>{{$nomination->description}}</td>
-		        <td>Dr. {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</td>
 		        <td>
 		        	@foreach ($nomination->course as $course)
 		        	<ul>
@@ -63,6 +62,7 @@
 	              </form>
 	            </td>
 		    </tr>
+		    @endif
 	        @endforeach
     	</tbody>
 	</table>
