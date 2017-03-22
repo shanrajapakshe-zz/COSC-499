@@ -8,6 +8,7 @@ use App\Course;
 use App\Award;
 use App\User;
 use App\Category;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -134,7 +135,7 @@ class NominationController extends Controller
 
         $nomination->award_id = $award->id;
         $nomination->studentNumber = $request->studentNumber;
-        
+        $nomination->user_id = Auth::user()->id;
         $nomination->description = $request->description;
         $nomination->save();
 
@@ -223,6 +224,8 @@ class NominationController extends Controller
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
         $nomination->description = $request->description;
+
+        $nomination->user_id = Auth::user()->id;
         $nomination->save();
 
         // saving each course
