@@ -27,4 +27,8 @@ class PageController extends Controller {
     public function getHelp() {
         return view('pages.help');
     }
+
+    public function getNoAccess() {
+        return view('pages.noAccess');
+    }
 }
