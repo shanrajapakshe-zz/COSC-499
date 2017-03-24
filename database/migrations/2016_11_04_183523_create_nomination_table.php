@@ -20,8 +20,8 @@ class CreateNominationTable extends Migration
             $table->softDeletes();
 
             // Foreign Keys
-            $table->string('award_id')->default(1);
-            $table->integer('prof_id')->default(2);
+            $table->string('award_id');
+            $table->integer('user_id');
             # for nominee table
             $table->integer('studentNumber');
         });

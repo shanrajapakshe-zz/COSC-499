@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('main')
+@section('title', 'Enter Email')
 
-<!-- Main Content -->
 @section('content')
 <div class="container">
     <div class="row">

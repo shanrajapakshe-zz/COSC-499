@@ -6,8 +6,9 @@ use App\Nomination;
 use App\Nominee;
 use App\Course;
 use App\Award;
-use App\Prof;
+use App\User;
 use App\Category;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -15,6 +16,12 @@ use App\Http\Requests;
 
 class NominationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     private function generateCourse($id, $request) {
         $course = new Course;
 
@@ -58,7 +65,7 @@ class NominationController extends Controller
         $nominations = Nomination::all();
         $courses = Course::all();
         $awards = Award::all();
-        $profs = Prof::all();
+        $profs = User::all();
         $categories = Category::all();
 
         $nominees = Nominee::all();
@@ -115,15 +122,20 @@ class NominationController extends Controller
             $award_name = substr($full_award, 0, -24);
             $category = 4;
         }
+        elseif (strpos($full_award,"Distinguished")) {
+            $award_name = substr($full_award, 0, -14);
+            $category = 5;
+        }
         else {
-            $award_name = "Distinguished";
+            $award_name = $full_award;
+            $category = 6;
         }
         $award = Award::where('category_id',$category);
         $award = $award->where('name', $award_name)->get()->first();
 
         $nomination->award_id = $award->id;
         $nomination->studentNumber = $request->studentNumber;
-        
+        $nomination->user_id = Auth::user()->id;
         $nomination->description = $request->description;
         $nomination->save();
 
@@ -212,6 +224,8 @@ class NominationController extends Controller
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
         $nomination->description = $request->description;
+
+        $nomination->user_id = Auth::user()->id;
         $nomination->save();
 
         // saving each course
@@ -229,7 +243,7 @@ class NominationController extends Controller
         $nominations = Nomination::all();
         $courses = Course::all();
         $awards = Award::all();
-        $profs = Prof::all();
+        $profs = User::all();
         $categories = Category::all();
 
         return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses)->with('awards',$awards)->with('profs',$profs)->with('categories',$categories);
