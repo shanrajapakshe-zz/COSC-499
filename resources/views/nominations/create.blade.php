@@ -14,7 +14,7 @@
       </div>
      @endif
 
-      <form class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
+      <form id= 'myForm' class="form-horizontal" action="{{url ('/nominations') }}" method="POST">
         {{ csrf_field() }}
 
         <div class="form-group">
@@ -129,13 +129,16 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8">
-
-
-
             <textarea maxlength="800" rows='8' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
-
           </div>
         </div>
+
+
+                <div class="form-group" hidden="true">// the following is a placeholder when we concatanate discription and distinguished discription
+                <div class="col-sm-8">
+                    <textarea maxlength="1600" class="form-control" id="disGradNomDis"></textarea>
+                  </div>
+                </div>
 
         <div class="form-group" id="confirmGradNom" >
 
@@ -164,31 +167,22 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
-
-
   window.onload = function(){
   // your code here
   $(confirmGradNom).hide()
   $(askGrad).hide()
-
-
 };
-
-
   //function for disableing one or the other estimated grade or final grade
 
 function disableEst(i) {
   if (  document.getElementsByName('finalGrade'+i)[0].value.length  > 0 ) {
 
     document.getElementsByName('estimatedGrade'+i)[0].disabled = true;
-
-  } else {
+    } else {
 
       document.getElementsByName('estimatedGrade'+i)[0].disabled = false;
   }
 }
-
-
 function disableFinal(i) {
 
   if (  document.getElementsByName('estimatedGrade'+i)[0].value.length > 0) {
@@ -258,6 +252,15 @@ $(document).ready(function(){
 
 
 });
+
+// adding both text field if text box checked
+document.getElementById("myForm").onsubmit = function() {
+if (document.getElementById('checkForDis').checked) {
+  $('#disGradNomDis').val($('#description').val()  +
+                               $('#gradDescription').val());
+}
+//alert(document.getElementById('disGradNomDis').value);
+};
 
   </script>
 
