@@ -24,11 +24,10 @@
               <option disabled selected value> -- select an option -- </option>
               @foreach ($awards as $award)
 
-                  @if($award->category->name  !== "Distinguished")
                   <option>
                   {{$award->name}}  {{$award->category->name}}
                     </option>
-                  @endif
+
 
               @endforeach
             </select>
@@ -243,7 +242,7 @@ $(document).ready(function(){
     document.getElementById('award').addEventListener('change',function(){
     if ( (($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1 )) &&
     !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
-      //$(askGrad).show()
+      $(askGrad).show()
     } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student distinguished")>-1)) {
       //hide if distinguish grad
       $(askGrad).hide()
