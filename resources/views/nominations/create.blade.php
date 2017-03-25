@@ -20,7 +20,8 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="award">Award*:</label>
           <div class="col-sm-8">
-            <select class="form-control" id="award" name="award">
+            <select class="form-control" id="award" name="award" required>
+              <option disabled selected value> -- select an option -- </option>
               @foreach ($awards as $award)
 
                   @if($award->category->name  !== "Distinguished")
