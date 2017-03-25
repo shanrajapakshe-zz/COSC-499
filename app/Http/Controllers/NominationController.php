@@ -21,7 +21,7 @@ class NominationController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     private function generateCourse($id, $request) {
         $course = new Course;
 
@@ -98,14 +98,52 @@ class NominationController extends Controller
             'studentLastName'=>'required',
             ]);
 
+
+
+        if (isset($request->checkForDis)) {// checks if the checkbox is checked and creates a nom for Distinguished
+          $nomination = new Nomination;
+          $award = new Award;
+          $award_name = 'Graduating Student';
+          $category = 5;
+
+          $award = Award::where('category_id',$category);
+          $award = $award->where('name', $award_name)->get()->first();
+
+          $nomination->award_id = 16;
+          $nomination->studentNumber = $request->studentNumber;
+          $nomination->user_id = Auth::user()->id;
+          $nomination->description = $request->disGradNomDis;
+          $nomination->save();
+
+          // Check if nominee is already in database
+          $nominee = Nominee::where('studentNumber',$request->studentNumber)->get()->first();
+
+          if ($nominee =="") {
+              $nominee = new Nominee;
+              $nominee->studentNumber = $request->studentNumber;
+              $nominee->firstName = $request->studentFirstName;
+              $nominee->lastName = $request->studentLastName;
+              $nominee->save();
+          }
+
+          // saving each course
+          for ($i = 0; $i <=5; $i++) {
+              $courseName = 'courseName'.$i;
+              // check if courseName 'i' exists
+              if ($request->$courseName != '' && $request->$courseName != null) {
+                  $course = new Course;
+                  $course = NominationController::generateCourse($i, $request);
+                  $nomination->course()->save($course);
+              }
+          }
+      }
         $nomination = new Nomination;
         $award = new Award;
-
-        // obtain the right award from the id        
+        // obtain the right award from the id
         $full_award = $request->award;
         $award_name = "";
         $category = "";
-        
+
         if (strpos($full_award,"Physics")) {
             $award_name = substr($full_award, 0, -8);
             $category = 1;
@@ -136,7 +174,9 @@ class NominationController extends Controller
         $nomination->award_id = $award->id;
         $nomination->studentNumber = $request->studentNumber;
         $nomination->user_id = Auth::user()->id;
-        $nomination->description = $request->description;
+        if (isset($request->checkForDis)) {
+        $nomination->description = $request->disGradNomDis;}
+        else {$nomination->description = $request->description;  }
         $nomination->save();
 
         // Check if nominee is already in database

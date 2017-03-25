@@ -58,7 +58,7 @@
         <div class="form-group" id="askGrad">
           <label class="control-label col-sm-4" for="checkbox">Also nominate for Distinguished Graduating student?:</label>
           <div class="checkbox" >
-            <label><input type="checkbox" id ="checkForDis" name="askGrad" onclick="toggle(confirmGradNom, $(this))">Yes</label>
+            <label><input type="checkbox" id ="checkForDis" name="checkForDis" onclick="toggle(confirmGradNom, $(this))">Yes</label>
             </div>
 
         </div >
@@ -128,15 +128,15 @@
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
-          <div class="col-sm-8">
-            <textarea maxlength="800" rows='8' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
+          <div class="col-sm-8"> {{-- has been set to 750 as 50 char were needed while adding seperation for concatination --}}
+            <textarea maxlength="750" rows='8' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
           </div>
         </div>
 
 
-                <div class="form-group" hidden="true">// the following is a placeholder when we concatanate discription and distinguished discription
+                <div class="form-group" hidden="true"> {{-- the following is a placeholder when we concatanate discription and distinguished discription--}}
                 <div class="col-sm-8">
-                    <textarea maxlength="1600" class="form-control" id="disGradNomDis"></textarea>
+                    <textarea maxlength="1600" class="form-control" id="disGradNomDis" name="disGradNomDis"></textarea>
                   </div>
                 </div>
 
@@ -145,7 +145,7 @@
             <div class="form-group">
               <label class="control-label col-sm-2" for="gradDescription">Distinguished Graduate Student Award Description:</label>
               <div class="col-sm-8">
-                <textarea maxlength="800" rows='4' cols='80'class="form-control" id="gradDescription" placeholder="Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
+                <textarea maxlength="800" rows='8' cols='80'class="form-control" id="gradDescription" placeholder="Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  " name = "gradDescription"></textarea>
               </div>
             </div>
 
@@ -256,7 +256,7 @@ $(document).ready(function(){
 // adding both text field if text box checked
 document.getElementById("myForm").onsubmit = function() {
 if (document.getElementById('checkForDis').checked) {
-  $('#disGradNomDis').val($('#description').val()  +
+  $('#disGradNomDis').val($('#description').val()+ ' Distinguished Graduate Award Discription: ' +
                                $('#gradDescription').val());
 }
 //alert(document.getElementById('disGradNomDis').value);
