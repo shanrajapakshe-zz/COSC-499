@@ -11,7 +11,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="name">Enter New Name:</label>
       <div class="col-sm-4">
-        <input type="textarea" class="form-control" id="name" placeholder={{$category->name}} required  name="name">
+        <input type="textarea" class="form-control" id="name" value= {{$category->name}} required  name="name">
       </div>
 
       <div class="form-group">

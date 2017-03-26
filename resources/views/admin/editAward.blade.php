@@ -10,7 +10,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="name">Award Name*:</label>
       <div class="col-sm-4">
-        <input type="textarea" class="form-control" id="name" placeholder="Enter Award Name" required  name="name">
+        <input type="textarea" class="form-control" id="name" placeholder= "Enter new Award Name" required  name="name">
       </div>
     </div>
 

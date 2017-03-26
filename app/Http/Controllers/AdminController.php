@@ -376,10 +376,12 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $this->validate($request, [
             'firstName'=>'required',
             'lastName'=>'required',
+            'email'=>'required',
             ]);
         $prof = User::find($id);
         $prof->firstName = $request->firstName;
         $prof->lastName = $request->lastName;
+        $prof->email = $request->email;
         $prof->save();
 
         // Session::flash('message', 'Successfully updated award!');

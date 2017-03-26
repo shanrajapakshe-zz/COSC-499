@@ -9,16 +9,23 @@
     {{ csrf_field() }}
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="name">First Name*:</label>
+      <label class="control-label col-sm-2" for="firstName">First Name*:</label>
       <div class="col-sm-4">
-        <input type="textarea" class="form-control" id="firstName" placeholder="Enter Prof First Name" required  name="firstName">
+        <input type="textarea" class="form-control" id="firstName" value= {{$prof->firstName}} required  name="firstName">
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="name">Last Name*:</label>
+      <label class="control-label col-sm-2" for="lastName">Last Name*:</label>
       <div class="col-sm-4">
-        <input type="textarea" class="form-control" id="lastName" placeholder="Enter Prof Last Name" required  name="lastName">
+        <input type="textarea" class="form-control" id="lastName" value= {{$prof->lastName}} required  name="lastName">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email*:</label>
+      <div class="col-sm-4">
+        <input type="textarea" class="form-control" id="email" value= {{$prof->email}} required  name="email">
       </div>
     </div>
 
