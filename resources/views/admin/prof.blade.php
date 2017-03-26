@@ -43,7 +43,7 @@
                 	</div>
                 </div>
             </form>
-        </td>            
+        </td>
     </tr>
     	@endforeach
 </table>
@@ -64,6 +64,20 @@
 	        <input type="textarea" class="form-control" id="lastName" placeholder="Enter Prof Last Name" required  name="lastName">
 	      </div>
 	    </div>
+
+      <div class="form-group">
+	      <label class="control-label col-sm-2" for="email">Prof Email*:</label>
+	      <div class="col-sm-4">
+	        <input type="textarea" class="form-control" id="email" placeholder="Enter Prof Email" required  name="email">
+	      </div>
+	    </div>
+
+      <div class="form-group" id="askAdmin">
+        <label class="control-label col-sm-4" for="admin">Is this Professor an Admin?</label>
+        <div class="checkbox">
+          <label><input type="checkbox" id ="admin" name="admin" >Yes</label>
+          </div>
+      </div >
 
 	    <div class="form-group">
 	    	<div class="col-sm-10">

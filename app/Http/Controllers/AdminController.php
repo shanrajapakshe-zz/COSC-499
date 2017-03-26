@@ -187,13 +187,13 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
   // public function sendEmail(){
   //   if (Auth::user()->admin===1) {
-  //       $nominees = Nominee::all(); 
+  //       $nominees = Nominee::all();
 
   //       /*Code fragments for ideas on possibly looping through nominees faster*/
   //       // $name = array();
-  //       // $email = array(); 
+  //       // $email = array();
   //       // array_push($name,$nominee->firstName." ".$nominee->lastName);
-  //       // array_push($email,$nominee->email); 
+  //       // array_push($email,$nominee->email);
 
   //       //loop through each nominee & set their name and emails as variables
   //       foreach ($nominees as $nominee) {
@@ -208,8 +208,8 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
   //                   ->subject('Formal Invitation to Unit 5 Award Ceremony');
   //        });
 
-  //       };     
-        
+  //       };
+
   //       return view('admin.emailSent')->with('nominees', $nominees);
   //   }
 
@@ -341,6 +341,13 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $prof = new User;
         $prof->firstName = $request->firstName;
         $prof->lastName = $request->lastName;
+        if ($request->admin === 'on') {
+          $prof->admin = 1;
+        }
+        else {
+          $prof->admin = 0;
+        }
+        $prof->email = $request->email;
         $prof->save();
 
         $profs = User::all();
