@@ -2,7 +2,7 @@
 @section('title', 'Edit Nomination')
 
 @section('content')
-<h3>Edit Nomination: {{$nomination->studentFirstName}} {{$nomination->studentLastName}} by {{$nomination->prof->firstName}} {{$nomination->prof->lastName}}</h3>
+<h3>Edit Nomination: {{$nomination->studentFirstName}} {{$nomination->studentLastName}} by {{$nomination->user->firstName}} {{$nomination->user->lastName}}</h3>
 
 <form class="form-horizontal" action="{{url ('/nominations/'.$nomination->id.'/update') }}" method="POST">
 		<input type="hidden" name="_method" value="PUT">
