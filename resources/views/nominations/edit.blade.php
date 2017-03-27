@@ -2,7 +2,7 @@
 @section('title', 'Edit Nomination')
 
 @section('content')
-<h3>Edit Nomination: {{$nomination->studentFirstName}} {{$nomination->studentLastName}} by {{$nomination->user->firstName}} {{$nomination->user->lastName}}</h3>
+<h3>Edit Nomination: {{App\Nominee::find($nomination->studentNumber)['firstName']}} {{App\Nominee::find($nomination->studentNumber)['lastName']}} by {{$nomination->user->firstName}} {{$nomination->user->lastName}}</h3>
 
 <form class="form-horizontal" action="{{url ('/nominations/'.$nomination->id.'/update') }}" method="POST">
 		<input type="hidden" name="_method" value="PUT">
@@ -29,14 +29,14 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentFirstName">First Name*:</label>
           <div class="col-sm-8">
-            <input type="textarea" class="form-control" id="studentFirstName" placeholder="Enter First Name" required name = "studentFirstName" value={{$nomination->studentFirstName}}>
+            <input type="textarea" class="form-control" id="studentFirstName" placeholder="Enter First Name" required name = "studentFirstName" value={{App\Nominee::find($nomination->studentNumber)['firstName']}}>
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="studentLastName">Last Name*:</label>
           <div class="col-sm-8">
-            <input type="textarea" class="form-control" id="studentLastName" placeholder="Enter Last Name" required name = "studentLastName" value={{$nomination->studentLastName}}>
+            <input type="textarea" class="form-control" id="studentLastName" placeholder="Enter Last Name" required name = "studentLastName" value={{App\Nominee::find($nomination->studentNumber)['lastName']}}>
           </div>
         </div>
 
