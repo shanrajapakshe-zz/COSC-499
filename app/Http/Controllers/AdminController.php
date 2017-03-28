@@ -146,6 +146,9 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
             ]);
         $nominee = Nominee::find($studentNumber);
         $nominee->email = $request->email;
+        
+        // reset this nominee's sentEmail field;
+        $nominee->sentEmail = 0;
         $nominee->save();
 
         $nominees = nominee::all();

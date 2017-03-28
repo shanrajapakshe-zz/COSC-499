@@ -18,7 +18,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">New Nominee Email*:</label>
       <div class="col-sm-4">
-        <input type="textarea" class="form-control" id="email" placeholder="Enter Nominee Email" required  name="email">
+        <input type="email" class="form-control" id="email" placeholder="Enter Nominee Email" required  name="email">
       </div>
     </div>
 
