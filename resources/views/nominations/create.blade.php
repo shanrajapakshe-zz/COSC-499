@@ -134,7 +134,7 @@
         </div>
                 <div class="form-group" hidden="true"> {{-- the following is a placeholder when we concatanate discription and distinguished discription--}}
                 <div class="col-sm-8">
-                    <textarea maxlength="1600" class="form-control" id="disGradNomDis" name="disGradNomDis"></textarea>
+                    <textarea maxlength="1550" class="form-control" id="disGradNomDis" name="disGradNomDis"></textarea>
                   </div>
                 </div>
 
