@@ -27,7 +27,7 @@ $(document).ready(function() {
 </div>
 <br>
 
-{{-- 
+{{--
 <!-- nav bar  -->
 <nav class="navbar navbar-default">
 
@@ -104,7 +104,10 @@ $(document).ready(function() {
                  {{ csrf_field() }}
                  <div class="form-group">
                    <div class="col-sm-10">
-                     <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">X</button>
+                     <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">
+                       Delete
+                       <!-- <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> -->
+                     </button>
                    </div>
                  </div>
                </form>
