@@ -63,6 +63,12 @@
 
         </div >
 
+        <div class="form-group" >
+
+        <label for="">Note: Please enter Final or predicted grade. If one field is not cleared, the other will be disabled</label>  
+
+        </div >
+
 {{--                             grid starts  --}}
         <div class="container-fluid form-group">
             <div class="row clearfix">
