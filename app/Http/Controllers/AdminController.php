@@ -198,8 +198,13 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         //loop through each nominee & set their name and emails as variables
 
         foreach ($nominees as $nominee) {
-        
 
+          // only send emails to nominees with a valid email address format
+          if (!filter_var($nominee->email, FILTER_VALIDATE_EMAIL)){
+            continue;
+          }
+        
+          // only send email to nominees who havent gotten an email yet
         if ($nominee->emailSent === 0){
           
          //change value of email Sent to 1(True);
