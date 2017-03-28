@@ -54,7 +54,11 @@ $(document).ready(function() {
                </form>
              </td>
              <td>
-             {{$nominee->emailSent}} 
+             @if ($nominee->emailSent === 1)
+             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              @else
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            @endif
              <!-- change to have a clearer way of showing email sent or not-->
              </td>
 
