@@ -16,7 +16,7 @@
         <th>Award Name</th>
         <th>Category</th>
         <th>Edit</th>
-        <th>Remove</th>
+        <th>Delete</th>
       </tr>
       <tr>
         @foreach ($awards as $award)
@@ -38,7 +38,7 @@
               {{ csrf_field() }}
               <div class="form-group">
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Remove</button>
+                  <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Delete</button>
                 </div>
               </div>
             </form>
