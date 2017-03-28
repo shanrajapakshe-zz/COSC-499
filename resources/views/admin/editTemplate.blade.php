@@ -17,9 +17,6 @@ echo $contents;
 ?>
 </textarea>
 
-<?php
-$path = resource_path('views/admin/emailMessage.blade.php');
-?>
 
 </br>
 </br>
