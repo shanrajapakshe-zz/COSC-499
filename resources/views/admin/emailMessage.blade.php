@@ -4,4 +4,3 @@ Dear Student,
 
 Sincerely,  
 	Unit 5 Award Committee 
-
