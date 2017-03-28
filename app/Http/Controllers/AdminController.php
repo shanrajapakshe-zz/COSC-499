@@ -146,6 +146,9 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
             ]);
         $nominee = Nominee::find($studentNumber);
         $nominee->email = $request->email;
+
+        // reset this nominee's sentEmail field;
+        $nominee->emailSent = 0;
         $nominee->save();
 
         $nominees = nominee::all();
@@ -206,7 +209,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         
           // only send email to nominees who havent gotten an email yet
         if ($nominee->emailSent === 0){
-          
+
          //change value of email Sent to 1(True);
 
           $nominee->emailSent = 1;
@@ -224,7 +227,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
            });
 
         };
-      
+
       }
 
         return view('admin.emailSent')->with('nominees', $nominees);

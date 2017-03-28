@@ -12,7 +12,6 @@
 				<th>Award</th>
 				<th>Student Number</th>
 				<th>Name</th>
-				<th>Email</th>
 				<th>Description</th>
 				<th>Course Grades</th>
 				<th>Remove</th>
@@ -27,7 +26,6 @@
 		       	<td>{{$nomination->studentNumber}}</td>
 		        <td>{{App\Nominee::find($nomination->studentNumber)['firstName']}} {{App\Nominee::find($nomination->studentNumber)['lastName']}}
 		        </td>
-		        <td>{{App\Nominee::find($nomination->studentNumber)['email']}}</td>
 		        <td>{{$nomination->description}}</td>
 		        <td>
 		        	@foreach ($nomination->course as $course)

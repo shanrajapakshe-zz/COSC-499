@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        // TEST USERS
+        // // TEST USERS
         DB::table('users')->insert([
             'id' => 44,
             'firstName' => 'User',
@@ -31,26 +31,34 @@ class UsersTableSeeder extends Seeder
             'password'=>bcrypt('password'),
             'admin'=>1,
         ]);
+        DB::table('users')->insert([
+            'id' => 99,
+            'firstName' => 'Hilda',
+            'lastName' => 'Patzer',
+            'email' =>'hilda.patzer@ubc.ca',
+            'password'=>bcrypt('password'),
+            'admin'=>1,
+        ]);
 
-        // REAL USERS
-        // DB::table('users')->insert([
-        //     'id' => 1,
-        //     'firstName' => 'Bowen',
-        //     'lastName' => 'Hui',
-        //     'email' =>'bowen.hui@ubc.ca',
-        //     'password'=>bcrypt('password'),
-        //     'admin'=>1,
-        // ]);
-        //
-        // DB::table('users')->insert([
-        //     'id' => 2,
-        //     'firstName' => 'John',
-        //     'lastName' => 'Hopkinson',
-        //     'email' =>'john.hopkinson@ubc.ca',
-        //     'password'=>bcrypt('password'),
-        //     'admin'=>1,
-        // ]);
-        //
+
+        DB::table('users')->insert([
+            'id' => 1,
+            'firstName' => 'Bowen',
+            'lastName' => 'Hui',
+            'email' =>'bowen.hui@ubc.ca',
+            'password'=>bcrypt('password'),
+            'admin'=>1,
+        ]);
+
+        DB::table('users')->insert([
+            'id' => 2,
+            'firstName' => 'John',
+            'lastName' => 'Hopkinson',
+            'email' =>'john.hopkinson@ubc.ca',
+            'password'=>bcrypt('password'),
+            'admin'=>1,
+        ]);
+
         // DB::table('users')->insert([
         //     'id' => 3,
         //     'firstName' => 'Jeff',
