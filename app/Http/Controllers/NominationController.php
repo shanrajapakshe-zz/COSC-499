@@ -261,6 +261,8 @@ class NominationController extends Controller
         $nomination->award_id = $award->id;
 
         $nomination->studentNumber = $request->studentNumber;
+
+        // find the nominee
         $nomination->studentFirstName = $request->studentFirstName;
         $nomination->studentLastName = $request->studentLastName;
         $nomination->description = $request->description;

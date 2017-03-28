@@ -59,7 +59,7 @@
               </div>
 
               <div class="form-group">
-                <label class="control-label col-sm-10" >This student will automatically be nominated for the graduating student award</label>
+                <label class="control-label col-sm-10">This student will automatically be nominated for the graduating student award</label>
               </div>
 
 
@@ -109,7 +109,7 @@
                                 <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control" value={{$course->courseNumber}}>
                                 </td>
                                 <td>
-                                <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control" value="00".{{$course->sectionNumber}}>
+                                <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control" value=00{{$course->sectionNumber}}>
                                 </td>
                                 <td title="This or predicted grade">
                                 <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" value={{$course->finalGrade}}>
@@ -133,7 +133,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8">
-            <textarea rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description" value={{$nomination->description}}></textarea>
+            <input type="textarea" rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description" value={{ $nomination->description }}>
           </div>
         </div>
 
