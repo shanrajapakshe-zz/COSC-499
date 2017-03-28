@@ -16,8 +16,8 @@
 <table id="myTable" class="table table-striped table-bordered" style="width:75%">
       <thead>
       <tr>
-        <th>Student Name</th>
-        <th>ID No.</th>
+        <th>Name</th>
+        <th>Student Number</th>
         @foreach ($uniqueCourse as $uCourse )
         <th>{{$uCourse-> courseName }} {{$uCourse->courseNumber}}</th> @endforeach
         <th>Description</th>
