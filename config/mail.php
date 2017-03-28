@@ -59,7 +59,7 @@ return [
         // 'address' => 'Test@example.com'
         // 'name' => 'Hello'
         'address' => 'UBCONomination@gmail.com',
-        'name' => 'TEST UBCO ACCT',
+        'name' => 'UBCO',
     ],
 
     /*

@@ -261,24 +261,38 @@ class NominationController extends Controller
         $nomination->award_id = $award->id;
 
         $nomination->studentNumber = $request->studentNumber;
-        $nomination->studentFirstName = $request->studentFirstName;
-        $nomination->studentLastName = $request->studentLastName;
-        $nomination->description = $request->description;
 
+        // find the nominee, if they exist, and edit them
+        $nominee = Nominee::where('studentNumber',$request->studentNumber)->get()->first();
+        if ($nominee =="") {
+            $nominee = new Nominee;
+            $nominee->studentNumber = $request->studentNumber;
+        }
+
+        $nominee->firstName = $request->studentFirstName;
+        $nominee->lastName = $request->studentLastName;
+        $nominee->save();
+
+        $nomination->description = $request->description;
         $nomination->user_id = Auth::user()->id;
         $nomination->save();
 
         // saving each course
         $courses = $nomination->course;
-        // for ($course in $courses) {
-        //     $courseName = 'courseName'.$i;
-        //     // check if courseName 'i' exists
-        //     if ($request->$courseName != '' && $request->$courseName != null) {
-        //         $course = new Course;
-        //         $course = NominationController::generateCourse($i, $request);
-        //         $nomination->course()->save($course);
-        //     }
+        echo $request;
+        // for ($i = 0; $i <=count($courses)-1; $i++) {
+        //     echo $courses[$i];
         // }
+
+        for ($i = 0; $i <=5; $i++) {
+            $courseName = 'courseName'.$i;
+            // check if courseName 'i' exists
+            if ($request->$courseName != '' && $request->$courseName != null) {
+                $course = new Course;
+                $course = NominationController::generateCourse($i, $request);
+                $nomination->course()->save($course);
+            }
+        }
 
         $nominations = Nomination::all();
         $courses = Course::all();

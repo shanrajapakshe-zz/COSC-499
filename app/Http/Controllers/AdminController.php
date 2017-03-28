@@ -196,19 +196,31 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         // array_push($email,$nominee->email);
 
         //loop through each nominee & set their name and emails as variables
+
         foreach ($nominees as $nominee) {
-        $name = $nominee->firstName." ".$nominee->lastName;
-        $email = $nominee->email;
-        $data=['email'=> '$email', 'name'=>'$name'];
+        
+
+        if ($nominee->emailSent === 0){
+          
+         //change value of email Sent to 1(True);
+
+          $nominee->emailSent = 1;
+          $nominee->save();
+
+          $name = $nominee->firstName." ".$nominee->lastName;
+          $email = $nominee->email;
+          $data=['email'=> '$email', 'name'=>'$name'];
         //sending email
 
         /*MESSAGES USING BLADE VIEW TEXT*/
-        Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
-            $message->to($email,$name)
-                    ->subject('Formal Invitation to Unit 5 Award Ceremony');
-         });
+          Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
+              $message->to($email,$name)
+                      ->subject('Formal Invitation to Unit 5 Award Ceremony');
+           });
 
         };
+      
+      }
 
         return view('admin.emailSent')->with('nominees', $nominees);
     }

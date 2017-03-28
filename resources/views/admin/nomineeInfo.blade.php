@@ -54,7 +54,8 @@ $(document).ready(function() {
                </form>
              </td>
              <td>
-
+             {{$nominee->emailSent}} 
+             <!-- change to have a clearer way of showing email sent or not-->
              </td>
 
           </tr>
