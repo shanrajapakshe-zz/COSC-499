@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Mail;
 
-ini_set('max_execution_time', 120);
+ini_set('max_execution_time', 240);
 
 class AdminController extends Controller {
 
