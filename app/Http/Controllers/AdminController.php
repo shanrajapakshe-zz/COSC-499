@@ -202,7 +202,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
         foreach ($nominees as $nominee) {
 
-          // only send emails to nominees with a valid email address format
+          // only send emails to nominees with a valid email address format, skip to next nominee if not valid
           if (!filter_var($nominee->email, FILTER_VALIDATE_EMAIL)){
             continue;
           }
