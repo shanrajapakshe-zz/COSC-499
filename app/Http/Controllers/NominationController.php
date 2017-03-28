@@ -279,15 +279,20 @@ class NominationController extends Controller
 
         // saving each course
         $courses = $nomination->course;
-        // for ($course in $courses) {
-        //     $courseName = 'courseName'.$i;
-        //     // check if courseName 'i' exists
-        //     if ($request->$courseName != '' && $request->$courseName != null) {
-        //         $course = new Course;
-        //         $course = NominationController::generateCourse($i, $request);
-        //         $nomination->course()->save($course);
-        //     }
+        echo $request;
+        // for ($i = 0; $i <=count($courses)-1; $i++) {
+        //     echo $courses[$i];
         // }
+
+        for ($i = 0; $i <=5; $i++) {
+            $courseName = 'courseName'.$i;
+            // check if courseName 'i' exists
+            if ($request->$courseName != '' && $request->$courseName != null) {
+                $course = new Course;
+                $course = NominationController::generateCourse($i, $request);
+                $nomination->course()->save($course);
+            }
+        }
 
         $nominations = Nomination::all();
         $courses = Course::all();

@@ -100,7 +100,7 @@
                         <tbody>
                             <tr id='addr0'>
                                 <td>
-                                1
+																	<!-- Put something here! -->
                                 </td>
                                 <td>
                                 <input type="text" name='courseName0'  placeholder='Eg. COSC' class="form-control" value={{$course->courseName}}>

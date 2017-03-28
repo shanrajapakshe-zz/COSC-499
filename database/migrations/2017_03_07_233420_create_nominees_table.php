@@ -17,10 +17,11 @@ class CreateNomineesTable extends Migration
             // Primary Key
             $table->integer('studentNumber');
             $table->primary('studentNumber');
-            
+
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique()->nullable();
+            $table->tinyInteger('emailSent')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
