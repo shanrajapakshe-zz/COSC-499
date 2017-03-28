@@ -185,33 +185,37 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
       }
     }
 
-  // public function sendEmail(){
-  //   if (Auth::user()->admin===1) {
-  //       $nominees = Nominee::all();
+  public function sendEmail(){
+    if (Auth::user()->admin===1) {
+        $nominees = Nominee::all();
 
-  //       /*Code fragments for ideas on possibly looping through nominees faster*/
-  //       // $name = array();
-  //       // $email = array();
-  //       // array_push($name,$nominee->firstName." ".$nominee->lastName);
-  //       // array_push($email,$nominee->email);
+        /*Code fragments for ideas on possibly looping through nominees faster*/
+        // $name = array();
+        // $email = array();
+        // array_push($name,$nominee->firstName." ".$nominee->lastName);
+        // array_push($email,$nominee->email);
 
-  //       //loop through each nominee & set their name and emails as variables
-  //       foreach ($nominees as $nominee) {
-  //       $name = $nominee->firstName." ".$nominee->lastName;
-  //       $email = $nominee->email;
-  //       $data=['email'=> '$email', 'name'=>'$name'];
-  //       //sending email
+        //loop through each nominee & set their name and emails as variables
+        foreach ($nominees as $nominee) {
+        $name = $nominee->firstName." ".$nominee->lastName;
+        $email = $nominee->email;
+        $data=['email'=> '$email', 'name'=>'$name'];
+        //sending email
 
-  //       /*MESSAGES USING BLADE VIEW TEXT*/
-  //       Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
-  //           $message->to($email,$name)
-  //                   ->subject('Formal Invitation to Unit 5 Award Ceremony');
-  //        });
+        /*MESSAGES USING BLADE VIEW TEXT*/
+        Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
+            $message->to($email,$name)
+                    ->subject('Formal Invitation to Unit 5 Award Ceremony');
+         });
 
-  //       };
+        };
 
-  //       return view('admin.emailSent')->with('nominees', $nominees);
-  //   }
+        return view('admin.emailSent')->with('nominees', $nominees);
+    }
+          else {
+          return view('pages.noAccess');
+      }
+  }
 
 
   public function editTemplate() {
