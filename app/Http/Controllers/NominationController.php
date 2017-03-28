@@ -262,11 +262,18 @@ class NominationController extends Controller
 
         $nomination->studentNumber = $request->studentNumber;
 
-        // find the nominee
-        $nomination->studentFirstName = $request->studentFirstName;
-        $nomination->studentLastName = $request->studentLastName;
-        $nomination->description = $request->description;
+        // find the nominee, if they exist, and edit them
+        $nominee = Nominee::where('studentNumber',$request->studentNumber)->get()->first();
+        if ($nominee =="") {
+            $nominee = new Nominee;
+            $nominee->studentNumber = $request->studentNumber;
+        }
 
+        $nominee->firstName = $request->studentFirstName;
+        $nominee->lastName = $request->studentLastName;
+        $nominee->save();
+
+        $nomination->description = $request->description;
         $nomination->user_id = Auth::user()->id;
         $nomination->save();
 
