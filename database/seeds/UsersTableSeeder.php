@@ -13,24 +13,25 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        // // TEST USERS
-        // DB::table('users')->insert([
-        //     'id' => 44,
-        //     'firstName' => 'User',
-        //     'lastName' => 'test',
-        //     'email' =>'user@test.com',
-        //     'password'=>bcrypt('password'),
-        //     'admin'=>0,
-        // ]);
-        //
-        // DB::table('users')->insert([
-        //     'id' => 45,
-        //     'firstName' => 'Admin',
-        //     'lastName' => 'test',
-        //     'email' =>'admin@test.com',
-        //     'password'=>bcrypt('password'),
-        //     'admin'=>1,
-        // ]);
+        // TEST USERS
+        DB::table('users')->insert([
+            'id' => 44,
+            'firstName' => 'User',
+            'lastName' => 'test',
+            'email' =>'user@test.com',
+            'password'=>bcrypt('password'),
+            'admin'=>0,
+        ]);
+
+        DB::table('users')->insert([
+            'id' => 45,
+            'firstName' => 'Admin',
+            'lastName' => 'test',
+            'email' =>'admin@test.com',
+            'password'=>bcrypt('password'),
+            'admin'=>1,
+        ]);
+        
         DB::table('users')->insert([
             'id' => 46,
             'firstName' => 'Hilda',
