@@ -26,40 +26,50 @@ $(document).ready(function() {
 
 
     <table id="myTable" class="table table-striped table-bordered" style="width:75%">
-<thead>
-      <tr>
-        <th>Student Number</th>
-        <th>Student Name</th>
-        <th>Email</th>
-        <!-- <th>Delete</th> -->
-        <th>Edit</th>
-        <th>Email Sent</th>
-
+      <thead>
+        <tr>
+          <th>Student Number</th>
+          <th>Student Name</th>
+          <th>Email</th>
+          <th>Email Sent</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
-<tbody>
+      <tbody>
           <tr>
           @foreach ($nominees as $nominee)
             <td>{{$nominee->studentNumber}}</td>
             <td>{{$nominee->firstName}} {{$nominee->lastName}}</td>
             <td>{{$nominee->email}}</td>
             <td>
-               <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/'.$nominee->studentNumber.'/edit') }}" method="GET">
-                 {{ csrf_field() }}
-                 <div class="form-group">
-                   <div class="col-sm-10">
-                     <button type="submit" class="btn btn-primary">Edit</button>
-                   </div>
-                 </div>
-               </form>
-             </td>
-             <td>
              @if ($nominee->emailSent === 1)
              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
               @else
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             @endif
-             </td>
+            </td>
+            <td>
+                <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/'.$nominee->studentNumber.'/edit') }}" method="GET">
+                  {{ csrf_field() }}
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                  </div>
+                </form>
+              </td>
+              <td>
+                 <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/destroy/'.$nominee->studentNumber)}}" method="POST">
+                   <input type="hidden" name="_method" value="DELETE">
+                   {{ csrf_field() }}
+                   <div class="form-group">
+                     <div class="col-sm-10">
+                       <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">Delete</button>
+                     </div>
+                   </div>
+                 </form>
+               </td>
 
           </tr>
           @endforeach
@@ -73,7 +83,7 @@ The 'Send Emails' button will send emails to everyone in the nominee list who ha
 You must make sure your email content is ready because you cannot send 2 email messages to the nominees in this system.
 </div>
 
-   
+
 
 {{--using a new view to send email--}}
 <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/emailTemplate') }}" method="GET">
@@ -85,6 +95,16 @@ You must make sure your email content is ready because you cannot send 2 email m
 </form>
 </div>
 
+<script type="text/javascript">
+function confirmDelete() {
+  var result = confirm('Are you sure you want to delete this Nominee?')
+  if (result) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+</script>
 
 @endsection
-

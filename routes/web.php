@@ -53,6 +53,8 @@ Route::get('/admin/nominations', 'AdminController@nominations');
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
 Route::get('/admin/nomineeInfo/{nominee}/edit','AdminController@editEmail');
 Route::put('/admin/nomineeInfo/{nominee}/update','AdminController@updateEmail');
+Route::delete('/admin/nomineeInfo/destroy/{nominee}','AdminController@destroyNominee');
+
 Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
 Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
 Route::get('admin/nomineeInfo/emailTemplate', 'AdminController@emailTemplate');
@@ -68,4 +70,4 @@ Route::get('/', 'PageController@getIndex' );
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');

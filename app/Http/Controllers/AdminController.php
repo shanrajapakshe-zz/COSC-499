@@ -175,6 +175,19 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
           return view('pages.noAccess');
       }
     }
+
+    public function destroyNominee($id) {
+      if (Auth::user()->admin===1) {
+        $nominee = Nominee::find($id)->delete();
+
+        $nominees = Nominee::all();
+        return view('admin.nomineeInfo')->with('nominees', $nominees);
+        }
+      else {
+          return view('pages.noAccess');
+      }
+
+    }
 /*--------------------------------------------------------------------------*/
 /*BRANDON STUFF*/
 
