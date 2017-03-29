@@ -13,25 +13,25 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        // TEST USERS
-        DB::table('users')->insert([
-            'id' => 44,
-            'firstName' => 'User',
-            'lastName' => 'test',
-            'email' =>'user@test.com',
-            'password'=>bcrypt('password'),
-            'admin'=>0,
-        ]);
+        // // TEST USERS
+        // DB::table('users')->insert([
+        //     'id' => 44,
+        //     'firstName' => 'User',
+        //     'lastName' => 'test',
+        //     'email' =>'user@test.com',
+        //     'password'=>bcrypt('password'),
+        //     'admin'=>0,
+        // ]);
+        //
+        // DB::table('users')->insert([
+        //     'id' => 45,
+        //     'firstName' => 'Admin',
+        //     'lastName' => 'test',
+        //     'email' =>'admin@test.com',
+        //     'password'=>bcrypt('password'),
+        //     'admin'=>1,
+        // ]);
 
-        DB::table('users')->insert([
-            'id' => 45,
-            'firstName' => 'Admin',
-            'lastName' => 'test',
-            'email' =>'admin@test.com',
-            'password'=>bcrypt('password'),
-            'admin'=>1,
-        ]);
-        
         DB::table('users')->insert([
             'id' => 46,
             'firstName' => 'Hilda',
@@ -190,7 +190,7 @@ class UsersTableSeeder extends Seeder
             'id' => 17,
             'firstName' => 'Warren',
             'lastName' => 'Hare',
-            'email' =>'Warren.Hare@ubc.ca',
+            'email' =>'warren.hare@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -199,7 +199,7 @@ class UsersTableSeeder extends Seeder
             'id' => 18,
             'firstName' => 'Christina',
             'lastName' => 'Haston',
-            'email' =>'Christina.Haston@ubc.ca',
+            'email' =>'christina.haston@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -208,7 +208,7 @@ class UsersTableSeeder extends Seeder
             'id' => 19,
             'firstName' => 'Andrew',
             'lastName' => 'Jirasek',
-            'email' =>'Andrew.Jirasek@ubc.ca',
+            'email' =>'andrew.jirasek@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -217,7 +217,7 @@ class UsersTableSeeder extends Seeder
             'id' => 20,
             'firstName' => 'Patricia',
             'lastName' => 'Lasserre',
-            'email' =>'Patricia.Lasserre@ubc.ca',
+            'email' =>'patricia.lasserre@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -226,7 +226,7 @@ class UsersTableSeeder extends Seeder
             'id' => 21,
             'firstName' => 'Ramon',
             'lastName' => 'Lawrence',
-            'email' =>'Ramon.Lawrence@ubc.ca',
+            'email' =>'ramon.lawrence@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -235,7 +235,7 @@ class UsersTableSeeder extends Seeder
             'id' => 22,
             'firstName' => 'Jason',
             'lastName' => 'Loeppky',
-            'email' =>'Jason.Loeppky@ubc.ca',
+            'email' =>'jason.loeppky@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -244,7 +244,7 @@ class UsersTableSeeder extends Seeder
             'id' => 23,
             'firstName' => 'Yves',
             'lastName' => 'Lucet',
-            'email' =>'Yves.Lucet@ubc.ca',
+            'email' =>'yves.lucet@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -253,7 +253,7 @@ class UsersTableSeeder extends Seeder
             'id' => 24,
             'firstName' => 'Abdallah',
             'lastName' => 'Mohamed',
-            'email' =>'Abdallah.Mohamed@ubc.ca',
+            'email' =>'abdallah.mohamed@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -262,7 +262,7 @@ class UsersTableSeeder extends Seeder
             'id' => 25,
             'firstName' => 'Murray',
             'lastName' => 'Neuman',
-            'email' =>'Murray.Neuman@ubc.ca',
+            'email' =>'murray.neuman@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -271,7 +271,7 @@ class UsersTableSeeder extends Seeder
             'id' => 26,
             'firstName' => 'Rasika',
             'lastName' => 'Rajapakshe',
-            'email' =>'Rasika.Rajapakshe@ubc.ca',
+            'email' =>'rasika.rajapakshe@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -280,7 +280,7 @@ class UsersTableSeeder extends Seeder
             'id' => 27,
             'firstName' => 'Blair',
             'lastName' => 'Spearman',
-            'email' =>'Blair.Spearman@ubc.ca',
+            'email' =>'blair.spearman@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -289,7 +289,7 @@ class UsersTableSeeder extends Seeder
             'id' => 28,
             'firstName' => 'Jesse',
             'lastName' => 'Tanguay',
-            'email' =>'Jesse.Tanguay@ubc.ca',
+            'email' =>'jesse.tanguay@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -298,7 +298,7 @@ class UsersTableSeeder extends Seeder
             'id' => 29,
             'firstName' => 'Javad',
             'lastName' => 'Tavakoli',
-            'email' =>'Javad.Tavakoli@ubc.ca',
+            'email' =>'javad.tavakoli@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -307,7 +307,7 @@ class UsersTableSeeder extends Seeder
             'id' => 30,
             'firstName' => 'Miles',
             'lastName' => 'Thorogood',
-            'email' =>'Miles.Thorogood@ubc.ca',
+            'email' =>'miles.thorogood@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -316,7 +316,7 @@ class UsersTableSeeder extends Seeder
             'id' => 31,
             'firstName' => 'Ben',
             'lastName' => 'Tippet',
-            'email' =>'Ben.Tippet@ubc.ca',
+            'email' =>'ben.tippet@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -325,7 +325,7 @@ class UsersTableSeeder extends Seeder
             'id' => 32,
             'firstName' => 'Rebecca',
             'lastName' => 'Tyson',
-            'email' =>'Rebecca.Tyson@ubc.ca',
+            'email' =>'rebecca.tyson@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -334,7 +334,7 @@ class UsersTableSeeder extends Seeder
             'id' => 33,
             'firstName' => 'Daniel',
             'lastName' => 'Vollick',
-            'email' =>'Daniel.Vollick@ubc.ca',
+            'email' =>'daniel.vollick@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -343,7 +343,7 @@ class UsersTableSeeder extends Seeder
             'id' => 34,
             'firstName' => 'Shawn',
             'lastName' => 'Wang',
-            'email' =>'Shawn.Wang@ubc.ca',
+            'email' =>'shawn.wang@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -370,7 +370,7 @@ class UsersTableSeeder extends Seeder
             'id' => 37,
             'firstName' => 'Qiduan',
             'lastName' => 'Yang',
-            'email' =>'Qiduan.Yamin@ubc.ca',
+            'email' =>'qiduan.yamin@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -379,7 +379,7 @@ class UsersTableSeeder extends Seeder
             'id' => 38,
             'firstName' => 'James',
             'lastName' => 'Yu',
-            'email' =>'James.Yu@ubc.ca',
+            'email' =>'james.yu@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -388,7 +388,7 @@ class UsersTableSeeder extends Seeder
             'id' => 39,
             'firstName' => 'Jocelyn',
             'lastName' => 'Smith',
-            'email' =>'Jocelyn.Smith@ubc.ca',
+            'email' =>'jocelyn.smith@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -397,7 +397,7 @@ class UsersTableSeeder extends Seeder
             'id' => 40,
             'firstName' => 'Sedi',
             'lastName' => 'Bartz',
-            'email' =>'Sedi.Bartz@ubc.ca',
+            'email' =>'sedi.bartz@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -406,7 +406,7 @@ class UsersTableSeeder extends Seeder
             'id' => 41,
             'firstName' => 'Chayne',
             'lastName' => 'Planiden',
-            'email' =>'Chayne.Planiden@ubc.ca',
+            'email' =>'chayne.planiden@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -414,8 +414,8 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 42,
             'firstName' => 'Lindsey',
-            'lastName' => 'Reienholz',
-            'email' =>'Lindsey.Reienholz@ubc.ca',
+            'lastName' => 'Reinholz',
+            'email' =>'lindsey.reinholz@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
@@ -424,7 +424,7 @@ class UsersTableSeeder extends Seeder
             'id' => 43,
             'firstName' => 'Marie-Pierre',
             'lastName' => 'Milette',
-            'email' =>'Marie-Pierre.Milette@ubc.ca',
+            'email' =>'marie-pierre.milette@ubc.ca',
             'password'=>bcrypt('password'),
             'admin'=>0,
         ]);
