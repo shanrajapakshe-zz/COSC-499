@@ -59,7 +59,6 @@ $(document).ready(function() {
               @else
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             @endif
-             <!-- change to have a clearer way of showing email sent or not-->
              </td>
 
           </tr>

@@ -206,7 +206,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
           if (!filter_var($nominee->email, FILTER_VALIDATE_EMAIL)){
             continue;
           }
-        
+
           // only send email to nominees who havent gotten an email yet
         if ($nominee->emailSent === 0){
 
@@ -406,13 +406,19 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $prof->firstName = $request->firstName;
         $prof->lastName = $request->lastName;
         $prof->email = $request->email;
+        if ($request->admin === 'on') {
+          $prof->admin = 1;
+        }
+        else {
+          $prof->admin = 0;
+        }
         $prof->save();
 
         // Session::flash('message', 'Successfully updated award!');
         // return redirect()->route('award.report');
         $profs = User::all();
         return view('admin.prof')->with('profs', $profs);
-        }
+      }
       else {
           return view('pages.noAccess');
       }

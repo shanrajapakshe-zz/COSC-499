@@ -15,6 +15,7 @@
     <tr>
     	<th>Professor First Name</th>
         <th>Professor Last Name</th>
+        <th>Admin</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -23,6 +24,13 @@
         @foreach ($profs as $prof)
         <td>{{$prof->firstName}}</td>
         <td>{{$prof->lastName}}</td>
+        <td>
+          @if ($prof->admin === 1)
+          Yes
+         @else
+          No
+         @endif
+        </td>
         <td>
             <form class="form-horizontal" action="{{url ('/admin/prof/'.$prof->id.'/edit') }}" method="GET">
         	    {{ csrf_field() }}

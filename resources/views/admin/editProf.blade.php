@@ -15,7 +15,7 @@
 </div>
 <h3>Edit Prof: {{$prof->firstName}} {{$prof->lastName}}</h3>
 
-  <form class="form-horizontal" action="{{url ('/admin/award/'.$prof->id.'/update') }}" method="POST">
+  <form class="form-horizontal" action="{{url ('/admin/prof/'.$prof->id.'/update') }}" method="POST">
   	<input type="hidden" name="_method" value="PUT">
     {{ csrf_field() }}
 
@@ -38,6 +38,13 @@
       <div class="col-sm-4">
         <input type="textarea" class="form-control" id="email" value= {{$prof->email}} required  name="email">
       </div>
+    </div>
+
+    <div class="form-group" id="askAdmin">
+      <label class="control-label col-sm-4" for="admin">Is this Professor an Admin?</label>
+      <div class="checkbox">
+        <label><input type="checkbox" id ="admin" name="admin" >Yes</label>
+        </div>
     </div>
 
     <div class="form-group">

@@ -39,11 +39,11 @@ Route::delete('/admin/categories/destroy/{category}','AdminController@destroyCat
 Route::post('/admin/categories/store','AdminController@storeCategory');
 
 // Admin - profs
-Route::get('/admin/prof/{prof}/edit','AdminController@editProf');
-Route::delete('/admin/prof/destroy/{prof}','AdminController@destroyProf');
-Route::put('/admin/prof/{prof}/update','AdminController@updateProf');
-Route::post('/admin/prof/store','AdminController@storeProf');
 Route::get('/admin/prof','AdminController@prof');
+Route::get('/admin/prof/{prof}/edit','AdminController@editProf');
+Route::put('/admin/prof/{prof}/update','AdminController@updateProf');
+Route::delete('/admin/prof/destroy/{prof}','AdminController@destroyProf');
+Route::post('/admin/prof/store','AdminController@storeProf');
 
 // Admin - Other
 Route::get('/admin/search','AdminController@search');
