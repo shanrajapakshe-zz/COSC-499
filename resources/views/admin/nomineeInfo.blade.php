@@ -67,17 +67,24 @@ $(document).ready(function() {
 </tbody>
 
     </table>
-    </div>
 
-{{-- adding a line space --}}
+    <div class= "col-sm-10" align="left">
+The 'Send Emails' button will send emails to everyone in the nominee list who have not already had an email sent to them.
+You must make sure your email content is ready because you cannot send 2 email messages to the nominees in this system.
+</div>
+
+   
 
 {{--using a new view to send email--}}
-<form class="form-horizontal" align='right' action="{{url ('/admin/nomineeInfo/emailTemplate') }}" method="GET">
+<form class="form-horizontal" action="{{url ('/admin/nomineeInfo/emailTemplate') }}" method="GET">
 	<div class="form-group">
 		<div class="col-sm-10">
 			 <button type="submit" class="btn btn-primary">Send Emails</button>
 		</div>
 	</div>
 </form>
+</div>
+
 
 @endsection
+
