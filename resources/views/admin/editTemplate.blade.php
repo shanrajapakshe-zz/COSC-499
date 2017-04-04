@@ -8,7 +8,7 @@
 	{{ csrf_field() }}
 
 	<h4>Edit Message: </h4>
-	</br>
+	</br>	
 
 	<div class="form-group">
 		<textarea maxlength="500" rows='8' cols='80'class="form-control" id="message" name = "message">{{$template->message}}</textarea>
