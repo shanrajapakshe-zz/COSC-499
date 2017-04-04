@@ -106,10 +106,10 @@
                                 1
                                 </td>
                                 <td>
-                                <input type="text" name='courseName0'  placeholder='Eg. COSC'  required class="form-control"/>
+                                <input type="text" name='courseName0'  placeholder='Eg. COSC' maxlength ='4' required pattern='[A-Z]{4}' class="form-control"/>
                                 </td>
                                 <td>
-                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control"/>
+                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" required pattern='[0-9]{3}' class="form-control"/>
                                 </td>
                                 <td>
                                 <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
@@ -121,7 +121,7 @@
                                 <input type="text" onkeyup="disableFinal(0)" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
                                 </td>
                                 <td>
-                                <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
+                                <input type="text" name='rank0' placeholder='Eg. 1' required pattern='[0-9]{1}' class="form-control"/>
                                 </td>
                             </tr>
                             <tr id='addr1'></tr>
