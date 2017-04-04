@@ -109,7 +109,7 @@
                                 <input type="text" name='courseName0'  placeholder='Eg. COSC' maxlength ='4' required pattern='[A-Z]{4}' class="form-control"/>
                                 </td>
                                 <td>
-                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" required pattern='[0-9]{3}' class="form-control"/>
+                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control"/>
                                 </td>
                                 <td>
                                 <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
