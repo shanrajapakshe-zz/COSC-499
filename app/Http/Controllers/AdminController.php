@@ -7,6 +7,7 @@ use App\Award;
 use App\User;
 use App\Course;
 use App\Category;
+use App\EmailTemplate;
 use Auth;
 
 use App\Http\Controllers\Controller;
@@ -193,8 +194,8 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
   public function emailTemplate(){
     if (Auth::user()->admin===1) {
-        $nominees = Nominee::all();
-        return view('admin.emailTemplate');
+        $template = EmailTemplate::find(1);
+        return view('admin.emailTemplate')->with('template', $template);
         }
       else {
           return view('pages.noAccess');
@@ -250,10 +251,26 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
       }
   }
 
-
   public function editTemplate() {
-        return view('admin.editTemplate');
+        $template = EmailTemplate::find(1);
+        return view('admin.editTemplate')->with('template', $template);
     }
+
+  public function updateTemplate(Request $request) {
+    if (Auth::user()->admin===1) {
+
+      $this->validate($request, [
+          'message'=>'required',
+          ]);
+      $template = EmailTemplate::find(1);
+      $template->message = $request->message;
+      $template->save();
+      return view('admin.templateChanged');
+    }
+    else {
+        return view('pages.noAccess');
+    }
+  }
 
   public function changeTemplate(){
         //setting $_Post variable

@@ -9,14 +9,9 @@
 
 </br>
 
-<textarea disabled maxlength="500" rows='8' cols='80'class="form-control" id="eMessage" name = "eMessage">
-<?php
-$view = View::make('admin.emailMessage');
-$contents =$view->render();
-echo $contents;
-?>
-
-</textarea>
+<div class="form-group">
+	<textarea disabled maxlength="500" rows='8' cols='80'class="form-control" id="message" name = "message">{{$template->message}}</textarea>
+</div>
 
 </br>
 	<div class="form-group">
@@ -31,7 +26,7 @@ echo $contents;
 		<div class="col-sm-10">
 			 <button type="submit" class="btn btn-primary">Edit Template Message</button>
 		</div>
-	</div>	
+	</div>
 </form>
 
 <form class="form-horizontal" action="{{url ('/admin/nomineeInfo') }}" method="GET">
@@ -39,7 +34,7 @@ echo $contents;
 		<div class="col-sm-10">
 			 <button type="submit" class="btn btn-primary">Return to Nominees Page</button>
 		</div>
-	</div>	
+	</div>
 </form>
 
 @endsection

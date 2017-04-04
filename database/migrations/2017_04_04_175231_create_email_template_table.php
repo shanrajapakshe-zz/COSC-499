@@ -13,10 +13,10 @@ class CreateEmailTemplateTable extends Migration
      */
     public function up()
     {
-        Schema::create('emailTemplate', function (Blueprint $table) {
+        Schema::create('emailtemplate', function (Blueprint $table) {
             // Primary Key
             $table->increments('id');
-            $table->string('text');
+            $table->string('message');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ class CreateEmailTemplateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emailTemplate');
+        Schema::dropIfExists('emailtemplate');
     }
 }
