@@ -32,14 +32,7 @@ class UsersTableSeeder extends Seeder
         //     'admin'=>1,
         // ]);
 
-        DB::table('users')->insert([
-            'id' => 46,
-            'firstName' => 'Hilda',
-            'lastName' => 'Patzer',
-            'email' =>'hilda.patzer@ubc.ca',
-            'password'=>bcrypt('password'),
-            'admin'=>1,
-        ]);
+
 
 
         DB::table('users')->insert([
@@ -429,5 +422,21 @@ class UsersTableSeeder extends Seeder
             'admin'=>0,
         ]);
 
+        DB::table('users')->insert([
+            'id' => 44,
+            'firstName' => 'Hilda',
+            'lastName' => 'Patzer',
+            'email' =>'hilda.patzer@ubc.ca',
+            'password'=>bcrypt('password'),
+            'admin'=>1,
+
+            DB::table('users')->insert([
+                'id' => 45,
+                'firstName' => 'Hiroko',
+                'lastName' => 'Nakahara',
+                'email' =>'hiroko.nakahara@ubc.ca',
+                'password'=>bcrypt('password'),
+                'admin'=>0,
+            ]);
     }
 }
