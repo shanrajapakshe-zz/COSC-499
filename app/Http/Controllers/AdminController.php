@@ -235,13 +235,12 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         //sending email
 
         /*MESSAGES USING BLADE VIEW TEXT*/
+          $template = EmailTemplate::find(1);
           Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
               $message->to($email,$name)
                       ->subject('Formal Invitation to Unit 5 Award Ceremony');
            });
-
         };
-
       }
 
         return view('admin.emailSent')->with('nominees', $nominees);

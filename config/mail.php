@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'sendmail'),
 
     /*
     |--------------------------------------------------------------------------
@@ -58,8 +58,8 @@ return [
     'from' => [
         // 'address' => 'Test@example.com'
         // 'name' => 'Hello'
-        'address' => 'UBCONomination@gmail.com',
-        'name' => 'UBCO',
+        'address' => 'bowen.hui@ubc.ca',
+        'name' => 'Bowen',
     ],
 
     /*
