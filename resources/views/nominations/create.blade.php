@@ -65,7 +65,7 @@
 
         <div class="form-group" >
 
-        <label for="">Note: Please enter Final or predicted grade. If one field is not cleared, the other will be disabled</label>  
+        <label for="">Note: Please enter Final or predicted grade. If one field is not cleared, the other will be disabled</label>
 
         </div >
 
@@ -132,12 +132,14 @@
             <a id="add_row" class="btn btn-default pull-left" title="Max 6">Add Course </a><a id='delete_row' class="btn btn-default pull-left">Delete Course</a>
         </div>
 
-        <div class="form-group">
+        <div id='normalDis'>
+        <div class="form-group" >
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8"> {{-- has been set to 1550 as 50 char were needed while adding seperation for concatination --}}
             <textarea maxlength="1550" rows='8' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
           </div>
         </div>
+      </div>
                 <div class="form-group" hidden="true"> {{-- the following is a placeholder when we concatanate discription and distinguished discription--}}
                 <div class="col-sm-8">
                     <textarea maxlength="1550" class="form-control" id="disGradNomDis" name="disGradNomDis"></textarea>
@@ -172,8 +174,9 @@
   <script>
   window.onload = function(){
   // your code here
-  $(confirmGradNom).hide()
-  $(askGrad).hide()
+  $(askGrad).hide();
+  $(confirmGradNom).hide();
+
 };
   //function for disableing one or the other estimated grade or final grade
 
@@ -231,7 +234,6 @@ function disableFinal(i) {
 
 // only runs when doc is loaded and ready
 $(document).ready(function(){
-
     // for hover option put its <a title="string"> in tag and it will show in hover
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -240,20 +242,23 @@ $(document).ready(function(){
     if ( (($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1 )) &&
     !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
       $(askGrad).show()
-    } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student distinguished")>-1)) {
-      //hide if distinguish grad
-      $(askGrad).hide()
 
+            document.getElementById('description').placeholder='Enter Description';
+    } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
+      //hide if distinguish grad
+      document.getElementById('description').placeholder='Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  ';
+
+      $(askGrad).hide();
     }
     else {
       // hide if not grad
-      $(confirmGradNom).hide()
-      $(askGrad).hide()
-      $(checkForDis).prop('checked', false)
+
+      document.getElementById('description').placeholder='Enter Description';
+      $(confirmGradNom).hide();
+      $(askGrad).hide();
+      $(checkForDis).prop('checked', false);
     }
   })
-
-
 });
 
 // adding both text field if text box checked
@@ -262,7 +267,7 @@ if (document.getElementById('checkForDis').checked) {
   $('#disGradNomDis').val($('#description').val()+ ' Distinguished Graduate Award Discription: ' +
                                $('#gradDescription').val());
 }
-//alert(document.getElementById('disGradNomDis').value);
+
 };
 
   </script>
