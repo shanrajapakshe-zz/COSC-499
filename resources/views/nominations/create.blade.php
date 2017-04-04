@@ -65,7 +65,7 @@
 
         <div class="form-group" >
 
-        <label for="">Note: Please enter Final or predicted grade. If one field is not cleared, the other will be disabled</label>  
+        <label for="">Note: Please enter Final or predicted grade. If one field is not cleared, the other will be disabled</label>
 
         </div >
 
@@ -154,7 +154,7 @@
             </div>
 
             <div class="form-group">
-              <label class="control-label col-sm-10" >This student will be nominated for the distinguished graduating student award as well</label>
+              <label class="control-label col-sm-10" >This student will be nominated for the distinguished graduating student award</label>
             </div>
 
         </div>
@@ -223,8 +223,7 @@ function disableFinal(i) {
     if ($input.prop('checked')) $(className).show();
     else {
          $(className).hide();
-     $(confirmGradNom).hide() ;
-
+         $(confirmGradNom).hide();
       }
 };
 
@@ -240,10 +239,12 @@ $(document).ready(function(){
     if ( (($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1 )) &&
     !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
       $(askGrad).show()
-    } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student distinguished")>-1)) {
+    } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
       //hide if distinguish grad
       $(askGrad).hide()
 
+      // show destinguised grad description
+      $(confirmGradNom).show()
     }
     else {
       // hide if not grad
@@ -265,7 +266,17 @@ if (document.getElementById('checkForDis').checked) {
 //alert(document.getElementById('disGradNomDis').value);
 };
 
-  </script>
+
+// Listener for choosing distinguished graduating student from dropdown - shows the additional text box for distinguished graduating student
+document.getElementById('award').addEventListener('change',function(){
+  console.log($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished"));
+  if (($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
+    // console.log('in loop');
+    $(confirmGradNom).show()
+  }
+});
+
+</script>
 
 </body>
 @endsection
