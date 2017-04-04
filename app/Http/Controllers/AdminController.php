@@ -7,6 +7,7 @@ use App\Award;
 use App\User;
 use App\Course;
 use App\Category;
+use App\EmailTemplate;
 use Auth;
 
 use App\Http\Controllers\Controller;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Mail;
 
-ini_set('max_execution_time', 120);
+ini_set('max_execution_time', 240);
 
 class AdminController extends Controller {
 
@@ -175,13 +176,26 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
           return view('pages.noAccess');
       }
     }
+
+    public function destroyNominee($id) {
+      if (Auth::user()->admin===1) {
+        $nominee = Nominee::find($id)->delete();
+
+        $nominees = Nominee::all();
+        return view('admin.nomineeInfo')->with('nominees', $nominees);
+        }
+      else {
+          return view('pages.noAccess');
+      }
+
+    }
 /*--------------------------------------------------------------------------*/
 /*BRANDON STUFF*/
 
   public function emailTemplate(){
     if (Auth::user()->admin===1) {
-        $nominees = Nominee::all();
-        return view('admin.emailTemplate');
+        $template = EmailTemplate::find(1);
+        return view('admin.emailTemplate')->with('template', $template);
         }
       else {
           return view('pages.noAccess');
@@ -202,11 +216,11 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
         foreach ($nominees as $nominee) {
 
-          // only send emails to nominees with a valid email address format
+          // only send emails to nominees with a valid email address format, skip to next nominee if not valid
           if (!filter_var($nominee->email, FILTER_VALIDATE_EMAIL)){
             continue;
           }
-        
+
           // only send email to nominees who havent gotten an email yet
         if ($nominee->emailSent === 0){
 
@@ -237,10 +251,26 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
       }
   }
 
-
   public function editTemplate() {
-        return view('admin.editTemplate');
+        $template = EmailTemplate::find(1);
+        return view('admin.editTemplate')->with('template', $template);
     }
+
+  public function updateTemplate(Request $request) {
+    if (Auth::user()->admin===1) {
+
+      $this->validate($request, [
+          'message'=>'required',
+          ]);
+      $template = EmailTemplate::find(1);
+      $template->message = $request->message;
+      $template->save();
+      return view('admin.templateChanged');
+    }
+    else {
+        return view('pages.noAccess');
+    }
+  }
 
   public function changeTemplate(){
         //setting $_Post variable
@@ -406,13 +436,19 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         $prof->firstName = $request->firstName;
         $prof->lastName = $request->lastName;
         $prof->email = $request->email;
+        if ($request->admin === 'on') {
+          $prof->admin = 1;
+        }
+        else {
+          $prof->admin = 0;
+        }
         $prof->save();
 
         // Session::flash('message', 'Successfully updated award!');
         // return redirect()->route('award.report');
         $profs = User::all();
         return view('admin.prof')->with('profs', $profs);
-        }
+      }
       else {
           return view('pages.noAccess');
       }

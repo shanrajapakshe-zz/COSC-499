@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NomineeTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(EmailTemplateTableSeeder::class);
     }
 }

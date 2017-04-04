@@ -39,11 +39,11 @@ Route::delete('/admin/categories/destroy/{category}','AdminController@destroyCat
 Route::post('/admin/categories/store','AdminController@storeCategory');
 
 // Admin - profs
-Route::get('/admin/prof/{prof}/edit','AdminController@editProf');
-Route::delete('/admin/prof/destroy/{prof}','AdminController@destroyProf');
-Route::put('/admin/prof/{prof}/update','AdminController@updateProf');
-Route::post('/admin/prof/store','AdminController@storeProf');
 Route::get('/admin/prof','AdminController@prof');
+Route::get('/admin/prof/{prof}/edit','AdminController@editProf');
+Route::put('/admin/prof/{prof}/update','AdminController@updateProf');
+Route::delete('/admin/prof/destroy/{prof}','AdminController@destroyProf');
+Route::post('/admin/prof/store','AdminController@storeProf');
 
 // Admin - Other
 Route::get('/admin/search','AdminController@search');
@@ -53,12 +53,18 @@ Route::get('/admin/nominations', 'AdminController@nominations');
 Route::get('/admin/nomineeInfo', 'AdminController@nomineeInfo');
 Route::get('/admin/nomineeInfo/{nominee}/edit','AdminController@editEmail');
 Route::put('/admin/nomineeInfo/{nominee}/update','AdminController@updateEmail');
+Route::delete('/admin/nomineeInfo/destroy/{nominee}','AdminController@destroyNominee');
+
 Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
 Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
-Route::get('admin/nomineeInfo/emailTemplate', 'AdminController@emailTemplate');
-Route::post('admin/nomineeInfo/emailSent','AdminController@sendEmail');
-Route::get('admin/nomineeInfo/editTemplate', 'AdminController@editTemplate');
-Route::post('admin/nomineeInfo/templateChanged','AdminController@changeTemplate');
+
+// Sending Emails
+Route::get('/admin/nomineeInfo/emailTemplate', 'AdminController@emailTemplate');
+Route::get('/admin/nomineeInfo/editTemplate', 'AdminController@editTemplate');
+Route::put('/admin/nomineeInfo/updateTemplate', 'AdminController@updateTemplate');
+
+Route::post('/admin/nomineeInfo/emailSent','AdminController@sendEmail');
+Route::post('/admin/nomineeInfo/templateChanged','AdminController@changeTemplate');
 
 // Other pages
 Route::get('/about', 'PageController@getAbout');
@@ -68,4 +74,4 @@ Route::get('/', 'PageController@getIndex' );
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');

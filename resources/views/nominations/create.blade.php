@@ -106,10 +106,10 @@
                                 1
                                 </td>
                                 <td>
-                                <input type="text" name='courseName0'  placeholder='Eg. COSC'  required class="form-control"/>
+                                <input type="text" name='courseName0'  placeholder='Eg. COSC' maxlength ='4' required pattern='[A-Z]{4}' class="form-control"/>
                                 </td>
                                 <td>
-                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control"/>
+                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" required pattern='[0-9]{3}' class="form-control"/>
                                 </td>
                                 <td>
                                 <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control"/>
@@ -121,7 +121,7 @@
                                 <input type="text" onkeyup="disableFinal(0)" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
                                 </td>
                                 <td>
-                                <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
+                                <input type="text" name='rank0' placeholder='Eg. 1' required pattern='[0-9]{1}' class="form-control"/>
                                 </td>
                             </tr>
                             <tr id='addr1'></tr>
@@ -156,7 +156,7 @@
             </div>
 
             <div class="form-group">
-              <label class="control-label col-sm-10" >This student will be nominated for the distinguished graduating student award as well</label>
+              <label class="control-label col-sm-10" >This student will be nominated for the distinguished graduating student award</label>
             </div>
 
         </div>
@@ -226,8 +226,7 @@ function disableFinal(i) {
     if ($input.prop('checked')) $(className).show();
     else {
          $(className).hide();
-     $(confirmGradNom).hide() ;
-
+         $(confirmGradNom).hide();
       }
 };
 
@@ -243,12 +242,18 @@ $(document).ready(function(){
     !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
       $(askGrad).show()
 
+
             document.getElementById('description').placeholder='Enter Description';
+
     } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
       //hide if distinguish grad
       document.getElementById('description').placeholder='Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  ';
 
+
+      $(confirmGradNom).hide();
       $(askGrad).hide();
+      $(checkForDis).prop('checked', false);
+
     }
     else {
       // hide if not grad
@@ -270,7 +275,17 @@ if (document.getElementById('checkForDis').checked) {
 
 };
 
-  </script>
+
+// Listener for choosing distinguished graduating student from dropdown - shows the additional text box for distinguished graduating student
+document.getElementById('award').addEventListener('change',function(){
+  console.log($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished"));
+  if (($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
+    // console.log('in loop');
+    $(confirmGradNom).show()
+  }
+});
+
+</script>
 
 </body>
 @endsection

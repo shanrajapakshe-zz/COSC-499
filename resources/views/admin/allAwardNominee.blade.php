@@ -25,7 +25,7 @@
       </thead>
   <tbody>
       <tr>@foreach ($studentForAward as $student)
-      <td>{{$student-> firstName }} </td>
+      <td>{{$student-> firstName }} {{$student-> lastName }}</td>
       <td>{{$student-> studentNumber }} </td>
                     @foreach($uniqueCourse as $uCourse )
                                       <td>@php ($grade = 'N/A')
