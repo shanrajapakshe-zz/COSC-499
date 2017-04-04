@@ -106,7 +106,7 @@
                                 1
                                 </td>
                                 <td>
-                                <input type="text" name='courseName0'  placeholder='Eg. COSC'  required class="form-control"/>
+                                <input type="text" name='courseName0'  placeholder='Eg. COSC' maxlength ='4' required pattern='[A-Z]{4}' class="form-control"/>
                                 </td>
                                 <td>
                                 <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control"/>
@@ -121,7 +121,7 @@
                                 <input type="text" onkeyup="disableFinal(0)" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
                                 </td>
                                 <td>
-                                <input type="text" name='rank0' placeholder='Eg. 1' class="form-control"/>
+                                <input type="text" name='rank0' placeholder='Eg. 1' required pattern='[0-9]{1}' class="form-control"/>
                                 </td>
                             </tr>
                             <tr id='addr1'></tr>
@@ -132,12 +132,14 @@
             <a id="add_row" class="btn btn-default pull-left" title="Max 6">Add Course </a><a id='delete_row' class="btn btn-default pull-left">Delete Course</a>
         </div>
 
-        <div class="form-group">
+        <div id='normalDis'>
+        <div class="form-group" >
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8"> {{-- has been set to 1550 as 50 char were needed while adding seperation for concatination --}}
             <textarea maxlength="1550" rows='8' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description"></textarea>
           </div>
         </div>
+      </div>
                 <div class="form-group" hidden="true"> {{-- the following is a placeholder when we concatanate discription and distinguished discription--}}
                 <div class="col-sm-8">
                     <textarea maxlength="1550" class="form-control" id="disGradNomDis" name="disGradNomDis"></textarea>
@@ -172,8 +174,9 @@
   <script>
   window.onload = function(){
   // your code here
-  $(confirmGradNom).hide()
-  $(askGrad).hide()
+  $(askGrad).hide();
+  $(confirmGradNom).hide();
+
 };
   //function for disableing one or the other estimated grade or final grade
 
@@ -230,7 +233,6 @@ function disableFinal(i) {
 
 // only runs when doc is loaded and ready
 $(document).ready(function(){
-
     // for hover option put its <a title="string"> in tag and it will show in hover
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -239,22 +241,29 @@ $(document).ready(function(){
     if ( (($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1 )) &&
     !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
       $(askGrad).show()
+
+
+            document.getElementById('description').placeholder='Enter Description';
+
     } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
       //hide if distinguish grad
-      $(askGrad).hide()
+      document.getElementById('description').placeholder='Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  ';
 
-      // show destinguised grad description
-      $(confirmGradNom).show()
+
+      $(confirmGradNom).hide();
+      $(askGrad).hide();
+      $(checkForDis).prop('checked', false);
+
     }
     else {
       // hide if not grad
-      $(confirmGradNom).hide()
-      $(askGrad).hide()
-      $(checkForDis).prop('checked', false)
+
+      document.getElementById('description').placeholder='Enter Description';
+      $(confirmGradNom).hide();
+      $(askGrad).hide();
+      $(checkForDis).prop('checked', false);
     }
   })
-
-
 });
 
 // adding both text field if text box checked
@@ -263,7 +272,7 @@ if (document.getElementById('checkForDis').checked) {
   $('#disGradNomDis').val($('#description').val()+ ' Distinguished Graduate Award Discription: ' +
                                $('#gradDescription').val());
 }
-//alert(document.getElementById('disGradNomDis').value);
+
 };
 
 
