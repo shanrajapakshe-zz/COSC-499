@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Nominee extends Model
 {
@@ -11,11 +10,9 @@ class Nominee extends Model
     protected $table = 'nominee';
     protected $primaryKey = 'studentNumber';
 
-    // allow for soft deletes
-    use SoftDeletes;
     protected $dates = ['deleted_at'];
 
     public function nomination() {
-		return $this->hasMany('App\Nomination', 'studentNumber','studentNumber');	
+		return $this->hasMany('App\Nomination', 'studentNumber','studentNumber');
 	}
 }

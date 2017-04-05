@@ -14,10 +14,9 @@ class CreateAwardTable extends Migration
     public function up() {
         Schema::create('award', function (Blueprint $table) {
             // Primary Key
-            $table->increments('id');            
+            $table->increments('id');
             $table->string('name');
             $table->timestamps();
-            $table->softDeletes();
 
             // Foreign Keys
             $table->integer('category_id');
