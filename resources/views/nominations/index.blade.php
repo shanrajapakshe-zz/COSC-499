@@ -15,7 +15,7 @@
 				<th>Description</th>
 				<th>Course Grades</th>
 				<th>Remove</th>
-				<th>Edit</th>
+				  {{--<th>Edit</th>--}}
 			</tr>
     	</thead>
 		<tbody>
@@ -49,7 +49,7 @@
 	                </div>
 	              </form>
 	            </td>
-	            <td>
+	           {{--   <td>
 	              <form class="form-horizontal" action="{{url ('/nominations/'.$nomination->id.'/edit') }}" method="GET">
 	                {{ csrf_field() }}
 	                <div class="form-group">
@@ -58,7 +58,7 @@
 	                  </div>
 	                </div>
 	              </form>
-	            </td>
+	            </td>--}}
 		    </tr>
 		    @endif
 	        @endforeach
