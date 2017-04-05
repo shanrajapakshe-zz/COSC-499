@@ -226,15 +226,21 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
           $nominee->save();
 
           $name = $nominee->firstName." ".$nominee->lastName;
+          $studentNumber = $nominee->studentNumber;
           $email = $nominee->email;
-          $data=['email'=> '$email', 'name'=>'$name'];
 
-        /*Message sent using data from $templateMessage, pulled straight from database*/
-        Mail::raw($templateMessage,function($message)use($email,$name){
-              $message->to($email,$name)
-                      ->subject('Formal Invitation to Unit 5 Award Ceremony');
- 
+
+
+         $data = array( 'email' => $email, 'name' => $name, 'templateMessage' =>$templateMessage, 'studentNumber' =>$studentNumber);
+
+         Mail::send( 'email.invite', $data, function( $message ) use ($data)
+         {
+         $message->to( $data['email'] )->subject( 'Formal Invitation to Unit 5 Award Ceremony!' );
          });
+         $nominee->emailSent = 1;
+         $nominee->save();
+
+
         };
       }
 
