@@ -205,15 +205,11 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
   public function sendEmail(){
     if (Auth::user()->admin===1) {
         $nominees = Nominee::all();
-
-        /*Code fragments for ideas on possibly looping through nominees faster*/
-        // $name = array();
-        // $email = array();
-        // array_push($name,$nominee->firstName." ".$nominee->lastName);
-        // array_push($email,$nominee->email);
+        //find message from database, pull only message from row
+        $templateRow = EmailTemplate::find(1);
+        $templateMessage = $templateRow['message'];
 
         //loop through each nominee & set their name and emails as variables
-
         foreach ($nominees as $nominee) {
 
           // only send emails to nominees with a valid email address format, skip to next nominee if not valid
@@ -232,14 +228,13 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
           $name = $nominee->firstName." ".$nominee->lastName;
           $email = $nominee->email;
           $data=['email'=> '$email', 'name'=>'$name'];
-        //sending email
 
-        /*MESSAGES USING BLADE VIEW TEXT*/
-          $template = EmailTemplate::find(1);
-          Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
+        /*Message sent using data from $templateMessage, pulled straight from database*/
+        Mail::raw($templateMessage,function($message)use($email,$name){
               $message->to($email,$name)
                       ->subject('Formal Invitation to Unit 5 Award Ceremony');
-           });
+ 
+         });
         };
       }
 
@@ -269,18 +264,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     else {
         return view('pages.noAccess');
     }
-  }
-
-  public function changeTemplate(){
-        //setting $_Post variable
-        $a = $_POST['editedMessage'];
-        //specifying where file is
-        $path = resource_path('views\admin\emailMessage.blade.php');
-        //emptying the file
-        $f = fopen($path,'w+');
-        //writing into file new content
-        file_put_contents($path, $a);
-        return view('admin.templateChanged');
   }
 
 /*----------------------*/
