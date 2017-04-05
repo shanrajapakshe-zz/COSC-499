@@ -251,9 +251,10 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
     if (Auth::user()->admin===1) {    
         $template = EmailTemplate::find(1);
         return view('admin.editTemplate')->with('template', $template);
+      }
     else {
         return view('pages.noAccess');
-    }        
+         }        
     }
 
   public function updateTemplate(Request $request) {
