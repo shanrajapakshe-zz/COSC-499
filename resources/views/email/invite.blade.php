@@ -13,7 +13,7 @@
 <!-- Your text between these lines ---------------------------------------->
 <p>Hello, {{$name}} ({{$studentNumber}})</p>
 
-<p >{{$templateMessage}}</p>
+<p>{!! nl2br($templateMessage) !!}</p>
 
   <!-- Your text between these lines ---------------------------------------->
 </tr> </tbody></table>  </td>   </tr>       </tbody></table>     </td>    </tr>  </tbody></table>    </td>    </tr>
