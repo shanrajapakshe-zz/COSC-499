@@ -16,7 +16,7 @@ class CreateEmailTemplateTable extends Migration
         Schema::create('emailtemplate', function (Blueprint $table) {
             // Primary Key
             $table->increments('id');
-            $table->string('message');
+            $table->string('message', 3200);
             $table->timestamps();
             $table->softDeletes();
         });
