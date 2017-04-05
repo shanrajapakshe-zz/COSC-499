@@ -121,7 +121,7 @@
                                 <input type="text" onkeyup="disableFinal(0)" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control"/>
                                 </td>
                                 <td>
-                                <input type="text" name='rank0' placeholder='Eg. 1' required pattern='[0-9]{1}' class="form-control"/>
+                                <input type="text" name='rank0' placeholder='Eg. 1'  pattern='[0-9]{1}' class="form-control"/>
                                 </td>
                             </tr>
                             <tr id='addr1'></tr>
