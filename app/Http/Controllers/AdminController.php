@@ -190,7 +190,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 
     }
 /*--------------------------------------------------------------------------*/
-/*BRANDON STUFF*/
+/*Email Related Functions*/
 
   public function emailTemplate(){
     if (Auth::user()->admin===1) {
@@ -220,16 +220,10 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
           // only send email to nominees who havent gotten an email yet
         if ($nominee->emailSent === 0){
 
-         //change value of email Sent to 1(True);
-
-          $nominee->emailSent = 1;
-          $nominee->save();
 
           $name = $nominee->firstName." ".$nominee->lastName;
           $studentNumber = $nominee->studentNumber;
           $email = $nominee->email;
-
-
 
          $data = array( 'email' => $email, 'name' => $name, 'templateMessage' =>$templateMessage, 'studentNumber' =>$studentNumber);
 
@@ -237,6 +231,8 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
          {
          $message->to( $data['email'] )->subject( 'Formal Invitation to Unit 5 Award Ceremony!' );
          });
+
+         //change value of email Sent to 1(True);         
          $nominee->emailSent = 1;
          $nominee->save();
 
@@ -252,8 +248,13 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
   }
 
   public function editTemplate() {
+    if (Auth::user()->admin===1) {    
         $template = EmailTemplate::find(1);
         return view('admin.editTemplate')->with('template', $template);
+      }
+    else {
+        return view('pages.noAccess');
+         }        
     }
 
   public function updateTemplate(Request $request) {

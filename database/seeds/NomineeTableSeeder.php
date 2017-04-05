@@ -14,13 +14,13 @@ class NomineeTableSeeder extends Seeder
         //
         DB::table('nominee')->delete();
 
-        DB::table('nominee')->insert([
-            'studentNumber' => 34125120,
-            'firstName' => 'John',
-            'lastName' => 'Bon Jovi',
-            'email'=>'shan.rajapakshe@gmail.com',
-        ]);
-        
+        // DB::table('nominee')->insert([
+        //     'studentNumber' => 34125120,
+        //     'firstName' => 'John',
+        //     'lastName' => 'Bon Jovi',
+        //     'email'=>'shan.rajapakshe@gmail.com',
+        // ]);
+
         //
         // DB::table('nominee')->insert([
         //     'studentNumber' => 66521148,

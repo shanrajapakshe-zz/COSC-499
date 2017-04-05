@@ -23,7 +23,6 @@ class CreateNomineesTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->tinyInteger('emailSent')->default(0);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

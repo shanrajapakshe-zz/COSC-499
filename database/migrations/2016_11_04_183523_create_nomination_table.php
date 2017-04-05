@@ -17,7 +17,6 @@ class CreateNominationTable extends Migration
             $table->increments('id');
             $table->string('description',3200)->nullable();
             $table->timestamps();
-            $table->softDeletes();
 
             // Foreign Keys
             $table->string('award_id');

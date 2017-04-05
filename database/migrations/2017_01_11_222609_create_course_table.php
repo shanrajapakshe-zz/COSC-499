@@ -22,7 +22,6 @@ class CreateCourseTable extends Migration
             $table->integer('estimatedGrade')->nullable();
             $table->integer('rank')->nullable();
             $table->timestamps();
-            $table->softDeletes();
 
             // Foreign Keys
             $table->integer('nomination_id')->default(1);
@@ -32,7 +31,7 @@ class CreateCourseTable extends Migration
         });
     }
 
-    /**     
+    /**
      * Reverse the migrations.
      *
      * @return void

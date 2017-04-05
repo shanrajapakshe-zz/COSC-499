@@ -3,15 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Award extends Model
 {
     // sets up this class to refer to the table nominations, allowing us to access it via eloquent
     protected $table = 'award';
 
-    // allow for soft deletes
-    use SoftDeletes;
     protected $dates = ['deleted_at'];
 
     public function nomination() {
