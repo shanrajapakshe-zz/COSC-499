@@ -205,15 +205,10 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
   public function sendEmail(){
     if (Auth::user()->admin===1) {
         $nominees = Nominee::all();
-
-        /*Code fragments for ideas on possibly looping through nominees faster*/
-        // $name = array();
-        // $email = array();
-        // array_push($name,$nominee->firstName." ".$nominee->lastName);
-        // array_push($email,$nominee->email);
+        $templateRow = EmailTemplate::find(1);
+        $templateMessage = $templateRow['message'];
 
         //loop through each nominee & set their name and emails as variables
-
         foreach ($nominees as $nominee) {
 
           // only send emails to nominees with a valid email address format, skip to next nominee if not valid
@@ -235,11 +230,17 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
         //sending email
 
         /*MESSAGES USING BLADE VIEW TEXT*/
-          $template = EmailTemplate::find(1);
-          Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
-              $message->to($email,$name)
-                      ->subject('Formal Invitation to Unit 5 Award Ceremony');
-           });
+          // $template = EmailTemplate::find(1);
+          // Mail::send(['text'=>'admin.emailMessage'],$data,function($message) use ($email,$name){
+          //     $message->to($email,$name)
+          //             ->subject('Formal Invitation to Unit 5 Award Ceremony');
+          //  });
+
+        Mail::raw($templateMessage,function($message)use($email,$name){
+             $message->to($email,$name)
+                     ->subject('Formal Invitation to Unit 5 Award Ceremony');
+ 
+         });        
         };
       }
 
