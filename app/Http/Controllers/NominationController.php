@@ -56,6 +56,26 @@ class NominationController extends Controller
         // $course->nomination_id = $request->
         return $course;
     }
+
+    private function parseCategoryAndAwardName($request, $id) {
+      $full_award = $request->award;
+      $award_name = "";
+      $category = "";
+
+      // need list of all categories
+      $categories = Category::all();
+
+      foreach ($categories as $c) {
+        if (strpos($full_award, $c->name)) {
+          $offset = -1 *(strlen($c->name)+ 1) ;
+          $award_name = substr($full_award, 0, $offset);
+          $category = $c->id;
+          break;
+        }
+      }
+      return array($category, $award_name);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -97,8 +117,6 @@ class NominationController extends Controller
             'studentFirstName'=>'required',
             'studentLastName'=>'required',
             ]);
-
-
 
         if (isset($request->checkForDis)) {// checks if the checkbox is checked and creates a nom for Distinguished
           $nomination = new Nomination;
@@ -253,15 +271,19 @@ class NominationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        $categoryAndAwardName = NominationController::parseCategoryAndAwardName($request, $id);
+        $category = $categoryAndAwardName[0];
+        $award_name = $categoryAndAwardName[1];
 
         $nomination = Nomination::find($id);
 
         $award = new Award;
-        $award = Award::where('name',$request->award)->get()->first();
+
+        $award = Award::where('category_id',$category);
+        $award = $award->where('name', $award_name)->get()->first();
+
         $nomination->award_id = $award->id;
-
         $nomination->studentNumber = $request->studentNumber;
-
         // find the nominee, if they exist, and edit them
         $nominee = Nominee::where('studentNumber',$request->studentNumber)->get()->first();
         if ($nominee =="") {
@@ -316,4 +338,6 @@ class NominationController extends Controller
         $courses = Course::all();
         return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
     }
+
+
 }

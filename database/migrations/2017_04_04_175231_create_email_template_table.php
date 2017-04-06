@@ -18,7 +18,6 @@ class CreateEmailTemplateTable extends Migration
             $table->increments('id');
             $table->string('message', 3200);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

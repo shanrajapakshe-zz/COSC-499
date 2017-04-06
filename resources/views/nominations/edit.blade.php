@@ -13,7 +13,7 @@
           <div class="col-sm-8">
             <select class="form-control" id="award" name="award">
               @foreach ($awards as $award)
-                <option>{{$award->name}}</option>
+                <option>{{$award->name}} {{$award->category['name']}}</option>
               @endforeach
             </select>
           </div>
@@ -45,7 +45,6 @@
           <div class="checkbox" >
             <label><input type="checkbox" name="askGrad" onclick="toggle(confirmGradNom, $(this))">Yes</label>
             </div>
-
         </div >
 
 
@@ -133,7 +132,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="description">Description:</label>
           <div class="col-sm-8">
-            <input type="textarea" rows='4' cols='80'class="form-control" id="description" placeholder="Enter Description" name = "description" value={{ $nomination->description }}>
+						<textarea maxlength="1600" rows='8' cols='80' id = "description" name="description">{{ $nomination->description }}</textarea>
           </div>
         </div>
 
@@ -190,34 +189,73 @@
 
 
 // only runs when doc is loaded and ready
-$(document).ready(function(){
+// $(document).ready(function(){
+//
+//   // for hover option put its <a title="string"> in tag and it will show in hover
+//     $('[data-toggle="tooltip"]').tooltip();
+//
+//     // to check if a grad award has beeen selected
+//     document.getElementById('award').addEventListener('change',function(){
+//     if ( ($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1)) {
+//       //show
+//     $(askGrad).show()
+//
+//     } else if (($('#award option:selected').text().toLowerCase().indexOf("distinguished")>-1)) {
+//       //hide if distinguish grad
+//       $(askGrad).hide()
+//
+//     }
+//     else {
+//       // hide if not grad
+//       $(askGrad).hide()
+//     }
+//   })
+// });
 
-  // for hover option put its <a title="string"> in tag and it will show in hover
+$(document).ready(function(){
+    // for hover option put its <a title="string"> in tag and it will show in hover
     $('[data-toggle="tooltip"]').tooltip();
 
     // to check if a grad award has beeen selected
     document.getElementById('award').addEventListener('change',function(){
-    if ( ($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1)) {
-      //show
-    $(askGrad).show()
+    if ( (($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1 )) &&
+    !($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
+      $(askGrad).show()
 
-    } else if (($('#award option:selected').text().toLowerCase().indexOf("distinguished")>-1)) {
+
+            document.getElementById('description').placeholder='Enter Description';
+
+    } else if (($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
       //hide if distinguish grad
-      $(askGrad).hide()
+      document.getElementById('description').placeholder='Please explain the reason for nominating this student for The distinguished graduating student award. The award in Unit 5 is given to a student who has: excelled academically as evidenced by their outstanding GPA, shown exceptional promise in research as evidenced by their contributions to published work and/or research recognition, has contributed service to the unit, usually in the form of teaching, and is a recognition of the student’s overall performance.  ';
+
+
+      $(confirmGradNom).hide();
+      $(askGrad).hide();
+      $(checkForDis).prop('checked', false);
 
     }
     else {
       // hide if not grad
-      $(askGrad).hide()
+
+      document.getElementById('description').placeholder='Enter Description';
+      $(confirmGradNom).hide();
+      $(askGrad).hide();
+      $(checkForDis).prop('checked', false);
     }
   })
-
-
 });
 
 
 
-
+// Listener for choosing distinguished graduating student from dropdown - shows the additional text box for distinguished graduating student
+document.getElementById('award').addEventListener('change',function(){
+  console.log($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished"));
+  if (($('#award option:selected').text().toLowerCase().indexOf("graduating student  distinguished")>-1)) {
+    // console.log('in loop');
+    $(confirmGradNom).show()
+  }
+});
 
 
 
