@@ -157,35 +157,41 @@ class NominationController extends Controller
       }
         $nomination = new Nomination;
         $award = new Award;
-        // obtain the right award from the id
-        $full_award = $request->award;
-        $award_name = "";
-        $category = "";
 
-        if (strpos($full_award,"Physics")) {
-            $award_name = substr($full_award, 0, -8);
-            $category = 1;
-        }
-        elseif (strpos($full_award,"Mathematics")) {
-            $award_name = substr($full_award, 0, -12);
-            $category = 2;
-        }
-        elseif (strpos($full_award,"Computer Science")) {
-            $award_name = substr($full_award, 0, -17);
-            $category = 3;
-        }
-        elseif (strpos($full_award,"Statistics/Data Science")) {
-            $award_name = substr($full_award, 0, -24);
-            $category = 4;
-        }
-        elseif (strpos($full_award,"Distinguished")) {
-            $award_name = substr($full_award, 0, -14);
-            $category = 5;
-        }
-        else {
-            $award_name = $full_award;
-            $category = 6;
-        }
+        // obtain the right award from the id
+        // $full_award = $request->award;
+        // $award_name = "";
+        // $category = "";
+        //
+        // if (strpos($full_award,"Physics")) {
+        //     $award_name = substr($full_award, 0, -8);
+        //     $category = 1;
+        // }
+        // elseif (strpos($full_award,"Mathematics")) {
+        //     $award_name = substr($full_award, 0, -12);
+        //     $category = 2;
+        // }
+        // elseif (strpos($full_award,"Computer Science")) {
+        //     $award_name = substr($full_award, 0, -17);
+        //     $category = 3;
+        // }
+        // elseif (strpos($full_award,"Statistics/Data Science")) {
+        //     $award_name = substr($full_award, 0, -24);
+        //     $category = 4;
+        // }
+        // elseif (strpos($full_award,"Distinguished")) {
+        //     $award_name = substr($full_award, 0, -14);
+        //     $category = 5;
+        // }
+        // else {
+        //     $award_name = $full_award;
+        //     $category = 6;
+        // }
+
+        $categoryAndAwardName = NominationController::parseCategoryAndAwardName($request, $id);
+        $category = $categoryAndAwardName[0];
+        $award_name = $categoryAndAwardName[1];
+
         $award = Award::where('category_id',$category);
         $award = $award->where('name', $award_name)->get()->first();
 
@@ -284,6 +290,7 @@ class NominationController extends Controller
 
         $nomination->award_id = $award->id;
         $nomination->studentNumber = $request->studentNumber;
+
         // find the nominee, if they exist, and edit them
         $nominee = Nominee::where('studentNumber',$request->studentNumber)->get()->first();
         if ($nominee =="") {
@@ -302,9 +309,6 @@ class NominationController extends Controller
         // saving each course
         $courses = $nomination->course;
         echo $request;
-        // for ($i = 0; $i <=count($courses)-1; $i++) {
-        //     echo $courses[$i];
-        // }
 
         for ($i = 0; $i <=5; $i++) {
             $courseName = 'courseName'.$i;

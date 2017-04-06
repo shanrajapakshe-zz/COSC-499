@@ -95,34 +95,19 @@
                                 </th>
                             </tr>
                         </thead>
-                        @foreach ($nomination->course as $course)
-                        <tbody>
-                            <tr id='addr0'>
-                                <td>
-																	<!-- Put something here! -->
-                                </td>
-                                <td>
-                                <input type="text" name='courseName0'  placeholder='Eg. COSC' class="form-control" value={{$course->courseName}}>
-                                </td>
-                                <td>
-                                <input type="text" name='courseNumber0' placeholder='Eg. 499' required name = "courseNumber0" class="form-control" value={{$course->courseNumber}}>
-                                </td>
-                                <td>
-                                <input type="text" name='sectionNumber0' placeholder='Eg. 001' required pattern='[0-9]{3}' class="form-control" value=00{{$course->sectionNumber}}>
-                                </td>
-                                <td title="This or predicted grade">
-                                <input type="text" name='finalGrade0' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" value={{$course->finalGrade}}>
-                                </td>
-                                <td title="This or final grade">
-                                <input type="text" name='estimatedGrade0' placeholder='Eg.90' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class="form-control" value={{$course->estimatedGrade}}>
-                                </td>
-                                <td>
-                                <input type="text" name='rank0' placeholder='Eg. 1' class="form-control" value={{$course->rank}}>
-                                </td>
-                            </tr>
-                            <tr id='addr1'></tr>
-                        </tbody>
-                        @endforeach
+												@for ($i = 0; $i < count($nomination->course); $i++)
+												<tbody>
+													<tr id= 'addr{{$i}}'>
+														<td>{{ $i+1 }}</td>
+														<td><input type="text" name='courseName{{$i}}'  class="form-control" value= {{$nomination->course[$i]->courseName}}></td>
+														<td><input type="text" name='courseNumber{{$i}}'  class="form-control" value= {{$nomination->course[$i]->courseNumber}}></td>
+														<td><input type="text" name='sectionNumber{{$i}}'  class="form-control" value= {{$nomination->course[$i]->sectionNumber	}}></td>
+														<td><input type="text" name='finalGrade{{$i}}'  class="form-control" value= {{$nomination->course[$i]->finalGrade	}}></td>
+														<td><input type="text" name='estimatedGrade{{$i}}'  class="form-control" value= {{$nomination->course[$i]->estimatedGrade	}}></td>
+														<td><input type="text" name='estimatedRank{{$i}}'  class="form-control" value= {{$nomination->course[$i]->estimatedRank	}}></td>
+													<tr id='addr{{$i}}'></tr>
+												</tbody>
+												@endfor
                     </table>
                 </div>
             </div>
@@ -148,25 +133,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
   window.onload = function(){
-  // your code here
 
   $(confirmGradNom).hide()
   $(askGrad).hide()
 };
 
   //function for adding and removing rows, limited to 6 rows total
-  var i=1;
+	var i = <?php echo json_encode(count($nomination->course), JSON_HEX_TAG); ?>;
+	console.log(i);
+
   $("#add_row").click(function(){
     if (i<6) {
 
-  $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
+	$('#tab_logic >tbody:last-child').append("<tr id='addr"+(i)+"'>"+ "<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
   +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNumber"+i
   +"' type='text' placeholder='Eg. 001' required pattern='[0-9]{3}'  class='form-control input-md'></td><td><input  name='finalGrade"+i
   +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
   +"' type='text' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
-  +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>");
-
-  $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+  +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>" +"</tr>");
   i++;}
   });
 
@@ -256,8 +240,6 @@ document.getElementById('award').addEventListener('change',function(){
     $(confirmGradNom).show()
   }
 });
-
-
 
 
   </script>
