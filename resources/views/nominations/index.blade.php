@@ -15,7 +15,7 @@
 				<th>Description</th>
 				<th>Course Grades</th>
 				<th>Remove</th>
-				  {{--<th>Edit</th>--}}
+				<th>Edit</th>
 			</tr>
     	</thead>
 		<tbody>
