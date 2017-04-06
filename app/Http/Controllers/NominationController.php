@@ -57,7 +57,7 @@ class NominationController extends Controller
         return $course;
     }
 
-    private function parseCategoryAndAwardName($request, $id) {
+    private function parseCategoryAndAwardName($request) {
       $full_award = $request->award;
       $award_name = "";
       $category = "";
@@ -158,37 +158,7 @@ class NominationController extends Controller
         $nomination = new Nomination;
         $award = new Award;
 
-        // obtain the right award from the id
-        // $full_award = $request->award;
-        // $award_name = "";
-        // $category = "";
-        //
-        // if (strpos($full_award,"Physics")) {
-        //     $award_name = substr($full_award, 0, -8);
-        //     $category = 1;
-        // }
-        // elseif (strpos($full_award,"Mathematics")) {
-        //     $award_name = substr($full_award, 0, -12);
-        //     $category = 2;
-        // }
-        // elseif (strpos($full_award,"Computer Science")) {
-        //     $award_name = substr($full_award, 0, -17);
-        //     $category = 3;
-        // }
-        // elseif (strpos($full_award,"Statistics/Data Science")) {
-        //     $award_name = substr($full_award, 0, -24);
-        //     $category = 4;
-        // }
-        // elseif (strpos($full_award,"Distinguished")) {
-        //     $award_name = substr($full_award, 0, -14);
-        //     $category = 5;
-        // }
-        // else {
-        //     $award_name = $full_award;
-        //     $category = 6;
-        // }
-
-        $categoryAndAwardName = NominationController::parseCategoryAndAwardName($request, $id);
+        $categoryAndAwardName = NominationController::parseCategoryAndAwardName($request);
         $category = $categoryAndAwardName[0];
         $award_name = $categoryAndAwardName[1];
 
@@ -277,7 +247,7 @@ class NominationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        $categoryAndAwardName = NominationController::parseCategoryAndAwardName($request, $id);
+        $categoryAndAwardName = NominationController::parseCategoryAndAwardName($request);
         $category = $categoryAndAwardName[0];
         $award_name = $categoryAndAwardName[1];
 
@@ -306,10 +276,13 @@ class NominationController extends Controller
         $nomination->user_id = Auth::user()->id;
         $nomination->save();
 
-        // saving each course
+        // delete all of the old courses associated with this nomination
         $courses = $nomination->course;
-        echo $request;
+        foreach ($courses as $course ) {
+          $c = Course::find($course->id)->delete();
+        }
 
+        // add in all of the courses given
         for ($i = 0; $i <=5; $i++) {
             $courseName = 'courseName'.$i;
             // check if courseName 'i' exists
@@ -336,12 +309,18 @@ class NominationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+
+        // delete all courses associated with this nomination as well
+        $nomination = Nomination::find($id);
+        $courses = $nomination->course;
+        foreach ($courses as $course ) {
+          $c = Course::find($course->id)->delete();
+        }
+
         $nomination = Nomination::find($id)->delete();
 
         $nominations = Nomination::all();
         $courses = Course::all();
         return view('nominations.index')->with('nominations', $nominations)->with('courses',$courses);
     }
-
-
 }
