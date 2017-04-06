@@ -6,14 +6,12 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class viewTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    USE WithoutMiddleware;
+
     public function testExample()
     {
       #	VIEW TESTS
+
       #	Dont add a / after localhost pages as it doesnt need it
       $this->visit('/about')
                ->see('Mathematics');
@@ -24,13 +22,13 @@ class viewTest extends TestCase
       $this->visit('/profile')
                ->see('Contact');
 
-      $this->visit('admin/award')
-               ->see('Second Year Physics');
+      // $this->visit('admin/award')
+      //          ->see('Second Year Physics');
 
-      $this->visit('nominations/index')
-               ->see('Award');
+      // $this->visit('nominations/index')
+      //          ->see('Award');
 
-      $this->visit('admin/prof')
-               ->see('Bowen');
+      // $this->visit('admin/prof')
+      //          ->see('Bowen');
     }
 }
