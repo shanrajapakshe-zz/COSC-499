@@ -206,8 +206,8 @@ function disableFinal(i) {
   $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
   +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNumber"+i
   +"' type='text' placeholder='Eg. 001' required pattern='[0-9]{3}'  class='form-control input-md'></td><td><input  name='finalGrade"+i
-  +"' type='text' onkeyup='disableEst("+i+")' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
-  +"' type='text' onkeyup='disableFinal("+i+")' placeholder='Eg. 98' pattern='[0-9]|[1-9][0-9]|[1][0-9][0-9]$' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
+  +"' type='text' onkeyup='disableEst("+i+")' placeholder='Eg. 98' pattern='[0-9]+(\.[0-9]{0,4})?%?' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
+  +"' type='text' onkeyup='disableFinal("+i+")' placeholder='Eg. 98' pattern='[0-9]+(\.[0-9]{0,4})?%?' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
   +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>");
 
   $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
