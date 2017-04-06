@@ -16,37 +16,23 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'firstName' => $faker->firstName,
+        'lastName' => $faker ->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
-$factory->define(App\Prof::class, function (Faker\Generator $faker){
+
+$factory->state(\App\User::class,'admin',function (\Faker\Generator $faker){
     return [
-    'firstName' =>$faker-> name,
-    'lastName'  =>$faker-> name,
-    'email'     => $faker->unique()->safeEmail,
-    ];
+        'admin' => 1,
+    ];    
 });
-$factory->define(App\Course::class, function (Faker\Generator $faker) {
+$factory->state(\App\User::class,'user',function (\Faker\Generator $faker){
     return [
-    'courseName'       =>$faker->  name,
-    'courseNumber'     =>$faker->  numberBetween($min = 100, $max = 500),
-    'sectionNumber'    =>$faker->  numberBetween($min = 0, $max = 3),
-    'semester'         =>$faker->  numberBetween($min = 1, $max = 2),
-    'finalGrade'       =>$faker->  numberBetween($min = 75, $max = 100),
-    'rank'             =>$faker->  unique()->numberBetween($min = 0, $max = 5),
-    ];
+        'admin' => 0,
+    ];    
 });
 
-$factory->define(App\nomination::class, function (Faker\Generator $faker) {
-    return [
-        'studentNumber' => $faker->randomNumber(8),
-        'studentFirstName' => $faker->name,
-        'studentLastName' => $faker->name,
-        'email' => $faker -> unique()->safeEmail,
-        'gradThisYear' => $faker -> numberBetween($min = 0, $max = 1),
-        'description' => $faker -> text(),
-    ];
-});
+

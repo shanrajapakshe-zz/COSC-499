@@ -9,7 +9,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
      */
     protected $baseUrl = 'http://localhost';
 
-    /**
+   /**
      * Creates the application.
      *
      * @return \Illuminate\Foundation\Application
@@ -18,8 +18,8 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+       $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
-        return $app;
+       return $app;
     }
 }
