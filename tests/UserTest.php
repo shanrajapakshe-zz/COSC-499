@@ -67,18 +67,37 @@ class AdminTest extends TestCase
     {
 
         $user = factory(App\User::class)->states('user')->make();
-        $nomination = factory(App\Nominee::class)->make();
+        $nominee = factory(App\Nominee::class)->make();
+        $course = factory(App\Course::class)->make();
+        $nomination = factory(App\Nomination::class)->make();
 
-        echo $nomination;
-
+        // Create Nomination
         $this   ->actingAs($user)
                 ->visit('/nominations/create')
-                ->select('First Year Physcis','award')
-                ->type($nomination['studentNumber'],'studentNumber')
-                ->type($nomination['firstName'],'studentFirstName')
-                ->type($nomination['lastName'],'studentLastName');
+                ->select('First Year Computer Science','award')
+                ->type($nominee['studentNumber'],'studentNumber')
+                ->type($nominee['firstName'],'studentFirstName')
+                ->type($nominee['lastName'],'studentLastName')
+                ->type($course['courseName'],'courseName0')
+                ->type($course['courseNumber'],'courseNumber0')
+                ->type('00'.$course['sectionNumber'],'sectionNumber0')
+                ->type($course['finalGrade'],'finalGrade0')
+                ->type($nomination['description'],'description')
+                ->press('Nominate!');
         
+        //check Nomination is there
+        //nominee's name would only be there if nomination was successful
+        $this   ->actingAs($user)
+                ->visit('/nominations/index')
+                ->See($nominee['firstName']); 
 
+
+        // Remove Nomination
+        //Nominee's name is not there anymore if remove is successful
+        $this   ->actingAs($user)
+                ->visit('/nominations/index')
+                ->press('Remove')
+                ->dontSee($nominee['firstName']);
     }
 
 }
