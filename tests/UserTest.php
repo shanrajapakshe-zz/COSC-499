@@ -11,9 +11,12 @@ class AdminTest extends TestCase
      *
      * @return void
      */
+
+    use DatabaseTransactions;
+
     public function testHomePageButtons()
     {
-    	$user = factory(App\User::class)->states('user')->create();
+    	$user = factory(App\User::class)->states('user')->make();
 
     	//Testing Homepage visited correctly
     	$this	->actingAs($user)
@@ -62,7 +65,20 @@ class AdminTest extends TestCase
     }
     public function testNomination()
     {
-        $this ->assertTrue(true);
+
+        $user = factory(App\User::class)->states('user')->make();
+        $nomination = factory(App\Nominee::class)->make();
+
+        echo $nomination;
+
+        $this   ->actingAs($user)
+                ->visit('/nominations/create')
+                ->select('First Year Physcis','award')
+                ->type($nomination['studentNumber'],'studentNumber')
+                ->type($nomination['firstName'],'studentFirstName')
+                ->type($nomination['lastName'],'studentLastName');
+        
+
     }
 
 }

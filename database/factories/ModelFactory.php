@@ -35,4 +35,16 @@ $factory->state(\App\User::class,'user',function (\Faker\Generator $faker){
     ];    
 });
 
+$factory->define(App\Nominee::class, function (Faker\Generator $faker) {
+    static $password;
 
+    return [
+        'studentNumber' => $faker->numberBetween($min = 10000000, $max = 99999999),
+        'firstName' => $faker->firstName,
+        'lastName' => $faker ->lastName,
+        'email' => $faker->unique()->safeEmail,
+        'emailSent' => 0,
+
+
+    ];
+});
