@@ -49,12 +49,22 @@ class AdminTest extends TestCase
     public function testEditAwards()
     {
     	$user = factory(App\User::class)->states('admin')->make();
+    	$awards = DB::table('Award')->pluck('name');
 
     	//check page access
     	$this	->actingAs($user)
     			->visit('/admin/award')
     			->seePageIs('/admin/award')
     			->see('Edit Awards');
+
+
+    	//check awards displayed properly
+    	foreach ($awards as $award ){
+    		$this	->actingAs($user)
+    				->visit('/admin/award')
+    				->seePageIs('/admin/award')
+    				->see($award);
+    	}
 
     	//Adding an award 
     	$this	->actingAs($user)
@@ -70,17 +80,27 @@ class AdminTest extends TestCase
     			->see('Physics First Year')
     			->press('Delete')
     			->dontSee('Physics First Year');
+
     }
 
     public function testEditCategories()
     {
     	$user = factory(App\User::class)->states('admin')->make();
+		$categories = DB::table('Category')->pluck('name');
 
     	//check page access
     	$this	->actingAs($user)
     			->visit('/admin/categories')
     			->seePageIs('/admin/categories')
-    			->see('Award Categories');    	
+    			->see('Award Categories');
+
+    	//check categories displayed properly
+    	foreach ($categories as $category ){
+    		$this	->actingAs($user)
+    				->visit('/admin/categories')
+    				->seePageIs('/admin/categories')
+    				->see($category);   		
+    	}    	
 
     	//adding a category
     	$this	->actingAs($user)
@@ -94,12 +114,21 @@ class AdminTest extends TestCase
     public function testEditProfessors()
     {
     	$user = factory(App\User::class)->states('admin')->make();
+		$professors = DB::table('users')->pluck('firstName');
 
+    	//check page access
     	$this	->actingAs($user)
     			->visit('/admin/prof')
     			->seePageIs('/admin/prof')
     			->see('Professor Report'); 
 
+    	//check Professors displayed properly
+    	foreach ($professors as $professor ){
+    		$this	->actingAs($user)
+    				->visit('/admin/prof')
+    				->seePageIs('/admin/prof')
+    				->see($professor);   		
+    	}   
     	//adding a professor
     	$this 	->actingAs($user)
     			->visit('/admin/prof')
