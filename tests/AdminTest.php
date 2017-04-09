@@ -146,4 +146,63 @@ class AdminTest extends TestCase
     			->press('Delete')
     			->dontSee('Bowen');    	
     }
+
+    public function testEditNominees()
+    {
+        $user = factory(App\User::class)->states('admin')->make();
+        $nominee = factory(App\Nominee::class)->make();
+        $course = factory(App\Course::class)->make();
+        $nomination = factory(App\Nomination::class)->make();
+
+        //check page access
+        $this   ->actingAs($user)
+                ->visit('/admin/nomineeInfo')
+                ->seePageIs('/admin/nomineeInfo')
+                ->see('Nominee Information');
+
+        // Create Nomination
+        $this   ->actingAs($user)
+                ->visit('/nominations/create')
+                ->select('First Year Computer Science','award')
+                ->type($nominee['studentNumber'],'studentNumber')
+                ->type($nominee['firstName'],'studentFirstName')
+                ->type($nominee['lastName'],'studentLastName')
+                ->type($course['courseName'],'courseName0')
+                ->type($course['courseNumber'],'courseNumber0')
+                ->type('00'.$course['sectionNumber'],'sectionNumber0')
+                ->type($course['finalGrade'],'finalGrade0')
+                ->type($nomination['description'],'description')
+                ->press('Nominate!');
+
+        //check information is properly displayed in nominee Info tab
+        $this   ->actingAs($user)
+                ->visit('/admin/nomineeInfo')
+                ->see($nominee['firstName'])
+                ->see($nominee['lastName'])
+                ->see($nominee['studentNumber']);
+
+        //delete the nominee & check its properly deleted
+        $this   ->actingAs($user)
+                ->visit('/admin/nomineeInfo')
+                ->press('Delete')
+                ->dontSee($nominee['firstName'])
+                ->dontSee($nominee['lastName'])
+                ->dontSee($nominee['studentNumber']);
+
+    }
+
+    public function testAllNominations()
+    {
+        $user = factory(App\User::class)->states('admin')->make();
+        $nominee = factory(App\Nominee::class)->make();
+        $course = factory(App\Course::class)->make();
+        $nomination = factory(App\Nomination::class)->make();   
+        
+        //check page access
+        $this   ->actingAs($user)
+                ->visit('/admin/nominations')  
+                ->seePageIs('/admin/nominations')
+                ->see('Nominations Report');   
+
+    }
 }

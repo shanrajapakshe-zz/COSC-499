@@ -23,10 +23,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
-        'id' => $faker->numberBetween($min = 150, $max = 500),
+        'id' => $faker->numberBetween($min = 150, $max = 500), //set to a high number so wont interfere with regular id's of current professors
     ];
 });
 
+//setting ADMIN and USER states
 $factory->state(\App\User::class,'admin',function (\Faker\Generator $faker){
     return [
         'admin' => 1,
@@ -60,7 +61,7 @@ $factory->define(App\Course::class, function (Faker\Generator $faker) {
     ];
 });
 
-//Nomination factory
+//NOMINATION factory
 $factory->define(App\Nomination::class, function (Faker\Generator $faker) {
     return [
         'description' => $faker->text($maxNbChars = 200),  
