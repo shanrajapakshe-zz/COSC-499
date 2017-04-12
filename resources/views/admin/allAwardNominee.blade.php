@@ -38,7 +38,7 @@
                             @php ($grade = 'Final Grade = ' . $course-> finalGrade)
                             @php ($rank = 'Rank = ' . $course -> rank)
                             @else
-                            @php ($grade = 'Est Grade = ' . $course-> estimatedGrade)
+                            @php ($grade = 'Estimated Grade = ' . $course-> estimatedGrade)
                             @php ($rank = 'Rank = ' . $course -> rank)
                             @endif
                         @endif

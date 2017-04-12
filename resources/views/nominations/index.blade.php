@@ -32,8 +32,17 @@
 		        	<ul>
 		        		<li>
 		        			<p>Course: {{$course->courseName}}	{{$course->courseNumber}}</p>
-		        			<p>Grade: {{$course->finalGrade}}</p>
-		        			<p>Rank: {{$course->rank}}</p>
+
+									@if  (is_null($course->estimatedGrade) )
+									@php ($grade = 'Final Grade : ' . $course-> finalGrade)
+									@php ($rank = 'Rank = ' . $course -> rank)
+									@else
+									@php ($grade = 'Estimated Grade : ' . $course-> estimatedGrade)
+									@php ($rank = 'Rank : ' . $course -> rank)
+									@endif
+									<p>
+								  {{$grade}} <hr>
+									{{$rank}}</p>
 		        		</li>
 		        	</ul>
 		        	@endforeach
