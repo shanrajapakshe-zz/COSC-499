@@ -1,5 +1,5 @@
 @extends('main')
-@section('title', 'Nominations Report')
+@section('title', 'All Nominations')
 
 @section('content')
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Nominations Report</h1>
+        <h1>All Nominations</h1>
   </div>
 </div>
 <br>
@@ -94,8 +94,16 @@ $(document).ready(function() {
             </td>
             <td>
               @foreach ($nomination->course as $course)
-              <p>Final Grade:{{$course->finalGrade}}</p>
-              <p>Rank: {{$course->rank}}</p>
+              @if  (is_null($course->estimatedGrade) )
+              @php ($grade = 'Final Grade : ' . $course-> finalGrade)
+              @php ($rank = 'Rank = ' . $course -> rank)
+              @else
+              @php ($grade = 'Estimated Grade : ' . $course-> estimatedGrade)
+              @php ($rank = 'Rank : ' . $course -> rank)
+              @endif
+              <p>
+              {{$grade}} <hr>
+              {{$rank}}</p>
               @endforeach
             </td>
             <td>
