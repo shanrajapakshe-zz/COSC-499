@@ -23,12 +23,7 @@
             <select class="form-control" id="award" name="award" required>
               <option disabled selected value> -- select an option -- </option>
               @foreach ($awards as $award)
-
-                  <option>
-                  {{$award->name}}  {{$award->category->name}}
-                    </option>
-
-
+                  <option>{{$award->name}} {{$award->category->name}}</option>
               @endforeach
             </select>
           </div>

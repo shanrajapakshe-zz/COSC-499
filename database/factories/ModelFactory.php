@@ -12,41 +12,58 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+//USER factory
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'firstName' => $faker->firstName,
+        'lastName' => $faker ->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
-    ];
-});
-$factory->define(App\Prof::class, function (Faker\Generator $faker){
-    return [
-    'firstName' =>$faker-> name,
-    'lastName'  =>$faker-> name,
-    'email'     => $faker->unique()->safeEmail,
-    ];
-});
-$factory->define(App\Course::class, function (Faker\Generator $faker) {
-    return [
-    'courseName'       =>$faker->  name,
-    'courseNumber'     =>$faker->  numberBetween($min = 100, $max = 500),
-    'sectionNumber'    =>$faker->  numberBetween($min = 0, $max = 3),
-    'semester'         =>$faker->  numberBetween($min = 1, $max = 2),
-    'finalGrade'       =>$faker->  numberBetween($min = 75, $max = 100),
-    'rank'             =>$faker->  unique()->numberBetween($min = 0, $max = 5),
+        'id' => $faker->numberBetween($min = 150, $max = 500), //set to a high number so wont interfere with regular id's of current professors
     ];
 });
 
-$factory->define(App\nomination::class, function (Faker\Generator $faker) {
+//setting ADMIN and USER states
+$factory->state(\App\User::class,'admin',function (\Faker\Generator $faker){
     return [
-        'studentNumber' => $faker->randomNumber(8),
-        'studentFirstName' => $faker->name,
-        'studentLastName' => $faker->name,
-        'email' => $faker -> unique()->safeEmail,
-        'gradThisYear' => $faker -> numberBetween($min = 0, $max = 1),
-        'description' => $faker -> text(),
+        'admin' => 1,
+    ];    
+});
+$factory->state(\App\User::class,'user',function (\Faker\Generator $faker){
+    return [
+        'admin' => 0,
+    ];    
+});
+
+
+//NOMINEE factory
+$factory->define(App\Nominee::class, function (Faker\Generator $faker) {
+    return [
+        'studentNumber' => $faker->numberBetween($min = 10000000, $max = 99999999),
+        'firstName' => $faker->firstName,
+        'lastName' => $faker ->lastName,
+        'email' => $faker->unique()->safeEmail,
+        'emailSent' => 0,
+    ];
+});
+
+//COURSE factory
+$factory->define(App\Course::class, function (Faker\Generator $faker) {
+    return [
+        'courseName' => 'COSC',
+        'courseNumber' => $faker->numberBetween($min = 100, $max = 499),
+        'sectionNumber' => $faker->numberBetween($min = 1, $max = 2),
+        'finalGrade' => $faker->numberBetween($min = 50, $max = 100), 
+    ];
+});
+
+//NOMINATION factory
+$factory->define(App\Nomination::class, function (Faker\Generator $faker) {
+    return [
+        'description' => $faker->text($maxNbChars = 200),  
     ];
 });
