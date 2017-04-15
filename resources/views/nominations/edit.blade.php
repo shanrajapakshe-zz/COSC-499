@@ -12,6 +12,7 @@
           <label class="control-label col-sm-2" for="award">Award*:</label>
           <div class="col-sm-8">
             <select class="form-control" id="award" name="award">
+							    <option disabled selected value> -- select an option -- </option>
               @foreach ($awards as $award)
                 <option>{{$award->name}} {{$award->category['name']}}</option>
               @endforeach
