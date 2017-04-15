@@ -202,7 +202,7 @@ class AdminTest extends TestCase
         $this   ->actingAs($user)
                 ->visit('/admin/nominations')  
                 ->seePageIs('/admin/nominations')
-                ->see('Nominations Report');   
+                ->see('All Nominations');   
 
     }
 }
