@@ -103,8 +103,8 @@
 														<td><input type="text" name='courseName{{$i}}'  class="form-control" value= {{$nomination->course[$i]->courseName}}></td>
 														<td><input type="text" name='courseNumber{{$i}}'  class="form-control" value= {{$nomination->course[$i]->courseNumber}}></td>
 														<td><input type="text" name='sectionNumber{{$i}}'  class="form-control" value= {{$nomination->course[$i]->sectionNumber	}}></td>
-														<td><input type="text" name='finalGrade{{$i}}'  class="form-control" value= {{$nomination->course[$i]->finalGrade	}}></td>
-														<td><input type="text" name='estimatedGrade{{$i}}'  class="form-control" value= {{$nomination->course[$i]->estimatedGrade	}}></td>
+														<td><input type="text" onkeyup="disableEst({{$i}})" name='finalGrade{{$i}}'  class="form-control" value= {{$nomination->course[$i]->finalGrade	}}></td>
+														<td><input type="text"  onkeyup="disableFinal({{$i}})" name='estimatedGrade{{$i}}'  class="form-control" value= {{$nomination->course[$i]->estimatedGrade	}}></td>
 														<td><input type="text" name='estimatedRank{{$i}}'  class="form-control" value= {{$nomination->course[$i]->estimatedRank	}}></td>
 													<tr id='addr{{$i}}'></tr>
 												</tbody>
@@ -131,27 +131,49 @@
 
   </fieldset>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
   window.onload = function(){
-
-  $(confirmGradNom).hide()
-  $(askGrad).hide()
+  // your code here
+  $(askGrad).hide();
+  $(confirmGradNom).hide();
 };
+  //function for disableing one or the other estimated grade or final grade
+
+function disableEst(i) {
+  if (  document.getElementsByName('finalGrade'+i)[0].value.length  > 0 ) {
+
+    document.getElementsByName('estimatedGrade'+i)[0].disabled = true;
+    } else {
+
+      document.getElementsByName('estimatedGrade'+i)[0].disabled = false;
+  }
+}
+function disableFinal(i) {
+
+  if (  document.getElementsByName('estimatedGrade'+i)[0].value.length > 0) {
+    document.getElementsByName('finalGrade'+i)[0].disabled = true;
+  } else {
+
+      document.getElementsByName('finalGrade'+i)[0].disabled = false;
+  }
+}
+
+
 
   //function for adding and removing rows, limited to 6 rows total
-	var i = <?php echo json_encode(count($nomination->course), JSON_HEX_TAG); ?>;
-	console.log(i);
-
+  var i=1;
   $("#add_row").click(function(){
     if (i<6) {
 
-	$('#tab_logic >tbody:last-child').append("<tr id='addr"+(i)+"'>"+ "<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
+  $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='courseName"+i+"' type='text' placeholder='Eg. COSC' class='form-control input-md'  /></td><td><input  name='courseNumber"+i
   +"' type='text' placeholder='Eg. 499'  class='form-control input-md'></td><td><input  name='sectionNumber"+i
   +"' type='text' placeholder='Eg. 001' required pattern='[0-9]{3}'  class='form-control input-md'></td><td><input  name='finalGrade"+i
-  +"' type='text' placeholder='Eg. 98' pattern='[0-9]+(\.[0-9]{0,4})?%?' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
-  +"' type='text' placeholder='Eg. 98' pattern='[0-9]+(\.[0-9]{0,4})?%?' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
-  +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>" +"</tr>");
+  +"' type='text' onkeyup='disableEst("+i+")' placeholder='Eg. 98' pattern='[0-9]+(\.[0-9]{0,4})?%?' class='form-control input-md' title='This or predicted grade'></td><td><input  name='estimatedGrade"+i
+  +"' type='text' onkeyup='disableFinal("+i+")' placeholder='Eg. 98' pattern='[0-9]+(\.[0-9]{0,4})?%?' class='form-control input-md' title='This or final grade'></td><td><input  name='rank"+i
+  +"' type='text' placeholder='Eg. 1' class='form-control input-md'></td>");
+
+  $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
   i++;}
   });
 
@@ -167,37 +189,28 @@
     if ($input.prop('checked')) $(className).show();
     else {
          $(className).hide();
-     $(confirmGradNom).hide() ;
-
+         $(confirmGradNom).hide();
       }
 };
 
 
 // only runs when doc is loaded and ready
-// $(document).ready(function(){
-//
-//   // for hover option put its <a title="string"> in tag and it will show in hover
-//     $('[data-toggle="tooltip"]').tooltip();
-//
-//     // to check if a grad award has beeen selected
-//     document.getElementById('award').addEventListener('change',function(){
-//     if ( ($('#award option:selected').text().toLowerCase().indexOf("graduating")>-1) || ($('#award option:selected').text().toLowerCase().indexOf("graduate")>-1)) {
-//       //show
-//     $(askGrad).show()
-//
-//     } else if (($('#award option:selected').text().toLowerCase().indexOf("distinguished")>-1)) {
-//       //hide if distinguish grad
-//       $(askGrad).hide()
-//
-//     }
-//     else {
-//       // hide if not grad
-//       $(askGrad).hide()
-//     }
-//   })
-// });
-
 $(document).ready(function(){
+	if (  document.getElementsByName('finalGrade0')[0].value.length  > 0 ) {
+
+		document.getElementsByName('estimatedGrade0')[0].disabled = true;
+		} else {
+
+			document.getElementsByName('estimatedGrade0')[0].disabled = false;
+	}
+	if (  document.getElementsByName('estimatedGrade'+0)[0].value.length > 0) {
+    document.getElementsByName('finalGrade'+0)[0].disabled = true;
+  } else {
+
+      document.getElementsByName('finalGrade'+0)[0].disabled = false;
+  }
+
+
     // for hover option put its <a title="string"> in tag and it will show in hover
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -231,6 +244,14 @@ $(document).ready(function(){
   })
 });
 
+// adding both text field if text box checked
+document.getElementById("myForm").onsubmit = function() {
+if (document.getElementById('checkForDis').checked) {
+  $('#disGradNomDis').val($('#description').val()+ ' Distinguished Graduate Award Discription: ' +
+                               $('#gradDescription').val());
+}
+
+};
 
 
 // Listener for choosing distinguished graduating student from dropdown - shows the additional text box for distinguished graduating student
@@ -242,8 +263,6 @@ document.getElementById('award').addEventListener('change',function(){
   }
 });
 
-
-  </script>
-
+</script>
 </body>
 @endsection
