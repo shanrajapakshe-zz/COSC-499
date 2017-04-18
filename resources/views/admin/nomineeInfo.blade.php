@@ -93,6 +93,14 @@ You must make sure your email content is ready because you cannot send 2 email m
 		</div>
 	</div>
 </form>
+{{--        print PDF still needs  formated pdf as per unit 5 needs view found in PDF.certificate and still needs to loop to show all
+<form class="form-horizontal" action="{{url ('/admin/nomineeInfo/generatePDF') }}" method="GET">
+	<div class="form-group">
+		<div class="col-sm-10">
+			 <button type="submit" class="btn btn-primary">Generate Certificates </button>
+		</div>
+	</div>
+</form>--}}
 </div>
 
 <script type="text/javascript">
