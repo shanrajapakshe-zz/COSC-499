@@ -7,6 +7,8 @@
        <br><br>
        <span style="font-size:30px"><b>{{$name}}</b></span><br/><br/>
        <span style="font-size:25px"><i>has completed the course</i></span> <br/><br/>
+
+       <span style="font-size:25px"><i>has completed the course</i></span> <br/><br/>
        <span style="font-size:25px"><i>dated</i></span><br>
       <span style="font-size:30px"></span>
 </div>

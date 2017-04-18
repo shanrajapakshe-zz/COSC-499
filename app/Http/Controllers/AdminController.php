@@ -191,6 +191,39 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
       }
 
     }
+
+/*--------------------------------------------------------------------------*/
+/*PDF Related Functions*/
+    public function generatePDF(){
+      if (Auth::user()->admin===1) {
+          $nominees = Nominee::all();
+
+          $pdf = new TCPDF();
+          $pdf::SetTitle('Certificates');
+          foreach ($nominees as $nominee) {
+
+            $name = $nominee->firstName." ".$nominee->lastName;
+            $studentNumber = $nominee->studentNumber;
+
+           $data = array( 'name' => $name, 'studentNumber' =>$studentNumber);
+
+           $view = \View::make('PDF.certificate', $data);
+           $html = $view->render();
+           //define size and orentation of page
+           $pdf::AddPage('L', 'A5'); //l for landscape and P for, you guessed it !
+           $pdf::writeHTML($html, true, false, true, false, '');
+
+        }
+
+        $pdf::Output('Certificates.pdf');
+
+      }
+            else {
+            return view('pages.noAccess');
+        }
+    }
+
+
 /*--------------------------------------------------------------------------*/
 /*Email Related Functions*/
 
@@ -204,40 +237,6 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
       }
     }
 
-    public function generatePDF(){
-      if (Auth::user()->admin===1) {
-          $nominees = Nominee::all();
-          //find message from database, pull only message from row
-          $templateRow = EmailTemplate::find(1);
-          $templateMessage = $templateRow['message'];
-
-          //loop through each nominee & set their name and emails as variables
-
-                     $pdf = new TCPDF();
-                     $pdf::SetTitle('Hello World');
-          foreach ($nominees as $nominee) {
-
-            $name = $nominee->firstName." ".$nominee->lastName;
-            $studentNumber = $nominee->studentNumber;
-
-           $data = array( 'name' => $name, 'studentNumber' =>$studentNumber);
-
-           $view = \View::make('PDF.certificate', $data);
-           $html = $view->render();
-           //define size and orentation of page
-           $pdf::AddPage('L', 'A5');
-           $pdf::writeHTML($html, true, false, true, false, '');
-
-
-        }
-
-        $pdf::Output('hello_world.pdf');
-
-      }
-            else {
-            return view('pages.noAccess');
-        }
-    }
 
 
   public function sendEmail(){
