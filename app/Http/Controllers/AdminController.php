@@ -9,6 +9,8 @@ use App\Course;
 use App\Category;
 use App\EmailTemplate;
 use Auth;
+use PDF;
+use Elibyy\TCPDF\Facades\TCPDF;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -202,6 +204,58 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
       }
     }
 
+    public function generatePDF(){
+      if (Auth::user()->admin===1) {
+          $nominees = Nominee::all();
+          //find message from database, pull only message from row
+          $templateRow = EmailTemplate::find(1);
+          $templateMessage = $templateRow['message'];
+
+          //loop through each nominee & set their name and emails as variables
+          foreach ($nominees as $nominee) {
+
+            // only send emails to nominees with a valid email address format, skip to next nominee if not valid
+            if (!filter_var($nominee->email, FILTER_VALIDATE_EMAIL)){
+              continue;
+            }
+
+            // only send email to nominees who havent gotten an email yet
+          if ($nominee->emailSent === 0){
+
+
+            $name = $nominee->firstName." ".$nominee->lastName;
+            $studentNumber = $nominee->studentNumber;
+            $email = $nominee->email;
+
+           $data = array( 'email' => $email, 'name' => $name, 'templateMessage' =>$templateMessage, 'studentNumber' =>$studentNumber);
+
+           //Mail::send( 'email.invite', $data, function( $message ) use ($data)
+           $view = \View::make('PDF.certificate', $data);
+           $html = $view->render();
+           //to loop 
+    // PDF::SetTitle('Hello World'.$i);
+		// PDF::AddPage();
+		// PDF::Write(0, 'Hello World'.$i);
+		// PDF::Output(public_path('hello_world' . $i . '.pdf'), 'F');
+		// PDF::reset();
+
+           $pdf = new TCPDF();
+           $pdf::SetTitle('Hello World');
+           $pdf::AddPage();
+           $pdf::writeHTML($html, true, false, true, false, '');
+           $pdf::Output('hello_world.pdf');
+
+          };
+        }
+
+          return view('admin.emailSent')->with('nominees', $nominees);
+      }
+            else {
+            return view('pages.noAccess');
+        }
+    }
+
+
   public function sendEmail(){
     if (Auth::user()->admin===1) {
         $nominees = Nominee::all();
@@ -232,7 +286,7 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
          $message->to( $data['email'] )->subject( 'Formal Invitation to Unit 5 Award Ceremony!' );
          });
 
-         //change value of email Sent to 1(True);         
+         //change value of email Sent to 1(True);
          $nominee->emailSent = 1;
          $nominee->save();
 
@@ -248,13 +302,13 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
   }
 
   public function editTemplate() {
-    if (Auth::user()->admin===1) {    
+    if (Auth::user()->admin===1) {
         $template = EmailTemplate::find(1);
         return view('admin.editTemplate')->with('template', $template);
       }
     else {
         return view('pages.noAccess');
-         }        
+         }
     }
 
   public function updateTemplate(Request $request) {

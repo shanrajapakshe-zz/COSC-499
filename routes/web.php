@@ -59,12 +59,16 @@ Route::post('/admin/nomineeInfo/store','AdminController@storeEmail');
 Route::get('/admin/nomineeInfo/{nomineeInfo}/edit','AdminController@editEmail');
 
 // Sending Emails
-Route::get('/admin/nomineeInfo/emailTemplate', 'AdminController@emailTemplate');
+Route::post('/admin/nomineeInfo/emailTemplate', 'AdminController@emailTemplate');
 Route::get('/admin/nomineeInfo/editTemplate', 'AdminController@editTemplate');
 Route::put('/admin/nomineeInfo/updateTemplate', 'AdminController@updateTemplate');
 
 Route::post('/admin/nomineeInfo/emailSent','AdminController@sendEmail');
 Route::post('/admin/nomineeInfo/templateChanged','AdminController@changeTemplate');
+
+//generate pdf
+
+Route::get('/admin/nomineeInfo/generatePDF','AdminController@generatePDF');
 
 // Other pages
 Route::get('/about', 'PageController@getAbout');
