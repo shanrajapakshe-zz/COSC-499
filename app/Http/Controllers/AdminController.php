@@ -212,43 +212,27 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
           $templateMessage = $templateRow['message'];
 
           //loop through each nominee & set their name and emails as variables
+
+                     $pdf = new TCPDF();
+                     $pdf::SetTitle('Hello World');
           foreach ($nominees as $nominee) {
-
-            // only send emails to nominees with a valid email address format, skip to next nominee if not valid
-            if (!filter_var($nominee->email, FILTER_VALIDATE_EMAIL)){
-              continue;
-            }
-
-            // only send email to nominees who havent gotten an email yet
-          if ($nominee->emailSent === 0){
-
 
             $name = $nominee->firstName." ".$nominee->lastName;
             $studentNumber = $nominee->studentNumber;
-            $email = $nominee->email;
 
-           $data = array( 'email' => $email, 'name' => $name, 'templateMessage' =>$templateMessage, 'studentNumber' =>$studentNumber);
+           $data = array( 'name' => $name, 'studentNumber' =>$studentNumber);
 
-           //Mail::send( 'email.invite', $data, function( $message ) use ($data)
            $view = \View::make('PDF.certificate', $data);
            $html = $view->render();
-           //to loop 
-    // PDF::SetTitle('Hello World'.$i);
-		// PDF::AddPage();
-		// PDF::Write(0, 'Hello World'.$i);
-		// PDF::Output(public_path('hello_world' . $i . '.pdf'), 'F');
-		// PDF::reset();
-
-           $pdf = new TCPDF();
-           $pdf::SetTitle('Hello World');
-           $pdf::AddPage();
+           //define size and orentation of page
+           $pdf::AddPage('L', 'A5');
            $pdf::writeHTML($html, true, false, true, false, '');
-           $pdf::Output('hello_world.pdf');
 
-          };
+
         }
 
-          return view('admin.emailSent')->with('nominees', $nominees);
+        $pdf::Output('hello_world.pdf');
+
       }
             else {
             return view('pages.noAccess');

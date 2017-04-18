@@ -97,7 +97,7 @@ You must make sure your email content is ready because you cannot send 2 email m
 <form class="form-horizontal" action="{{url ('/admin/nomineeInfo/generatePDF') }}" method="GET">
 	<div class="form-group">
 		<div class="col-sm-10">
-			 <button type="submit" class="btn btn-primary" disabled title="Disabled as it needs optimization" >Generate Certificates </button>
+			 <button type="submit" class="btn btn-primary"  title="Disabled as it needs optimization" >Generate Certificates </button>
 		</div>
 	</div>
 </form>
