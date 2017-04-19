@@ -196,16 +196,18 @@ ON nomination.id=course.nomination_id Where nomination_id  in (SELECT id from no
 /*PDF Related Functions*/
     public function generatePDF(){
       if (Auth::user()->admin===1) {
-          $nominees = Nominee::all();
 
-          $pdf = new TCPDF();
+        $uniqueAwardForNominee = DB::select('SELECT firstName , lastName, category.name AS catName
+          , award.name as awardName from nominee LEFT JOIN  nomination on nomination.studentNumber = nominee.studentNumber
+          INNER JOIN  award on nomination.award_id = award.id INNER JOIN category on award.category_id=category.id GROUP by award.id , nominee.studentNumber');
+            $pdf = new TCPDF();
           $pdf::SetTitle('Certificates');
-          foreach ($nominees as $nominee) {
+          foreach ($uniqueAwardForNominee as $nominee) {
 
             $name = $nominee->firstName." ".$nominee->lastName;
-            $studentNumber = $nominee->studentNumber;
+            $award = $nominee->awardName." ".$nominee->catName;
 
-           $data = array( 'name' => $name, 'studentNumber' =>$studentNumber);
+           $data = array( 'name' => $name, 'award' =>$award);
 
            $view = \View::make('PDF.certificate', $data);
            $html = $view->render();
